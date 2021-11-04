@@ -12,7 +12,6 @@
         formControlName="email"
         placeholder="example@example.com"
       />
-      <!-- <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid"></div> -->
       <mat-error *ngIf="form.get('email')?.errors?.required">
         Enter email, please
       </mat-error>
@@ -31,9 +30,6 @@
         formControlName="password"
         autocomplete="on"
       />
-      <!-- <div
-        *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
-      ></div> -->
       <mat-error *ngIf="form.get('password')?.errors?.required">
         Enter password, please
       </mat-error>
@@ -44,7 +40,7 @@
         {{ form.get("password")?.errors?.minlength.actualLength }}
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Choose your role:</mat-label>
       <mat-select formControlName="roles" required>
         <mat-option>--</mat-option>
@@ -55,7 +51,7 @@
       <mat-error *ngIf="form.get('roles')?.errors?.required"
         >Please choose your role</mat-error
       >
-    </mat-form-field>
+    </mat-form-field> -->
     <button
       type="submit"
       mat-raised-button

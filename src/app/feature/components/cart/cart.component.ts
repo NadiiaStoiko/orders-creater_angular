@@ -36,7 +36,6 @@ export class CartComponent implements OnInit, OnDestroy {
   public changeQuantity(id: number, quantity: number): void {
     const cartItem = this.cartItems.find((item) => item.dishId === id);
     if (!cartItem) return;
-
     if (cartItem.quantity === 1 && quantity < 0) {
       this.deleteCartItem(id);
     } else {
