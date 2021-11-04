@@ -35,7 +35,7 @@
           </button>
         </td>
         <td>{{ cartItem.dish?.price }} грн.</td>
-        <td>{{ cartItem.dish?.price || 0 * cartItem.quantity }} грн.</td>
+        <td>{{ cartItem.dish.price * cartItem.quantity }} грн.</td>
 
         <td>
           <button
