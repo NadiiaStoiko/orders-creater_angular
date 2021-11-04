@@ -1,0 +1,51 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
+  padding: 0 15px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  margin: 5px;
+  padding: 30px 15px;
+  align-items: center;
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  height: 40%;
+  width: 85%;
+}
+.pictures {
+  width: 85%;
+  height: 40%;
+  margin-top: 0.5rem;
+}
+.text {
+  display: flex;
+  font-size: small;
+  /* height: 40%; */
+  width: 90%;
+  align-items: flex-start;
+}
+.price {
+  margin-top: 0.5rem;
+}
+.waight,
+.price {
+  margin-bottom: 15px;
+}
+.btns {
+  display: flex;
+  flex-direction: column;
+}
+.btn-add-to-card,
+.btn-open-modal-dialog {
+  width: 180px;
+}
+.btn-open-modal-dialog {
+  margin-bottom: 15px;
+}

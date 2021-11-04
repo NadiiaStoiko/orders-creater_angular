@@ -1,0 +1,40 @@
+<div class="container">
+  <h1 mat-dialog-title class="title">Do Your Want try this Dish?</h1>
+  <div mat-dialog-content>
+    <mat-card class="card">
+      <div class="dish-photo">
+        <img mat-card-image class="pictures" src="{{ dish?.url }}" />
+      </div>
+      <mat-card-content class="card-content">
+        <mat-card-header>
+          <mat-card-title class="name">{{ dish?.name }}</mat-card-title>
+        </mat-card-header>
+
+        <p class="waight">Вага: {{ dish?.weight }} гр.</p>
+        <p class="text">
+          {{ dish?.description }}
+        </p>
+        <p class="price">Ціна: {{ dish?.price }} грн.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      mat-button
+      mat-dialog-close
+      mat-dialog-close="true"
+      color="primary"
+      (click)="addDishToCart()"
+    >
+      ADD TO CART
+    </button>
+    <button
+      mat-button
+      mat-dialog-close
+      mat-dialog-close="false"
+      color="primary"
+    >
+      CLOSE
+    </button>
+  </div>
+</div>

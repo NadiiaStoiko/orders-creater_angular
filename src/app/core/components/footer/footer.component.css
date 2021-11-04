@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  justify-content: space-around;
+  /* align-items: center; */
+}
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 30px 50px;
+}
+.contacts {
+  display: flex;
+  flex-direction: column;
+}
+.connects {
+  display: flex;
+  flex-direction: column;
+}
+.copiright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40%;
+}

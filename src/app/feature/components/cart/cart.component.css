@@ -1,0 +1,53 @@
+.wrapper {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+.container {
+  display: grid;
+  justify-content: center;
+}
+th {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.decrenent {
+  margin-right: 10px;
+}
+.increnent {
+  margin-left: 10px;
+}
+tr.mat-footer-row {
+  font-weight: bold;
+}
+td {
+  text-align: center;
+}
+.total-amount {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-direction: row;
+  font-size: large;
+  font-weight: bold;
+  padding-top: 20px;
+}
+.empty-cart-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 350px;
+  padding: 30px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.empty-cart-title {
+  color: darkblue;
+}
+.empty-cart-content {
+  font-size: 16px;
+  padding-bottom: 15px;
+}

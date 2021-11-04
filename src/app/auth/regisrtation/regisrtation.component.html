@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="title">
+      <h2>Create account</h2>
+    </div>
+    <mat-form-field>
+      <mat-label>Login</mat-label>
+      <input
+        matInput
+        id="email"
+        type="email"
+        formControlName="email"
+        matInput
+        formControlName="email"
+        placeholder="example@example.com"
+      />
+      <!-- <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid"> </div> -->
+      <mat-error *ngIf="form.get('email')?.errors?.required">
+        Enter email, please
+      </mat-error>
+      <mat-error *ngIf="form.get('email')?.errors?.email">
+        Enter valid email, please
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        id="password"
+        type="password"
+        formControlName="password"
+        matInput
+        formControlName="password"
+        autocomplete="on"
+      />
+      <!-- <div
+        *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
+      > </div> -->
+      <mat-error *ngIf="form.get('password')?.errors?.required">
+        Enter password, please
+      </mat-error>
+      <mat-error *ngIf="form.get('password')?.errors?.minlength">
+        The password must be at least
+        {{ form.get("password")?.errors?.minlength.requiredLength }}
+        characters.Now it
+        {{ form.get("password")?.errors?.minlength.actualLength }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose your role:</mat-label>
+      <mat-select formControlName="roles" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let role of roles" [value]="role">
+          {{ role.role }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('roles')?.errors?.required"
+        >Please choose your role</mat-error
+      >
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid || submitted"
+    >
+      Create account
+    </button>
+  </form>
+</div>

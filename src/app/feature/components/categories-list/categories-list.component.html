@@ -1,0 +1,21 @@
+<div class="container">
+  <mat-card
+    class="card"
+    *ngFor="let category of categories"
+    (click)="setType(category.id)"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ category.type }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image class="pictures" src="{{ category.url }}" />
+    <mat-card-content>
+      <p class="text">
+        {{ category.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary">Select</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<app-dishes-by-categories></app-dishes-by-categories>

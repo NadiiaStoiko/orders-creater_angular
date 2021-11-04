@@ -1,0 +1,35 @@
+<router-outlet></router-outlet>
+<div class="container">
+  <mat-card
+    class="card"
+    *ngFor="let dish of dishes | filtration: productServ.id"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ dish.name }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image class="pictures" src="{{ dish?.url }}" />
+    <mat-card-content class="card-content">
+      <p class="waight">Вага: {{ dish.weight }} гр.</p>
+      <p class="text">{{ dish.description }}</p>
+      <p class="price">Ціна: {{ dish.price }} грн.</p>
+    </mat-card-content>
+    <mat-card-actions class="btns">
+      <button
+        class="btn-open-modal-dialog"
+        mat-flat-button
+        color="primary"
+        (click)="openDialog(dish.id)"
+      >
+        OPEN
+      </button>
+      <button
+        class="btn-add-to-card"
+        mat-flat-button
+        color="primary"
+        (click)="addDishToCart(dish)"
+      >
+        ADD TO CART
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

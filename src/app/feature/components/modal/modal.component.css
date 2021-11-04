@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 15px;
+}
+.card {
+  display: flex;
+  /* flex-direction: column; */
+  padding: 30px 15px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.title {
+  display: flex;
+  margin: 0 auto;
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  height: 40%;
+  width: 55%;
+}
+.name {
+  display: flex;
+  margin-bottom: 5px;
+}
+.dish-photo {
+  width: 45%;
+  height: 90%;
+  margin-top: 0.5rem;
+}
+.pictures {
+  width: 95%;
+  height: 80%;
+}
+.text {
+  font-size: small;
+  margin: 0 16px;
+}
+.price {
+  margin-top: 0.5rem;
+}
+.waight,
+.price {
+  padding: 10px 16px;
+  /* margin: 0 16px; */
+}
+.btns {
+  display: flex;
+  flex-direction: column;
+}
+.btn-add-to-card {
+  width: 180px;
+}
