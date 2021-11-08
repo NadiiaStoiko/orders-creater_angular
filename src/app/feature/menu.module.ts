@@ -7,6 +7,10 @@ import { CategoriesListComponent } from '../feature/components/categories-list/c
 import { DishesByCategoriesComponent } from '../feature/components/dishes-by-categories/dishes-by-categories.component';
 import { FiltrationPipe } from '../shared/pipes/filtration.pipe';
 import { AppRoutingModule } from '../app-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { GetCategoriesEffects } from '../core/store/effects/getCategories.effect';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from '../core/store/redusers/categories.redusers';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,13 @@ import { AppRoutingModule } from '../app-routing.module';
     FiltrationPipe,
   ],
   entryComponents: [ModalComponent],
-  imports: [CommonModule, MaterialModule, AppRoutingModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    AppRoutingModule,
+    EffectsModule.forFeature([GetCategoriesEffects]),
+    StoreModule.forFeature('categories', reducers),
+  ],
   exports: [
     CartComponent,
     ModalComponent,
