@@ -16,12 +16,12 @@ export class HeaderMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.refreshCartCount();
+    // this.refreshCartCount();
   }
 
-  public refreshCartCount(): number {
-    return this.dishesServ.getCartDishesCount();
-  }
+  // public refreshCartCount(): number {
+  //   return this.dishesServ.getCartDishesCount();
+  // }
 
   public logout(): void {
     this.auth.logout();

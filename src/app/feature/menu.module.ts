@@ -8,9 +8,11 @@ import { DishesByCategoriesComponent } from '../feature/components/dishes-by-cat
 import { FiltrationPipe } from '../shared/pipes/filtration.pipe';
 import { AppRoutingModule } from '../app-routing.module';
 import { EffectsModule } from '@ngrx/effects';
-import { GetCategoriesEffects } from '../core/store/effects/getCategories.effect';
+import { GetCategoriesEffects } from '../core/store/effects/categories.effect';
+import { GetDishesEffects } from '../core/store/effects/dishes.effect';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from '../core/store/redusers/categories.redusers';
+import { reducersForCategories } from '../core/store/redusers/categories.redusers';
+import { reducersForDishes } from '../core/store/redusers/dishes.redusers';
 
 @NgModule({
   declarations: [
@@ -25,8 +27,9 @@ import { reducers } from '../core/store/redusers/categories.redusers';
     CommonModule,
     MaterialModule,
     AppRoutingModule,
-    EffectsModule.forFeature([GetCategoriesEffects]),
-    StoreModule.forFeature('categories', reducers),
+    EffectsModule.forFeature([GetCategoriesEffects, GetDishesEffects]),
+    StoreModule.forFeature('categories', reducersForCategories),
+    StoreModule.forFeature('dishes', reducersForDishes),
   ],
   exports: [
     CartComponent,

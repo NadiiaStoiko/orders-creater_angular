@@ -1,4 +1,4 @@
-import { ActionType } from './categoriesListActionTypes';
+import { ActionType } from './categories-list-action-types';
 import { createAction, props } from '@ngrx/store';
 import { Category } from 'src/app/shared/classes/category';
 

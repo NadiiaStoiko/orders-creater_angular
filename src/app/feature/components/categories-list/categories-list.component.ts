@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import { Category } from 'src/app/shared/classes/category';
 import { CategoriesListService } from 'src/app/core/services/categories-list.service';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
-import { getCategoriesAction } from 'src/app/core/store/actions/getCategories.action';
+import { getCategoriesAction } from 'src/app/core/store/actions/categories.action';
 import {
   categoriesSelector,
   errorSelector,
   isLoadingSelector,
 } from 'src/app/core/store/selectors/categoties.selectors';
-import { CategoriesStateInteface } from 'src/app/shared/interfaces/categoriesState.interface';
+// import { CategoriesStateInteface } from 'src/app/shared/interfaces/categoriesState.interface';
 
 @Component({
   selector: 'app-categories-list',
@@ -20,12 +20,13 @@ import { CategoriesStateInteface } from 'src/app/shared/interfaces/categoriesSta
 export class CategoriesListComponent implements OnInit, OnDestroy {
   public categories: Category[] = [];
 
+  @Output() public categoryId = 0;
   isLoading$!: Observable<boolean>;
   error$!: Observable<string | null>;
   categories$!: Observable<Category[]>;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-  // public url = 'http://localhost:3000/goods';
+
   constructor(
     private productServ: CategoriesListService,
     private store: Store
@@ -47,9 +48,11 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
   public fetchData(): void {
     this.store.dispatch(getCategoriesAction());
   }
-  // public setType(id: number): void {
-  //   this.categories.find((val) => val.id === id);
-  // }
+  public setType(categoryId: number): void {
+    // this.categories.find((val) => val.id === id);
+    this.categoryId = categoryId;
+    console.log(this.categoryId);
+  }
 
   // public getCategoryes(): void {
   //   this.productServ

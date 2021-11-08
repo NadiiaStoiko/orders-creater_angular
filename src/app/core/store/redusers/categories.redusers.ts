@@ -1,16 +1,12 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { CategoriesStateInteface } from 'src/app/shared/interfaces/categoriesState.interface';
+import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
 import {
   getCategoriesAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
-} from '../actions/getCategories.action';
+} from '../actions/categories.action';
+import { initialState } from '../state/catigories-state';
 
-const initialState: CategoriesStateInteface = {
-  isLoading: false,
-  error: null,
-  data: [],
-};
 const categoriesReduser = createReducer(
   initialState,
   on(
@@ -37,6 +33,9 @@ const categoriesReduser = createReducer(
   )
 );
 
-export function reducers(state: CategoriesStateInteface, action: Action) {
+export function reducersForCategories(
+  state: CategoriesStateInteface,
+  action: Action
+) {
   return categoriesReduser(state, action);
 }

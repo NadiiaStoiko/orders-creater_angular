@@ -8,7 +8,7 @@ import {
   getCategoriesAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
-} from '../actions/getCategories.action';
+} from '../actions/categories.action';
 
 @Injectable()
 export class GetCategoriesEffects {

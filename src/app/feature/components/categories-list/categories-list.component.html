@@ -20,7 +20,13 @@
 </div>
 <app-dishes-by-categories></app-dishes-by-categories> -->
 <div class="container">
-  <mat-card class="card" *ngFor="let category of categories$ | async">
+  <div *ngFor="isLoading$ | async">Loading...</div>
+  <div *ngFor="error$ | async">Some error happened...</div>
+  <mat-card
+    class="card"
+    *ngFor="let category of categories$ | async"
+    (click)="setType(category.id)"
+  >
     <mat-card-header>
       <mat-card-title>{{ category.type }}</mat-card-title>
     </mat-card-header>
