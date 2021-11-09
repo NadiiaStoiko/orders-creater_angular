@@ -1,0 +1,349 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "type": "Pizza",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoj3iSMTCPg2kU0pAN6ci_eRj_QM-6OJkDag&usqp=CAU",
+      "description": "Italian food"
+    },
+    {
+      "id": 2,
+      "type": "Sushi",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuGDKM3lSo4g8cyeJHje4Met3tzlcYLhsxew&usqp=CAU",
+      "description": "Japanese cuisine"
+    },
+    {
+      "id": 3,
+      "type": "Burgers",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLxe_R0hofw4vnr0Aigi8zGmD_Uz3RplneXg&usqp=CAU",
+      "description": "Sandwiches"
+    },
+    {
+      "id": 4,
+      "type": "Snacks",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrTDX-qvzH_txm5DPJ5vJ_AIdfkYTp7U9TtA&usqp=CAU",
+      "description": "Snack"
+    },
+    {
+      "id": 5,
+      "type": "Salads",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxKWmucz7mnUyoQL_LWNZbpBiZswqcNUtiPA&usqp=CAU",
+      "description": "Creen Salads"
+    },
+    {
+      "id": 6,
+      "type": "Drinks",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2zuxk-QpSi6NlKiD80fZ42i1BQr4OgNwhxg&usqp=CAU",
+      "description": "Alcoholic Drinks"
+    },
+    {
+      "id": 7,
+      "type": "Desserts",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi15b0kiDeTaEsOcx6PEehiFf86THAOJmCgQ&usqp=CAU",
+      "description": "Sweet foods"
+    }
+  ],
+  "dishes": [
+    {
+      "categoryId": 1,
+      "id": 8,
+      "name": "Карбонара",
+      "price": 185,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/karbonara_1567060589165.jpeg",
+      "weight": 500,
+      "description": "Сир моцарела, шинка, грудинка, печериці, пармезан, томати чері та трюфельна олія"
+    },
+    {
+      "categoryId": 1,
+      "id": 9,
+      "name": "Чотири сири",
+      "price": 185,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/chetyre-syra_1567059967719.jpeg",
+      "weight": 500,
+      "description": "Cир дор блю, сир чеддер, сир пармезан, сир моцарела, груша, горіх волоський, вершковий соус "
+    },
+    {
+      "categoryId": 1,
+      "id": 10,
+      "name": "Американо",
+      "price": 185,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/amerikano_1567060058936.jpeg",
+      "weight": 500,
+      "description": "CирСоус BBQ, соус маринара, сир моцарела, гірчиця, філе куряче sous-vide, ковбаски мисливські, пепероні"
+    },
+    {
+      "categoryId": 1,
+      "id": 11,
+      "name": "Баварська",
+      "price": 185,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/bavarskaya_1567060134436.jpeg",
+      "weight": 650,
+      "description": "Сир моцарела, соус маринара, ковбаски мюнхенські, ковбаски мисливські, огірок солоний, гірчиця"
+    },
+    {
+      "categoryId": 1,
+      "id": 12,
+      "name": "Овочева",
+      "price": 185,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/ovoshchnaya_1567060751874.jpeg",
+      "weight": 520,
+      "description": "Баклажан, гливи, перець болгарський, помідори, соус песто, соус маринара "
+    },
+    {
+      "categoryId": 1,
+      "id": 13,
+      "name": "Піца з хамоном та персиком",
+      "price": 185,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/_1616500849590.jpeg",
+      "weight": 450,
+      "description": "Хамон, персик, томати чері, сир моцарела, вершки, соус маринара та рукола"
+    },
+    {
+      "categoryId": 2,
+      "id": 14,
+      "name": "Атлантік сет",
+      "price": 185,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/atlantik-set_1585898019404.jpeg",
+      "weight": 1250,
+      "description": "Рол з вугром панко, сурiмi кiмчi, грушею та вершковим сиром  в iкрi тобiко та кунжуті.    "
+    },
+    {
+      "categoryId": 2,
+      "id": 15,
+      "name": "Біг Фіш",
+      "price": 530,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/_1623396488577.jpeg",
+      "weight": 1600,
+      "description": "Рол з філе лосося, сиром філадельфія, манго та Тамаго, 2 шт Рол №2: Рол з філе лосося, сиром"
+    },
+    {
+      "categoryId": 2,
+      "id": 16,
+      "name": "Дабл Філа",
+      "price": 250,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/atlantik-set_1585898019404.jpeg",
+      "weight": 470,
+      "description": "Рол лосось-манго, рол вугор-груша"
+    },
+    {
+      "categoryId": 2,
+      "id": 17,
+      "name": "Лосось полюбе",
+      "price": 450,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/losos-polyube_1633014675779.jpeg",
+      "weight": 1250,
+      "description": "Філадельфія лосось класична, лосось тар-тар манго-чілі, каліфорнія Самбал, каліфорнія, Азія"
+    },
+    {
+      "categoryId": 2,
+      "id": 18,
+      "name": "Філадельфія сет",
+      "price": 680,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/filadelfiya-set_1631774370664.jpeg",
+      "weight": 1250,
+      "description": "Рол з вугром панко, сурiмi кiмчi, грушею та вершковим сиром  в iкрi тобiко та кунжуті.    "
+    },
+    {
+      "categoryId": 2,
+      "id": 19,
+      "name": "Фiладельфiя класична",
+      "price": 190,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/filadelfiya-klassicheskaya_1631772002653.jpeg",
+      "weight": 260,
+      "description": "Рол з вугром панко, сурiмi кiмчi, грушею та вершковим сиром  в iкрi тобiко та кунжуті.    "
+    },
+    {
+      "categoryId": 3,
+      "id": 20,
+      "name": "Нью Йорк бургер",
+      "price": 170,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/nyu-jork-burger_1598606690195.jpeg",
+      "weight": 360,
+      "description": "Котлета з яловичини, бекон, сир чеддер, плавлений, салат ромен, томати, соус тартар, картопля фрі"
+    },
+    {
+      "categoryId": 3,
+      "id": 21,
+      "name": "Роял бургер",
+      "price": 190,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/royal-burger_159860653314.jpeg",
+      "weight": 375,
+      "description": "Дві котлети з яловичини, бекон, сир чеддер плавлений, сир дор блю, салат ромен, томати"
+    },
+    {
+      "categoryId": 3,
+      "id": 22,
+      "name": "Чікен бургер",
+      "price": 150,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/chiken-burger_1598606892407.jpeg",
+      "weight": 260,
+      "description": "Котлета куряча, бекон, сир чеддер плавлений, салат ромен, томати, соус тартар, картопля фрі"
+    },
+    {
+      "categoryId": 3,
+      "id": 23,
+      "name": "Фірмовий бургер",
+      "price": 180,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/firmennyj-burger-mafiya_1572424434782.jpeg",
+      "weight": 370,
+      "description": "Котлета з яловичини, сир чеддер плавлений, салат ромен, томати, маринований огірок, гливи-гриль"
+    },
+    {
+      "categoryId": 4,
+      "id": 24,
+      "name": "М'ясна палітра",
+      "price": 170,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/myasnaya-palitra_1616503070515.jpeg",
+      "weight": 105,
+      "description": "Хамон, салямі мілано, салямі наполі, чорізо, паве"
+    },
+    {
+      "categoryId": 4,
+      "id": 25,
+      "name": "Фестиваль сиру",
+      "price": 115,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/festival-syra_1598426677318.jpeg",
+      "weight": 140,
+      "description": "Сири: брі, мимоліт, пармезан, козячий, конфітюр з солодкої цибулі, волоські горіхи, мед"
+    },
+    {
+      "categoryId": 4,
+      "id": 26,
+      "name": "Сирні палички з журавлиним соусом",
+      "price": 180,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/_1632136985517.jpeg",
+      "weight": 175,
+      "description": "Сир чеддер в паніровці з сухарів панко"
+    },
+    {
+      "categoryId": 4,
+      "id": 27,
+      "name": "Сухарики до пива",
+      "price": 50,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/suhariki-k-pivu_1550757657811.jpeg",
+      "weight": 200,
+      "description": "Сухарики до пива"
+    },
+    {
+      "categoryId": 5,
+      "id": 28,
+      "name": "Греческий",
+      "price": 109,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/grecheskij_156284830710.jpeg",
+      "weight": 275,
+      "description": "Томаты, сладкий перец, огурцы, салат ромэн, сыр фета, красный лук, орегано, оливковое масло, соус"
+    },
+    {
+      "categoryId": 5,
+      "id": 29,
+      "name": "Цезар",
+      "price": 150,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/cezar_1562848589509.jpeg",
+      "weight": 275,
+      "description": "Куряче філе на грилі, бекон, яйце, томати, салат ромен, пармезан, часникові крутони, соус Caesar"
+    },
+    {
+      "categoryId": 5,
+      "id": 30,
+      "name": "Боул с гуакамоле и манго",
+      "price": 119,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/_1616441731677.jpeg",
+      "weight": 275,
+      "description": "Филе слабосоленого лосося, гуакамоле, манго, сыр филадельфия, огурец, томаты черри, микс салатов,"
+    },
+    {
+      "categoryId": 6,
+      "id": 31,
+      "name": "Вермут Martini Fiero(Італія)",
+      "price": 299,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/martini-fiero-075l-d_1583842751507.jpeg",
+      "weight": 750,
+      "description": "Вермут. Італія"
+    },
+    {
+      "categoryId": 6,
+      "id": 32,
+      "name": "Ром Bacardi Spiced(Італія)",
+      "price": 539,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/bakardi-spajsed-1l-d_1583843793998.jpeg",
+      "weight": 1000,
+      "description": "Ром. Італія"
+    },
+    {
+      "categoryId": 6,
+      "id": 33,
+      "name": "Сапераві Duruji Valley",
+      "price": 239,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/saperavi-duruji-valley_1597322736805.jpeg",
+      "weight": 750,
+      "description": "Красное, сухое, Грузия"
+    },
+    {
+      "categoryId": 6,
+      "id": 34,
+      "name": "Алазанская долина Duruji Valley",
+      "price": 199,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/alazanskaya-dolina-duruji-valley_1597322593853.jpeg",
+      "weight": 750,
+      "description": "Белое, полусладкое, Грузия"
+    },
+    {
+      "categoryId": 7,
+      "id": 35,
+      "name": "Классический чизкейк",
+      "price": 79,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/klassicheskij-chizkejk_1550734256473.jpeg",
+      "weight": 140,
+      "description": "Классический десерт из сливочного сыра на песочной основе"
+    },
+    {
+      "categoryId": 7,
+      "id": 36,
+      "name": "Ягодный чизкейк",
+      "price": 79,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/ne-ofomlyat-chizkejk-yagodnyj_1550735812718.jpeg",
+      "weight": 125,
+      "description": "Классический десерт с маскарпоне и ягодным соусом"
+    },
+    {
+      "categoryId": 7,
+      "id": 37,
+      "name": "Наполеон с соленой карамелью",
+      "price": 89,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/napoleon-s-solenoj-karamelyu_155074759091.jpeg",
+      "weight": 120,
+      "description": "Классический десерт с маскарпоне и ягодным соусом"
+    },
+    {
+      "categoryId": 7,
+      "id": 38,
+      "name": "Кэррот кейк",
+      "price": 85,
+      "url": "https://mafia.ua/storage/editor/fotos/480x0/kerrot-kejk_157242513644.jpeg",
+      "weight": 125,
+      "description": "Классический морковный торт с орехами"
+    }
+  ],
+  "users": [
+    {
+      "email": "dfggh@gmail.com",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "email": "test1@mail.com",
+      "password": "6666788",
+      "id": 2
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "5555555",
+      "id": 3
+    },
+    {
+      "email": "test3@gmail.com",
+      "password": "12345",
+      "id": 4
+    }
+  ]
+}
