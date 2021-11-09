@@ -1,6 +1,5 @@
 <div class="container">
   <div *ngFor="isLoading$ | async">Loading...</div>
-  [book]="book"
   <div *ngFor="error$ | async">Some error happened...</div>
   <mat-card
     class="card"
