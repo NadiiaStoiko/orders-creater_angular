@@ -19,7 +19,6 @@ export class GetDishesEffects {
       switchMap(({ categoryId }) => {
         return this.dishesService.getDishes(categoryId).pipe(
           map((dishes: Dish[]) => {
-            console.log(dishes);
             return getDishesSuccessAction({ dishes });
           }),
           catchError(() => of(getDishesFailureAction()))

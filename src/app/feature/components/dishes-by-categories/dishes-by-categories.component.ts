@@ -37,11 +37,9 @@ export class DishesByCategoriesComponent implements OnInit, OnDestroy {
     this.fetchData();
     this.initialiseValues();
     this.dishes$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
-      console.log(val);
       this.dishes = val;
     });
     this.fetchData();
-    // this.getDishes();
   }
 
   public initialiseValues(): void {

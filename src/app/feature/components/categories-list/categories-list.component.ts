@@ -52,7 +52,6 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
 
   public selectCategory(categoryId: number): void {
     this.categoryId = categoryId;
-    console.log(this.categoryId);
     this.store.dispatch(LoadDishesByCategoryAction({ categoryId }));
   }
 
