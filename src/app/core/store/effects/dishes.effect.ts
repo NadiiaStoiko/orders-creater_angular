@@ -5,18 +5,19 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 import { Dish } from 'src/app/shared/classes/dish';
 import { DishesDataService } from '../../services/dishes-data.service';
 import {
-  getDishesAction,
+  // getDishesAction,
   getDishesFailureAction,
   getDishesSuccessAction,
+  LoadDishesByCategoryAction,
 } from '../actions/dishes.action';
 
 @Injectable()
 export class GetDishesEffects {
   getDishes$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(getDishesAction),
-      switchMap(() => {
-        return this.dishesService.getDishes().pipe(
+      ofType(LoadDishesByCategoryAction),
+      switchMap(({ categoryId }) => {
+        return this.dishesService.getDishes(categoryId).pipe(
           map((dishes: Dish[]) => {
             console.log(dishes);
             return getDishesSuccessAction({ dishes });

@@ -8,9 +8,8 @@ import { Dish } from 'src/app/shared/classes/dish';
 })
 export class DishesDataService implements OnInit {
   public dishes: Dish[] = [];
-  public url = 'http://localhost:3000/dishes';
-  // public baseUrl = 'http://localhost:3000/dishes';
-  // public endpoint = '?categoryId=';
+  public baseUrl = 'http://localhost:3000/dishes';
+  public endpoint = 'categoryId';
 
   // private cardKeyProduct = 'dishesInCard';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,9 +25,11 @@ export class DishesDataService implements OnInit {
   //   const url = this.baseUrl + this.endpoint + categoryID;
   //   return this.http.get<Dish[]>(url);
   // }
-  public getDishes(): Observable<Dish[]> {
+  public getDishes(categoryID: number): Observable<Dish[]> {
     // const url = this.baseUrl + this.endpoint + categoryID;
-    return this.http.get<Dish[]>(this.url);
+    return this.http.get<Dish[]>(
+      `${this.baseUrl}?${this.endpoint}=${categoryID}`
+    );
   }
 
   // public getByID(id: number): Observable<Dish> {

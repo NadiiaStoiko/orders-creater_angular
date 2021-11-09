@@ -26,7 +26,11 @@ export class CategoriesListService {
     return this.http.get<Category[]>(this.url);
   }
 
-  // public setType(id: number): void {
+  public getCategoryByID(id: number): void {
+    this.id = id;
+  }
+
+  // public selectCategory(id: number): void {
   //   this.id = id;
   // }
 }

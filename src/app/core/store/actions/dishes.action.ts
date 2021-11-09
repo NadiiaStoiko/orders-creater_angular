@@ -8,6 +8,10 @@ export const getDishesSuccessAction = createAction(
   ActionsType.GET_DISHES_SUCCESS,
   props<{ dishes: Dish[] }>()
 );
-export const getDishesFailureAction = createAction(
-  ActionsType.GET_DISHES_FAILURE
+
+export const getDishesFailureAction = createAction(ActionsType.GET_FAILURE);
+
+export const LoadDishesByCategoryAction = createAction(
+  ActionsType.LOAD_DISHES_BY_CATEGORY,
+  props<{ categoryId: number }>()
 );

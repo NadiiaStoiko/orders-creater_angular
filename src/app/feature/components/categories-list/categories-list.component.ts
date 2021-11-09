@@ -5,12 +5,12 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { getCategoriesAction } from 'src/app/core/store/actions/categories.action';
+import { LoadDishesByCategoryAction } from 'src/app/core/store/actions/dishes.action';
 import {
   categoriesSelector,
   errorSelector,
   isLoadingSelector,
 } from 'src/app/core/store/selectors/categoties.selectors';
-// import { CategoriesStateInteface } from 'src/app/shared/interfaces/categoriesState.interface';
 
 @Component({
   selector: 'app-categories-list',
@@ -37,21 +37,23 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     this.categories$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
       this.categories = val;
     });
-    // this.getCategoryes();
     this.fetchData();
   }
+
   public initialiseValues(): void {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
     this.categories$ = this.store.pipe(select(categoriesSelector));
   }
+
   public fetchData(): void {
     this.store.dispatch(getCategoriesAction());
   }
-  public setType(categoryId: number): void {
-    // this.categories.find((val) => val.id === id);
+
+  public selectCategory(categoryId: number): void {
     this.categoryId = categoryId;
     console.log(this.categoryId);
+    this.store.dispatch(LoadDishesByCategoryAction({ categoryId }));
   }
 
   // public getCategoryes(): void {

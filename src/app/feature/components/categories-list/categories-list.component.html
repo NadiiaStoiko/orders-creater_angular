@@ -2,7 +2,7 @@
   <mat-card
     class="card"
     *ngFor="let category of categories"
-    (click)="setType(category.id)"
+    (click)="selectCategory(category.id)"
   >
     <mat-card-header>
       <mat-card-title>{{ category.type }}</mat-card-title>
@@ -25,7 +25,7 @@
   <mat-card
     class="card"
     *ngFor="let category of categories$ | async"
-    (click)="setType(category.id)"
+    (click)="selectCategory(category.id)"
   >
     <mat-card-header>
       <mat-card-title>{{ category.type }}</mat-card-title>

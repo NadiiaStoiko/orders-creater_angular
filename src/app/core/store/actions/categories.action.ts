@@ -11,15 +11,3 @@ export const getCategoriesSuccessAction = createAction(
 export const getCategoriesFailureAction = createAction(
   ActionType.GET_CATEGORIES_FAILURE
 );
-
-export const getCategoriesByIdAction = createAction(
-  ActionType.GET_CATEGORIES_BY_ID
-);
-
-export const getCategoriesByIdSuccessAction = createAction(
-  ActionType.GET_CATEGORIES_BY_ID_SUCCESS,
-  props<{ categoryID: number }>()
-);
-export const getCategoriesByIdFailureAction = createAction(
-  ActionType.GET_CATEGORIES_BY_ID_FAILURE
-);
