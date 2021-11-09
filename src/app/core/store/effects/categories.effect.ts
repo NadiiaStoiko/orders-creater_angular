@@ -6,6 +6,7 @@ import { Category } from 'src/app/shared/classes/category';
 import { CategoriesListService } from '../../services/categories-list.service';
 import {
   getCategoriesAction,
+  getCategoriesByIdAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
 } from '../actions/categories.action';
@@ -17,6 +18,28 @@ export class GetCategoriesEffects {
       ofType(getCategoriesAction),
       switchMap(() => {
         return this.categoriesService.getCategories().pipe(
+          map((category: Category[]) => {
+            return getCategoriesSuccessAction({ category });
+          }),
+          catchError(() => of(getCategoriesFailureAction()))
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private categoriesService: CategoriesListService
+  ) {}
+}
+
+@Injectable()
+export class GetCategoriesByIdEffects {
+  getCategoriesByID$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getCategoriesByIdAction),
+      switchMap(() => {
+        return this.categoriesService.getCategories(categoryID).pipe(
           map((category: Category[]) => {
             return getCategoriesSuccessAction({ category });
           }),
