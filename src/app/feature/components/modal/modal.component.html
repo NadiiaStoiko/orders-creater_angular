@@ -60,7 +60,13 @@
     </mat-card>
   </div>
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close mat-dialog-close="true" color="primary">
+    <button
+      mat-button
+      mat-dialog-close
+      mat-dialog-close="true"
+      color="primary"
+      (click)="addDishToCart(data)"
+    >
       ADD TO CART
     </button>
     <button

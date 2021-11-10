@@ -57,7 +57,12 @@
       >
         OPEN
       </button>
-      <button class="btn-add-to-card" mat-flat-button color="primary">
+      <button
+        class="btn-add-to-card"
+        mat-flat-button
+        color="primary"
+        (click)="addDishToCart(dish)"
+      >
         ADD TO CART
       </button>
     </mat-card-actions>

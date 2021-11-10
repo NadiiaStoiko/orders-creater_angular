@@ -8,6 +8,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { getDishesAction } from 'src/app/core/store/actions/dishes.action';
+import { addToCartAction } from 'src/app/core/store/actions/cart.action';
 import {
   dishesSelector,
   errorSelector,
@@ -53,6 +54,11 @@ export class DishesByCategoriesComponent implements OnInit, OnDestroy {
   public openDialog(dish: Dish): void {
     this.dialog.open(ModalComponent, { data: dish });
   }
+
+  public addDishToCart(dish: Dish): void {
+    this.store.dispatch(addToCartAction({ dish }));
+  }
+
   // public getDishes(): void {
   //   this.dishesServ
   //     .getDishes()

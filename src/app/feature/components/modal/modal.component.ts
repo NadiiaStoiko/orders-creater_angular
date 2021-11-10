@@ -4,6 +4,7 @@ import { DishesDataService } from 'src/app/core/services/dishes-data.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { addToCartAction } from 'src/app/core/store/actions/cart.action';
 
 @Component({
   selector: 'app-modal',
@@ -32,6 +33,11 @@ export class ModalComponent implements OnInit, OnDestroy {
     // // this.fetchData(this.dish);
     // console.log('data', this.data);
     // this.getDish();
+  }
+
+  public addDishToCart(dish: Dish): void {
+    this.store.dispatch(addToCartAction({ dish }));
+    console.log(dish);
   }
 
   // public getDishes(): void {
