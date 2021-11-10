@@ -9,7 +9,8 @@ import { Dish } from 'src/app/shared/classes/dish';
 export class DishesDataService implements OnInit {
   public dishes: Dish[] = [];
   public baseUrl = 'http://localhost:3000/dishes';
-  public endpoint = 'categoryId';
+  public endpoint1 = 'categoryId';
+  public endpoint2 = 'id';
 
   // private cardKeyProduct = 'dishesInCard';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,16 +22,15 @@ export class DishesDataService implements OnInit {
     // this.getDishes();
   }
 
-  // public getDishes(categoryID: number | undefined): Observable<Dish[]> {
-  //   const url = this.baseUrl + this.endpoint + categoryID;
-  //   return this.http.get<Dish[]>(url);
-  // }
   public getDishes(categoryID: number): Observable<Dish[]> {
-    // const url = this.baseUrl + this.endpoint + categoryID;
     return this.http.get<Dish[]>(
-      `${this.baseUrl}?${this.endpoint}=${categoryID}`
+      `${this.baseUrl}?${this.endpoint1}=${categoryID}`
     );
   }
+
+  // public getDishByID(id: number): Observable<Dish> {
+  //   return this.http.get<Dish>(`${this.baseUrl}?${this.endpoint1}=${id}`);
+  // }
 
   // public getByID(id: number): Observable<Dish> {
   //   return this.http.get<Dish>(`${this.url}/${id}`);

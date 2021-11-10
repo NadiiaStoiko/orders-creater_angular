@@ -4,6 +4,7 @@ import {
   getDishesAction,
   getDishesFailureAction,
   getDishesSuccessAction,
+  getDishByIdAction,
 } from '../actions/dishes.action';
 import { initialState } from '../state/dishes-state';
 
@@ -29,6 +30,14 @@ const dishesReduser = createReducer(
     (state): DishesStateInteface => ({
       ...state,
       isLoading: false,
+    })
+  ),
+  on(
+    getDishByIdAction,
+    (state, action): DishesStateInteface => ({
+      ...state,
+      isLoading: false,
+      id: action.id,
     })
   )
 );

@@ -44,18 +44,18 @@
   <div mat-dialog-content>
     <mat-card class="card">
       <div class="dish-photo">
-        <img mat-card-image class="pictures" src="{{ dish?.url }}" />
+        <img mat-card-image class="pictures" src="{{ data.url }}" />
       </div>
       <mat-card-content class="card-content">
         <mat-card-header>
-          <mat-card-title class="name">{{ dish?.name }}</mat-card-title>
+          <mat-card-title class="name">{{ data.name }}</mat-card-title>
         </mat-card-header>
 
-        <p class="waight">Вага: {{ dish?.weight }} гр.</p>
+        <p class="waight">Вага: {{ data.weight }} гр.</p>
         <p class="text">
           {{ dish?.description }}
         </p>
-        <p class="price">Ціна: {{ dish?.price }} грн.</p>
+        <p class="price">Ціна: {{ data.price }} грн.</p>
       </mat-card-content>
     </mat-card>
   </div>

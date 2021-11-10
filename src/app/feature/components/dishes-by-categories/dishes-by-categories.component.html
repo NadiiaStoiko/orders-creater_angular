@@ -49,7 +49,12 @@
       <p class="price">Ціна: {{ dish.price }} грн.</p>
     </mat-card-content>
     <mat-card-actions class="btns">
-      <button class="btn-open-modal-dialog" mat-flat-button color="primary">
+      <button
+        class="btn-open-modal-dialog"
+        mat-flat-button
+        color="primary"
+        (click)="openDialog(dish)"
+      >
         OPEN
       </button>
       <button class="btn-add-to-card" mat-flat-button color="primary">

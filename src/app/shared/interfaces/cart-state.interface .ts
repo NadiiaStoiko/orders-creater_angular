@@ -1,11 +1,9 @@
-import { Action } from 'rxjs/internal/scheduler/Action';
 import { Dish } from '../classes/dish';
 
-export interface DishesStateInteface {
-  isLoading: boolean;
-  error: string | null;
-  data: Dish[];
-  id: number;
+export interface CartItemStateInteface {
+  dish: Dish;
+  quantity: number;
+  // id: number;
 }
 
 // export interface CartItem {

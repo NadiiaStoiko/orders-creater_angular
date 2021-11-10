@@ -4,4 +4,5 @@ export const initialState: DishesStateInteface = {
   isLoading: false,
   error: null,
   data: [],
+  id: 0,
 };

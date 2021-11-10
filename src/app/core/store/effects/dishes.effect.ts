@@ -9,6 +9,8 @@ import {
   getDishesFailureAction,
   getDishesSuccessAction,
   LoadDishesByCategoryAction,
+  // getDishByIdAction,
+  // getDishAction,
 } from '../actions/dishes.action';
 
 @Injectable()
@@ -32,3 +34,26 @@ export class GetDishesEffects {
     private dishesService: DishesDataService
   ) {}
 }
+
+// @Injectable()
+// export class GetDishByIdEffectes {
+//   getDishById$ = createEffect(() =>
+//     this.actions$.pipe(
+//       ofType(getDishByIdAction),
+//       switchMap(({ id }) => {
+//         console.log(this.dishesService.getDishByID(id));
+//         return this.dishesService.getDishByID(id).pipe(
+//           map((dish: Dish) => {
+//             return getDishAction({ dish });
+//           }),
+//           catchError(() => of(getDishesFailureAction()))
+//         );
+//       })
+//     )
+//   );
+
+//   constructor(
+//     private actions$: Actions,
+//     private dishesService: DishesDataService
+//   ) {}
+// }

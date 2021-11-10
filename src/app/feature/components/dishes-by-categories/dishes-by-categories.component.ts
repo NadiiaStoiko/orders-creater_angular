@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 // import { CategoriesListService } from 'src/app/core/services/categories-list.service';
 import { Dish } from 'src/app/shared/classes/dish';
-// import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DishesDataService } from 'src/app/core/services/dishes-data.service';
 import { Observable, Subject } from 'rxjs';
@@ -39,7 +39,6 @@ export class DishesByCategoriesComponent implements OnInit, OnDestroy {
     this.dishes$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
       this.dishes = val;
     });
-    this.fetchData();
   }
 
   public initialiseValues(): void {
@@ -50,6 +49,10 @@ export class DishesByCategoriesComponent implements OnInit, OnDestroy {
   public fetchData(): void {
     this.store.dispatch(getDishesAction());
   }
+
+  public openDialog(dish: Dish): void {
+    this.dialog.open(ModalComponent, { data: dish });
+  }
   // public getDishes(): void {
   //   this.dishesServ
   //     .getDishes()
@@ -57,10 +60,6 @@ export class DishesByCategoriesComponent implements OnInit, OnDestroy {
   //     .subscribe((data) => {
   //       this.dishes = data;
   //     });
-  // }
-
-  // public openDialog(id: number): void {
-  //   this.dialog.open(ModalComponent, { data: id });
   // }
 
   // public addDishToCart(dish: Dish): void {

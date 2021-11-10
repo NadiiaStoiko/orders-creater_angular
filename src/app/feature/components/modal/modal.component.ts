@@ -2,7 +2,9 @@ import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { Dish } from 'src/app/shared/classes/dish';
 import { DishesDataService } from 'src/app/core/services/dishes-data.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -10,24 +12,36 @@ import { Subject } from 'rxjs';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   public dish!: Dish;
+  public dishes: Dish[] = [];
   public destroy$: Subject<boolean> = new Subject<boolean>();
+  dish$!: Observable<Dish>;
+  dishes$!: Observable<Dish[]>;
 
   constructor(
     private dishesServ: DishesDataService,
-    @Inject(MAT_DIALOG_DATA) public data: number
+    private store: Store,
+    @Inject(MAT_DIALOG_DATA) public data: Dish
   ) {}
 
   ngOnInit(): void {
-    console.log('data', this.data);
+    // this.getDishes();
+    // this.dishes$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
+    //   this.dishes = val;
+    //   console.log(this.dishes);
+    // });
+    // // this.fetchData(this.dish);
+    // console.log('data', this.data);
     // this.getDish();
   }
 
-  // public getDish(): void {
-  //   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  //   this.dishesServ.getByID(this.data).subscribe((dish) => {
-  //     this.dish = dish;
-  //   });
+  // public getDishes(): void {
+  //   this.dishes$ = this.store.pipe(select(dishesSelector));
   // }
+
+  // public getId(): void {
+  //   this.dishes$ = this.store.pipe(select(dishesSelector));
+  // }
+
   // public addDishToCart(): void {
   //   this.dishesServ.addDishToCard(this.dish);
   // }
