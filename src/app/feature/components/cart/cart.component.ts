@@ -1,15 +1,15 @@
 import { Component, OnDestroy } from '@angular/core';
 import { DishesDataService } from 'src/app/core/services/dishes-data.service';
-import { Dish } from 'src/app/shared/classes/dish';
-import { OrderItem } from 'src/app/shared/classes/order-item';
 import { Subject, Observable } from 'rxjs';
-import {
-  CartItemInteface,
-  CartStateInteface,
-} from 'src/app/shared/interfaces/cart-state.interface ';
+import { CartItemInteface } from 'src/app/shared/interfaces/cart-state.interface ';
 import { addToCartSelector } from 'src/app/core/store/selectors/cart.selectors ';
 import { select, Store } from '@ngrx/store';
-// import { takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
+import {
+  decreaseQuantityinCartAction,
+  deleteFromCartAction,
+  increaseQuantityinCartAction,
+} from 'src/app/core/store/actions/cart.action';
 
 @Component({
   selector: 'app-cart',
@@ -19,19 +19,25 @@ import { select, Store } from '@ngrx/store';
 export class CartComponent implements OnDestroy {
   constructor(private dishesServ: DishesDataService, private store: Store) {}
 
-  public dish!: Dish;
-  public cartItems: OrderItem[] = [];
+  public cartItems: CartItemInteface[] = [];
   cart$!: Observable<CartItemInteface[]>;
   public destroy$: Subject<boolean> = new Subject<boolean>();
 
   ngOnInit(): void {
     console.log();
+    this.addToCart();
+    this.cart$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
+      this.cartItems = val;
+      // console.log(val);
+    });
+
     // this.getDishesFromCart();
   }
 
-  // public addToCart(): void {
-  //   this.cart$ = this.store.pipe(select(addToCartSelector));
-  // }
+  public addToCart(): void {
+    this.cart$ = this.store.pipe(select(addToCartSelector));
+  }
+
   // public getDishesFromCart() {
   //   this.cartItems = this.dishesServ.getDishesFromCart();
   //   this.cartItems.forEach((element) => {
@@ -63,6 +69,17 @@ export class CartComponent implements OnDestroy {
   //   const i = this.cartItems.findIndex((value) => value.dishId == id);
   //   this.cartItems.splice(i, 1);
   // }
+  public deleteCartItem(id: number): void {
+    this.store.dispatch(deleteFromCartAction({ id }));
+  }
+
+  public increaseQuantityInCart(id: number): void {
+    this.store.dispatch(increaseQuantityinCartAction({ id }));
+  }
+
+  public decreaseQuantityInCart(id: number): void {
+    this.store.dispatch(decreaseQuantityinCartAction({ id }));
+  }
 
   // public getTotalCost() {
   //   return this.cartItems

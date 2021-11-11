@@ -1,6 +1,6 @@
 <div class="container">
-  <div *ngFor="isLoading$ | async">Loading...</div>
-  <div *ngFor="error$ | async">Some error happened...</div>
+  <!-- <div *ngFor="isLoading$ | async">Loading...</div>
+  <div *ngFor="error$ | async">Some error happened...</div> -->
   <mat-card
     class="card"
     *ngFor="let category of categories$ | async"

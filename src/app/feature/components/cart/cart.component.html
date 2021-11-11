@@ -80,14 +80,24 @@
         <th class="col-name">Price</th>
         <th class="col-name">Subtotal</th>
       </tr>
-      <tr *ngFor="let cartItem of cartItems" [attr.dishId]="cartItem.dishId">
+      <tr *ngFor="let cartItem of cartItems" [attr.dishId]="cartItem.dish.id">
         <td>{{ cartItem.dish?.name }}</td>
         <td>
-          <button class="decrenent" mat-stroked-button color="primary">
+          <button
+            class="decrenent"
+            mat-stroked-button
+            color="primary"
+            (click)="increaseQuantityInCart(cartItem.dish.id)"
+          >
             -
           </button>
           {{ cartItem.quantity }}
-          <button class="increnent" mat-stroked-button color="primary">
+          <button
+            class="increnent"
+            mat-stroked-button
+            color="primary"
+            (click)="increaseQuantityInCart(cartItem.dish.id)"
+          >
             +
           </button>
         </td>
@@ -95,7 +105,13 @@
         <td>{{ cartItem.dish.price * cartItem.quantity }} грн.</td>
 
         <td>
-          <button mat-stroked-button color="primary">Delete</button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="deleteCartItem(cartItem.dish.id)"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>

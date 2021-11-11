@@ -41,6 +41,11 @@ import { reducersForCart } from './core/store/redusers/cart.redusers ';
         strictActionImmutability: false,
       },
     }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
