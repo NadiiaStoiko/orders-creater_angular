@@ -16,6 +16,7 @@ import {
 import { StoreModule } from '@ngrx/store';
 import { reducersForCategories } from '../core/store/redusers/categories.redusers';
 import { reducersForDishes } from '../core/store/redusers/dishes.redusers';
+import { reducersForCart } from '../core/store/redusers/cart.redusers ';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,15 @@ import { reducersForDishes } from '../core/store/redusers/dishes.redusers';
       GetDishesEffects,
       // GetDishByIdEffectes,
     ]),
+    // StoreModule.forRoot(reducersForCart, {
+    //   runtimeChecks: {
+    //     strictStateImmutability: false,
+    //     strictActionImmutability: false,
+    //   },
+    // }),
     StoreModule.forFeature('categories', reducersForCategories),
     StoreModule.forFeature('dishes', reducersForDishes),
+    StoreModule.forFeature('cart', reducersForCart),
   ],
   exports: [
     CartComponent,

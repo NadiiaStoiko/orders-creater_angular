@@ -15,12 +15,3 @@ export const LoadDishesByCategoryAction = createAction(
   ActionsType.LOAD_DISHES_BY_CATEGORY,
   props<{ categoryId: number }>()
 );
-
-export const getDishByIdAction = createAction(
-  ActionsType.GET_DISHS_BY_ID,
-  props<{ id: number }>()
-);
-// export const getDishAction = createAction(
-//   ActionsType.GET_DISH,
-//   props<{ dish: Dish }>()
-// );

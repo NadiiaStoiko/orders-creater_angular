@@ -5,12 +5,9 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 import { Dish } from 'src/app/shared/classes/dish';
 import { DishesDataService } from '../../services/dishes-data.service';
 import {
-  // getDishesAction,
   getDishesFailureAction,
   getDishesSuccessAction,
   LoadDishesByCategoryAction,
-  // getDishByIdAction,
-  // getDishAction,
 } from '../actions/dishes.action';
 
 @Injectable()

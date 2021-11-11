@@ -2,7 +2,13 @@ import { Component, OnDestroy } from '@angular/core';
 import { DishesDataService } from 'src/app/core/services/dishes-data.service';
 import { Dish } from 'src/app/shared/classes/dish';
 import { OrderItem } from 'src/app/shared/classes/order-item';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import {
+  CartItemInteface,
+  CartStateInteface,
+} from 'src/app/shared/interfaces/cart-state.interface ';
+import { addToCartSelector } from 'src/app/core/store/selectors/cart.selectors ';
+import { select, Store } from '@ngrx/store';
 // import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -11,10 +17,11 @@ import { Subject } from 'rxjs';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnDestroy {
-  constructor(private dishesServ: DishesDataService) {}
+  constructor(private dishesServ: DishesDataService, private store: Store) {}
+
   public dish!: Dish;
   public cartItems: OrderItem[] = [];
-
+  cart$!: Observable<CartItemInteface[]>;
   public destroy$: Subject<boolean> = new Subject<boolean>();
 
   ngOnInit(): void {
@@ -22,6 +29,9 @@ export class CartComponent implements OnDestroy {
     // this.getDishesFromCart();
   }
 
+  // public addToCart(): void {
+  //   this.cart$ = this.store.pipe(select(addToCartSelector));
+  // }
   // public getDishesFromCart() {
   //   this.cartItems = this.dishesServ.getDishesFromCart();
   //   this.cartItems.forEach((element) => {

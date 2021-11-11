@@ -1,15 +1,13 @@
 import { Dish } from '../classes/dish';
 
-export interface CartItemStateInteface {
-  dish: Dish;
-  quantity: number;
-  // id: number;
+export interface CartStateInteface {
+  dishes: CartItemInteface[];
 }
 
-// export interface CartItem {
-//   dish: Dish,
-//   quantity: number
-// }
+export interface CartItemInteface {
+  dish: Dish;
+  quantity: number;
+}
 
 // const cart: CartItem[] = [
 //   {

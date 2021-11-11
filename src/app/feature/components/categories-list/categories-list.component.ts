@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/shared/classes/category';
 import { CategoriesListService } from 'src/app/core/services/categories-list.service';
 import { Observable, Subject } from 'rxjs';
@@ -20,7 +20,6 @@ import {
 export class CategoriesListComponent implements OnInit, OnDestroy {
   public categories: Category[] = [];
 
-  @Output() public categoryId = 0;
   isLoading$!: Observable<boolean>;
   error$!: Observable<string | null>;
   categories$!: Observable<Category[]>;
@@ -51,19 +50,9 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
   }
 
   public selectCategory(categoryId: number): void {
-    // this.categoryId = categoryId;
     this.store.dispatch(LoadDishesByCategoryAction({ categoryId }));
   }
 
-  // public getCategoryes(): void {
-  //   this.productServ
-  //     .getCategories()
-  //     .pipe(takeUntil(this.destroy$))
-  //     .subscribe((data) => {
-  //       // this.categories = data;
-  //       console.log(data);
-  //     });
-  // }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

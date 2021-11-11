@@ -14,6 +14,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { reducersForCart } from './core/store/redusers/cart.redusers ';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,9 +29,18 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     UserModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
+    StoreModule.forRoot(reducersForCart, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
