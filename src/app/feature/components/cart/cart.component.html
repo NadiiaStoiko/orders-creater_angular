@@ -1,70 +1,3 @@
-<!-- <div class="wrapper" *ngIf="cartItems.length; else emptyCart">
-  <button mat-flat-button [routerLink]="['/categories']">
-    Back to shopping
-  </button>
-  <div class="container">
-    <h2 class="mat-title">Your order:</h2>
-  </div>
-  <table>
-    <tbody>
-      <tr class="col-names">
-        <th class="col-name">Dish</th>
-        <th class="col-name">Quantity</th>
-        <th class="col-name">Price</th>
-        <th class="col-name">Subtotal</th>
-      </tr>
-      <tr *ngFor="let cartItem of cartItems" [attr.dishId]="cartItem.dishId">
-        <td>{{ cartItem.dish?.name }}</td>
-        <td>
-          <button
-            class="decrenent"
-            mat-stroked-button
-            color="primary"
-            (click)="changeQuantity(cartItem.dishId, -1)"
-          >
-            -
-          </button>
-          {{ cartItem.quantity }}
-          <button
-            class="increnent"
-            mat-stroked-button
-            color="primary"
-            (click)="changeQuantity(cartItem.dishId, 1)"
-          >
-            +
-          </button>
-        </td>
-        <td>{{ cartItem.dish?.price }} грн.</td>
-        <td>{{ cartItem.dish.price * cartItem.quantity }} грн.</td>
-
-        <td>
-          <button
-            mat-stroked-button
-            color="primary"
-            (click)="deleteCartItem(cartItem.dishId)"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <hr />
-  <div class="total-amount">
-    <div>Total:</div>
-    <div>{{ getTotalCost() }} грн.</div>
-  </div>
-</div>
-<ng-template #emptyCart>
-  <div class="empty-cart-container">
-    <h2 class="empty-cart-title">Cart is empty now</h2>
-    <p class="empty-cart-content">Do you want to return to shopping?</p>
-    <button mat-flat-button [routerLink]="['/categories']">
-      Back to shopping
-    </button>
-  </div>
-</ng-template> -->
-
 <div class="wrapper" *ngIf="cartItems.length; else emptyCart">
   <button mat-flat-button [routerLink]="['/categories']">
     Back to shopping
@@ -80,14 +13,14 @@
         <th class="col-name">Price</th>
         <th class="col-name">Subtotal</th>
       </tr>
-      <tr *ngFor="let cartItem of cartItems" [attr.dishId]="cartItem.dish.id">
+      <tr *ngFor="let cartItem of cart$ | async">
         <td>{{ cartItem.dish?.name }}</td>
         <td>
           <button
             class="decrenent"
             mat-stroked-button
             color="primary"
-            (click)="increaseQuantityInCart(cartItem.dish.id)"
+            (click)="decreaseQuantityInCart(cartItem.dish.id)"
           >
             -
           </button>
@@ -119,7 +52,7 @@
   <hr />
   <div class="total-amount">
     <div>Total:</div>
-    <div>{{ 0 }} грн.</div>
+    <div>{{ totalCost }} грн.</div>
   </div>
 </div>
 <ng-template #emptyCart>

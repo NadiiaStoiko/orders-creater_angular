@@ -25,32 +25,13 @@ export class ModalComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // this.getDishes();
-    // this.dishes$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
-    //   this.dishes = val;
-    //   console.log(this.dishes);
-    // });
-    // // this.fetchData(this.dish);
-    // console.log('data', this.data);
-    // this.getDish();
+    console.log(this.dishes);
   }
 
   public addDishToCart(dish: Dish): void {
     this.store.dispatch(addToCartAction({ dish }));
-    console.log(dish);
   }
 
-  // public getDishes(): void {
-  //   this.dishes$ = this.store.pipe(select(dishesSelector));
-  // }
-
-  // public getId(): void {
-  //   this.dishes$ = this.store.pipe(select(dishesSelector));
-  // }
-
-  // public addDishToCart(): void {
-  //   this.dishesServ.addDishToCard(this.dish);
-  // }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

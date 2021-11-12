@@ -1,7 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { createFeatureSelector } from '@ngrx/store';
 import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
-// import { AppStateInteface } from 'src/app/shared/interfaces/appState.interface';
 
 export const categoryFeatureSelector =
   createFeatureSelector<CategoriesStateInteface>('categories');

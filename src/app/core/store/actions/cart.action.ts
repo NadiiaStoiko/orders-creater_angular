@@ -1,6 +1,5 @@
 import { ActionType } from './cart-action-types ';
 import { createAction, props } from '@ngrx/store';
-// import { CartItemStateInteface } from 'src/app/shared/interfaces/cart-state.interface ';
 import { Dish } from 'src/app/shared/classes/dish';
 
 export const addToCartAction = createAction(
@@ -19,9 +18,6 @@ export const increaseQuantityinCartAction = createAction(
 );
 
 export const decreaseQuantityinCartAction = createAction(
-  ActionType.QUANTITY_INC,
+  ActionType.QUANTITY_DEC,
   props<{ id: number }>()
 );
-
-// const cartItem = dishes.find((item) => item.dish.id === action.dish.id);
-//     if (cartItem) cartItem.quantity++;

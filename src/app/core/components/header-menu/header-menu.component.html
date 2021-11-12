@@ -1,30 +1,3 @@
-<!-- <mat-toolbar class="navbar" color="primary">
-  <div class="logo-text" [routerLink]="['/categories']">
-    PLEASENT TO THE TASTE
-  </div>
-  <span class="spacer"></span>
-  <div class="auth-btns">
-    <button mat-stroked-button class="login-btn" [routerLink]="['/register']">
-      Register
-    </button>
-    <button mat-stroked-button class="login-btn" [routerLink]="['/login']">
-      Login
-    </button>
-    <button mat-stroked-button class="login-out" (click)="logout()">
-      Logout
-    </button>
-  </div>
-  <button [routerLink]="['/cart']" mat-icon-button class="cart-icon">
-    <mat-icon
-      matBadge="{{ refreshCartCount() }}"
-      [matBadgeHidden]="refreshCartCount() == 0"
-      matBadgeColor="warn"
-      matBadgeSize="small"
-      >add_shopping_cart</mat-icon
-    >
-  </button>
-</mat-toolbar> -->
-
 <mat-toolbar class="navbar" color="primary">
   <div class="logo-text" [routerLink]="['/categories']">
     PLEASENT TO THE TASTE
@@ -42,7 +15,11 @@
     </button>
   </div>
   <button [routerLink]="['/cart']" mat-icon-button class="cart-icon">
-    <mat-icon matBadgeColor="warn" matBadgeSize="small"
+    <mat-icon
+      matBadge="{{ totalQuantity }}"
+      [matBadgeHidden]="totalQuantity == 0"
+      matBadgeColor="warn"
+      matBadgeSize="small"
       >add_shopping_cart</mat-icon
     >
   </button>

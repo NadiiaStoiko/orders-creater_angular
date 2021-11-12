@@ -1,7 +1,6 @@
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* grid-template-rows: repeat(3, 1fr); */
   padding: 0 15px;
 }
 .card {
@@ -27,7 +26,6 @@
 .text {
   display: flex;
   font-size: small;
-  /* height: 40%; */
   width: 90%;
   align-items: flex-start;
 }

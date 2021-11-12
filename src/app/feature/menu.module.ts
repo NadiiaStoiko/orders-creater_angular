@@ -9,10 +9,7 @@ import { FiltrationPipe } from '../shared/pipes/filtration.pipe';
 import { AppRoutingModule } from '../app-routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { GetCategoriesEffects } from '../core/store/effects/categories.effect';
-import {
-  GetDishesEffects,
-  // GetDishByIdEffectes,
-} from '../core/store/effects/dishes.effect';
+import { GetDishesEffects } from '../core/store/effects/dishes.effect';
 import { StoreModule } from '@ngrx/store';
 import { reducersForCategories } from '../core/store/redusers/categories.redusers';
 import { reducersForDishes } from '../core/store/redusers/dishes.redusers';
@@ -31,17 +28,7 @@ import { reducersForCart } from '../core/store/redusers/cart.redusers ';
     CommonModule,
     MaterialModule,
     AppRoutingModule,
-    EffectsModule.forFeature([
-      GetCategoriesEffects,
-      GetDishesEffects,
-      // GetDishByIdEffectes,
-    ]),
-    // StoreModule.forRoot(reducersForCart, {
-    //   runtimeChecks: {
-    //     strictStateImmutability: false,
-    //     strictActionImmutability: false,
-    //   },
-    // }),
+    EffectsModule.forFeature([GetCategoriesEffects, GetDishesEffects]),
     StoreModule.forFeature('categories', reducersForCategories),
     StoreModule.forFeature('dishes', reducersForDishes),
     StoreModule.forFeature('cart', reducersForCart),

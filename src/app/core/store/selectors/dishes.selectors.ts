@@ -1,7 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { createFeatureSelector } from '@ngrx/store';
 import { DishesStateInteface } from 'src/app/shared/interfaces/dishes-state.interface';
-// import { AppStateInteface } from 'src/app/shared/interfaces/appState.interface';
 
 export const dishFeatureSelector =
   createFeatureSelector<DishesStateInteface>('dishes');

@@ -4,5 +4,4 @@ export interface CategoriesStateInteface {
   isLoading: boolean;
   error: string | null;
   data: Category[];
-  // catrgoryID: number;
 }

@@ -28,31 +28,6 @@ export class DishesDataService implements OnInit {
     );
   }
 
-  // public getDishByID(id: number): Observable<Dish> {
-  //   return this.http.get<Dish>(`${this.baseUrl}?${this.endpoint1}=${id}`);
-  // }
-
-  // public getByID(id: number): Observable<Dish> {
-  //   return this.http.get<Dish>(`${this.url}/${id}`);
-  // }
-
-  // public addDishToCard(dish: Dish, quantity = 1): void {
-  //   const dishData = { dishId: dish.id, quantity: quantity };
-  //   this.cartProducts.push(dishData);
-
-  //   const map = new Map();
-  //   this.cartProducts.forEach(({ dishId, quantity }) => {
-  //     if ((map.get(dishId) || 0) + quantity === 0) {
-  //       map.delete(dishId);
-  //     } else {
-  //       map.set(dishId, (map.get(dishId) || 0) + quantity);
-  //     }
-  //   });
-  //   this.cartProducts = Array.from(map, ([dishId, quantity]) => ({
-  //     dishId,
-  //     quantity,
-  //   }));
-
   //   localStorage.setItem(
   //     this.cardKeyProduct,
   //     JSON.stringify(this.cartProducts)

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-// import { CategoriesListService } from 'src/app/core/services/categories-list.service';
 import { Dish } from 'src/app/shared/classes/dish';
 import { ModalComponent } from '../modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,7 +28,6 @@ export class DishesByCategoriesComponent implements OnInit, OnDestroy {
 
   constructor(
     public dishesServ: DishesDataService,
-    // public productServ: CategoriesListService,
     public dialog: MatDialog,
     private store: Store
   ) {}

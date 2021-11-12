@@ -5,7 +5,6 @@
 }
 .card {
   display: flex;
-  /* flex-direction: column; */
   padding: 30px 15px;
   align-items: flex-start;
   justify-content: center;
@@ -44,7 +43,6 @@
 .waight,
 .price {
   padding: 10px 16px;
-  /* margin: 0 16px; */
 }
 .btns {
   display: flex;
