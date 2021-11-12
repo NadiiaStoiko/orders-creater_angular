@@ -22,16 +22,11 @@ export class ModalComponent implements OnInit {
   }
 
   public getDish(): void {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.dishesServ.getByID(this.data).subscribe((dish) => {
       this.dish = dish;
     });
-    // console.log(this.dish);
   }
   public addDishToCart(): void {
     this.dishesServ.addDishToCard(this.dish);
-    // this.dishesServ.addDishToCard(this.dish).subscribe((data) => {
-    //   console.log(data);
-    // });
   }
 }

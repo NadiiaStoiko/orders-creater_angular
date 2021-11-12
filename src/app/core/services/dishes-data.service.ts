@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Dish } from 'src/app/shared/classes/dish';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DishesDataService {
+export class DishesDataService implements OnInit {
   public dishes: Dish[] = [];
   public url = 'http://localhost:3000/dishes';
 
@@ -16,11 +16,11 @@ export class DishesDataService {
 
   constructor(private http: HttpClient) {}
 
-  public getDishes() {
-    return this.getDishesCall();
+  public ngOnInit(): void {
+    this.getDishes();
   }
 
-  public getDishesCall(): Observable<Dish[]> {
+  public getDishes(): Observable<Dish[]> {
     return this.http.get<Dish[]>(this.url);
   }
 
