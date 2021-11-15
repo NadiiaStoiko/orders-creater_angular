@@ -44,7 +44,7 @@
         {{ form.get("password")?.errors?.minlength.actualLength }}
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Choose your role:</mat-label>
       <mat-select formControlName="roles" required>
         <mat-option>--</mat-option>
@@ -55,7 +55,7 @@
       <mat-error *ngIf="form.get('roles')?.errors?.required"
         >Please choose your role</mat-error
       >
-    </mat-form-field>
+    </mat-form-field> -->
     <button
       type="submit"
       mat-raised-button
