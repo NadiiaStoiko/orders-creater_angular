@@ -12,7 +12,6 @@
         formControlName="email"
         placeholder="example@example.com"
       />
-      <!-- <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid"></div> -->
       <mat-error *ngIf="form.get('email')?.errors?.required">
         Enter email, please
       </mat-error>

@@ -39,12 +39,21 @@ export class RegisrtationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = new FormGroup({
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(5),
       ]),
       roles: new FormControl(null, Validators.required),
+      phone: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(13),
+        Validators.maxLength(13),
+      ]),
     });
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
   }
@@ -54,57 +63,12 @@ export class RegisrtationComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  // onSubmit() {
-  //   if (this.form.invalid) {
-  //     return;
-  //   }
-  //   this.submitted = true;
-  //   console.log(this.form.value);
-  //   this.auth
-  //     .register(this.form.value)
-  //     .pipe(takeUntil(this.destroy$))
-  //     .subscribe(
-  //       (res) => {
-  //         console.log('res', res);
-  //         this.router.navigate(['/login'], {
-  //           queryParams: {
-  //             registred: true,
-  //           },
-  //         });
-  //       },
-  //       (error) => {
-  //         console.warn(error);
-  //         this.form.enable();
-  //       }
-  //     );
-  // }
   onSubmit(): void {
     if (this.form.invalid) {
       return;
     }
     this.store.dispatch(registerAction(this.form.value));
-    // this.store.pipe(select(isRegistredSelector));
-
     // this.submitted = true;
-
-    console.log(this.form.value, 1111);
-
-    // this.auth
-    //   .register(this.form.value)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(
-    //     (res) => {
-    //       console.log('res', res);
-    //       this.router.navigate(['/login'], {
-    //         queryParams: {
-    //           registred: true,
-    //         },
-    //       });
-    //     },
-    //     (error) => {
-    //       console.warn(error);
-    //       this.form.enable();
-    //     }
-    //   );
+    console.log(this.form.value, 'register');
   }
 }

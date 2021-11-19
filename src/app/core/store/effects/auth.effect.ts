@@ -58,12 +58,12 @@ export class LoginEffects {
       ofType(loginAction),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       switchMap((request: any) => {
-        console.log(request);
+        // console.log(request);
         return this.authService.login(request).pipe(
           map((response) => {
             this.persistServ.set('token', response.AccessToken);
             this.persistServ.set('userRole', response.userRole);
-            console.log(response);
+            // console.log(response);
             return loginSuccessAction({
               AccessToken: response.AccessToken,
               userRole: response.userRole,

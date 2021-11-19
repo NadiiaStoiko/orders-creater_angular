@@ -1,8 +1,10 @@
 export interface RegisterRequestInteface {
   id?: number;
-  roles: { role: string };
+  name: string;
   email: string;
   password: string;
+  phone: number;
+  roles: { role: string };
 }
 export interface RegisterResponseInteface {
   message: string;

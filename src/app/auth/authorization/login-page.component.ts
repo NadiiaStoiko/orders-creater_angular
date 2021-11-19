@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-// import { takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { loginAction } from 'src/app/core/store/actions/auth.action';
 import {
@@ -11,10 +11,6 @@ import {
   userRoleSelector,
 } from 'src/app/core/store/selectors/auth.selectors ';
 import { User } from 'src/app/shared/classes/user';
-
-// interface isAdmin {
-//   role: string;
-// }
 
 @Component({
   selector: 'app-authorization',
@@ -50,37 +46,26 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
     this.form.disable();
     this.store.dispatch(loginAction(this.form.value));
-    this.store.pipe(select(userRoleSelector)).subscribe(
-      (data) => {
-        console.log(data);
-        data == 'customer'
-          ? this.router.navigate(['/customer-dashboard'])
-          : this.router.navigate(['/admin-dashboard']);
-      },
-      (error) => {
-        console.warn(error);
-        this.form.enable();
-      }
-    );
-    // this.authServ
-    //   .login(this.form.value)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(
-    //     (data) => {
-    //       console.log(data);
-    //       // console.log(localStorage.getItem('userRole'));
-    //       localStorage.getItem('userRole') == 'customer'
-    //         ? this.router.navigate(['/customer-dashboard'])
-    //         : this.router.navigate(['/admin-dashboard']);
-
-    //       // this.router.navigate(['/admin-dashboard'])
-    //       // this.router.navigate(['/customer-dashboard']);
-    //     },
-    //     (error) => {
-    //       console.warn(error);
-    //       this.form.enable();
-    //     }
-    //   );
+    this.store
+      .pipe(select(userRoleSelector), takeUntil(this.destroy$))
+      .subscribe(
+        (userRole) => {
+          console.log(userRole);
+          if (userRole === 'customer') {
+            this.router.navigate(['/customer-dashboard']);
+          } else {
+            this.router.navigate(['/admin-dashboard']);
+          }
+          // userRole == 'customer'
+          //   ? this.router.navigate(['/customer-dashboard'])
+          //   : this.router.navigate(['/admin-dashboard']);
+          // this.router.navigate([`/${userRole}-dashboard`]);
+        },
+        (error) => {
+          console.warn(error);
+          this.form.enable();
+        }
+      );
   }
 
   ngOnDestroy(): void {
