@@ -1,1 +1,3 @@
 npx json-server --watch db.json
+
+sudo killall -9 node
