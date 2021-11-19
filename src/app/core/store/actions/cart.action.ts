@@ -1,6 +1,7 @@
 import { ActionType } from './cart-action-types ';
 import { createAction, props } from '@ngrx/store';
 import { Dish } from 'src/app/shared/classes/dish';
+import { CartItemInteface } from 'src/app/shared/interfaces/cart-state.interface ';
 
 export const addToCartAction = createAction(
   ActionType.ADD_TO_CART,
@@ -20,4 +21,9 @@ export const increaseQuantityinCartAction = createAction(
 export const decreaseQuantityinCartAction = createAction(
   ActionType.QUANTITY_DEC,
   props<{ id: number }>()
+);
+
+export const loadCartFromStateAction = createAction(
+  ActionType.LOAD_FROM_STATE,
+  props<{ state: CartItemInteface[] }>()
 );

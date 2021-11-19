@@ -8,6 +8,7 @@ import {
   decreaseQuantityinCartAction,
   deleteFromCartAction,
   increaseQuantityinCartAction,
+  loadCartFromStateAction,
 } from '../actions/cart.action';
 import { cartInitialState } from '../state/cart-state ';
 
@@ -59,6 +60,14 @@ const cartReduser = createReducer(
     return {
       ...state,
       dishes,
+    };
+  }),
+  on(loadCartFromStateAction, (state, action): CartStateInteface => {
+    const dishes: CartItemInteface[] = action.state;
+    console.log(action.state);
+    return {
+      ...state,
+      dishes: dishes,
     };
   })
 );

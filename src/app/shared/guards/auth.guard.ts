@@ -6,14 +6,21 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { isLogginSelector } from 'src/app/core/store/selectors/auth.selectors ';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private store: Store
+  ) {}
   canActivate(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     route: ActivatedRouteSnapshot,
@@ -24,11 +31,13 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.auth.isAuth()) {
-      return of(true);
-    } else {
-      this.router.navigate(['/login']);
-    }
-    return of(false);
+    return this.store.select(isLogginSelector).pipe(
+      map((isLogin) => {
+        if (!isLogin) {
+          return this.router.createUrlTree(['auth']);
+        }
+        return true;
+      })
+    );
   }
 }
