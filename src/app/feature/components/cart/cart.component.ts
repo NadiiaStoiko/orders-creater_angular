@@ -1,5 +1,4 @@
 import { Component, OnDestroy } from '@angular/core';
-import { DishesDataService } from 'src/app/core/services/dishes-data.service';
 import { PersistanceService } from 'src/app/core/services/persistance.service';
 import { Subject, Observable } from 'rxjs';
 import { CartItemInteface } from 'src/app/shared/interfaces/cart-state.interface ';
@@ -11,6 +10,7 @@ import {
   deleteFromCartAction,
   increaseQuantityinCartAction,
 } from 'src/app/core/store/actions/cart.action';
+import { CartStorageSyncService } from 'src/app/core/services/cart-storage-sync.service ';
 
 @Component({
   selector: 'app-cart',
@@ -19,8 +19,8 @@ import {
 })
 export class CartComponent implements OnDestroy {
   constructor(
-    private dishesServ: DishesDataService,
     private persistServ: PersistanceService,
+    private storageSyncServ: CartStorageSyncService,
     private store: Store
   ) {}
 
@@ -33,18 +33,15 @@ export class CartComponent implements OnDestroy {
     this.addToCart();
     this.cart$.pipe(takeUntil(this.destroy$)).subscribe((cartItems) => {
       this.cartItems = cartItems;
-      // if (this.cartItems.length === 0) {
-      //   this.cartItems = this.persistServ.get('cart');
-      // }
       this.totalCost = cartItems
         .map((product) => product.dish.price * product.quantity)
         .reduce((acc, value): number => acc + value, 0);
     });
+    this.storageSyncServ.init();
   }
 
   public addToCart(): void {
     this.cart$ = this.store.pipe(select(addToCartSelector));
-    // this.getCartData();
   }
 
   public deleteCartItem(id: number): void {
@@ -59,16 +56,8 @@ export class CartComponent implements OnDestroy {
     this.store.dispatch(decreaseQuantityinCartAction({ id }));
   }
 
-  // public getCartData() {
-  //   this.store.pipe(select(addToCartSelector)).subscribe((data) => {
-  //     console.log(data);
-  //     this.persistServ.set('cart', data);
-  //   });
-  // }
-
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    // this.getCartData();
   }
 }

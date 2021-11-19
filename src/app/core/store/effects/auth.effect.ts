@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
-// import { RegisterRequestInteface } from 'src/app/shared/interfaces/register-state.interface ';
 import { AuthService } from '../../services/auth.service';
 import { PersistanceService } from '../../services/persistance.service';
 import {

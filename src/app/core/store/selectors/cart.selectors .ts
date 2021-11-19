@@ -9,3 +9,8 @@ export const addToCartSelector = createSelector(
   cartFeatureSelector,
   (cartState: CartStateInteface) => cartState.dishes
 );
+
+export const dishesFromCartSelector = createSelector(
+  cartFeatureSelector,
+  (cartState: CartStateInteface) => cartState.dishes
+);
