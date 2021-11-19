@@ -25,9 +25,11 @@ app.post("/register", async (req, res) => {
 
       let newUser = {
         id: Date.now(),
-        role: req.body.roles.role,
+        name: req.body.name,
         email: req.body.email,
         password: hashPassword,
+        phone: req.body.phone,
+        role: req.body.roles.role,
       };
 
       users.push(newUser); // it will store the user data in the file 'data.js'
@@ -54,7 +56,10 @@ app.post("/login", async (req, res) => {
 
       const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
       if (passwordMatch) {
-        let role = foundUser.role;
+        const role = foundUser.role;
+
+        const name = foundUser.name;
+        const phone = foundUser.phone;
 
         const tokenEmail = req.body.email;
         const payload = { email: tokenEmail };
@@ -65,10 +70,12 @@ app.post("/login", async (req, res) => {
         refreshTokensDB.push(rToken); // it will store the newly generated refresh tokens
 
         res.json({
+          name: name,
           AccessToken: aToken,
           RefreshToken: rToken,
           message: "You are logged-in",
           userRole: role,
+          phone: phone,
         });
       } else {
         res.json({ message: "Invalid email or password" });
