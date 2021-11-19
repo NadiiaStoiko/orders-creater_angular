@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { DishesDataService } from 'src/app/core/services/dishes-data.service';
+import { PersistanceService } from 'src/app/core/services/persistance.service';
 import { Subject, Observable } from 'rxjs';
 import { CartItemInteface } from 'src/app/shared/interfaces/cart-state.interface ';
 import { addToCartSelector } from 'src/app/core/store/selectors/cart.selectors ';
@@ -17,7 +18,11 @@ import {
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnDestroy {
-  constructor(private dishesServ: DishesDataService, private store: Store) {}
+  constructor(
+    private dishesServ: DishesDataService,
+    private persistServ: PersistanceService,
+    private store: Store
+  ) {}
 
   public cartItems: CartItemInteface[] = [];
   public totalCost = 0;
@@ -28,6 +33,9 @@ export class CartComponent implements OnDestroy {
     this.addToCart();
     this.cart$.pipe(takeUntil(this.destroy$)).subscribe((cartItems) => {
       this.cartItems = cartItems;
+      // if (this.cartItems.length === 0) {
+      //   this.cartItems = this.persistServ.get('cart');
+      // }
       this.totalCost = cartItems
         .map((product) => product.dish.price * product.quantity)
         .reduce((acc, value): number => acc + value, 0);
@@ -36,6 +44,7 @@ export class CartComponent implements OnDestroy {
 
   public addToCart(): void {
     this.cart$ = this.store.pipe(select(addToCartSelector));
+    // this.getCartData();
   }
 
   public deleteCartItem(id: number): void {
@@ -50,8 +59,16 @@ export class CartComponent implements OnDestroy {
     this.store.dispatch(decreaseQuantityinCartAction({ id }));
   }
 
+  // public getCartData() {
+  //   this.store.pipe(select(addToCartSelector)).subscribe((data) => {
+  //     console.log(data);
+  //     this.persistServ.set('cart', data);
+  //   });
+  // }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    // this.getCartData();
   }
 }

@@ -38,7 +38,7 @@ export class HeaderMenuComponent implements OnInit {
   }
 
   public logout(): void {
-    this.auth.logout();
     this.router.navigate(['']);
+    localStorage.clear();
   }
 }

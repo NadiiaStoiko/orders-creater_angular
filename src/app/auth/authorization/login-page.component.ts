@@ -6,7 +6,10 @@ import { Observable, Subject } from 'rxjs';
 // import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { loginAction } from 'src/app/core/store/actions/auth.action';
-import { isSubmittingLoginSelector } from 'src/app/core/store/selectors/auth.selectors ';
+import {
+  isSubmittingLoginSelector,
+  userRoleSelector,
+} from 'src/app/core/store/selectors/auth.selectors ';
 import { User } from 'src/app/shared/classes/user';
 
 // interface isAdmin {
@@ -23,7 +26,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   users: User[] = [];
   public destroy$: Subject<boolean> = new Subject<boolean>();
   isSubmitting$!: Observable<boolean>;
-  // public roles: isAdmin[] = [{ role: 'admin' }, { role: 'customer' }];
+
   constructor(
     private authServ: AuthService,
     private router: Router,
@@ -37,7 +40,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.minLength(5),
       ]),
-      // roles: new FormControl(null, Validators.required),
     });
     this.isSubmitting$ = this.store.pipe(select(isSubmittingLoginSelector));
   }
@@ -48,6 +50,18 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
     this.form.disable();
     this.store.dispatch(loginAction(this.form.value));
+    this.store.pipe(select(userRoleSelector)).subscribe(
+      (data) => {
+        console.log(data);
+        data == 'customer'
+          ? this.router.navigate(['/customer-dashboard'])
+          : this.router.navigate(['/admin-dashboard']);
+      },
+      (error) => {
+        console.warn(error);
+        this.form.enable();
+      }
+    );
     // this.authServ
     //   .login(this.form.value)
     //   .pipe(takeUntil(this.destroy$))

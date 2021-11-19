@@ -18,3 +18,13 @@ export const isSubmittingLoginSelector = createSelector(
   loginFeatureSelector,
   (loginState: LoginStateInteface) => loginState.isSubmitting
 );
+
+export const userRoleSelector = createSelector(
+  loginFeatureSelector,
+  (loginState: LoginStateInteface) => loginState.userRole
+);
+
+export const isLogginSelector = createSelector(
+  loginFeatureSelector,
+  (loginState: LoginStateInteface) => loginState.isLogin
+);
