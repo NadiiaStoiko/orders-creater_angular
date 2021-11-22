@@ -24,7 +24,12 @@ export const loginAction = createAction(
 
 export const loginSuccessAction = createAction(
   ActionsType.LOGIN_SUCCESS,
-  props<{ AccessToken: string; userRole: string }>()
+  props<{
+    AccessToken: string;
+    userRole: string;
+    name: string;
+    phone: number | null;
+  }>()
 );
 
 export const loginFailureAction = createAction(ActionsType.LOGIN_FAILURE);

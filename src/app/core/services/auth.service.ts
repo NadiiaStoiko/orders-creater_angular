@@ -20,12 +20,17 @@ export class AuthService {
     return this.http.post<RegisterResponseInteface>(this.registerUrl, user);
   }
 
-  public login(
-    user: RegisterRequestInteface
-  ): Observable<{ AccessToken: string; userRole: string }> {
-    return this.http.post<{ AccessToken: string; userRole: string }>(
-      this.loginUrl,
-      user
-    );
+  public login(user: RegisterRequestInteface): Observable<{
+    AccessToken: string;
+    userRole: string;
+    name: string;
+    phone: number | null;
+  }> {
+    return this.http.post<{
+      AccessToken: string;
+      userRole: string;
+      name: string;
+      phone: number | null;
+    }>(this.loginUrl, user);
   }
 }

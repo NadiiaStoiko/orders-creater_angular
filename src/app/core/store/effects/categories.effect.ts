@@ -8,6 +8,7 @@ import {
   getCategoriesAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
+  deleteCategoryAction,
 } from '../actions/categories.action';
 
 @Injectable()
@@ -17,6 +18,28 @@ export class GetCategoriesEffects {
       ofType(getCategoriesAction),
       switchMap(() => {
         return this.categoriesService.getCategories().pipe(
+          map((category: Category[]) => {
+            return getCategoriesSuccessAction({ category });
+          }),
+          catchError(() => of(getCategoriesFailureAction()))
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private categoriesService: CategoriesListService
+  ) {}
+}
+
+@Injectable()
+export class DelCategoryEffects {
+  delCategory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteCategoryAction),
+      switchMap(({ id }) => {
+        return this.categoriesService.deleteCategory(id).pipe(
           map((category: Category[]) => {
             return getCategoriesSuccessAction({ category });
           }),

@@ -19,4 +19,8 @@ export class CategoriesListService {
   public getCategoryByID(id: number): void {
     this.id = id;
   }
+
+  public deleteCategory(id: number) {
+    return this.http.delete<Category[]>(this.url + id);
+  }
 }

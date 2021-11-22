@@ -15,4 +15,6 @@ export interface LoginStateInteface {
   userRole: string;
   AccessToken: string;
   isLogin: boolean | null;
+  name: string;
+  phone: number | null;
 }

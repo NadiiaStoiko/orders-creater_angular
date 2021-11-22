@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
 import {
+  // deleteCategortAction,
   getCategoriesAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,

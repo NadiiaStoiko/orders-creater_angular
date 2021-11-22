@@ -1,0 +1,34 @@
+<h1>Categories dashboard</h1>
+<table>
+  <tbody>
+    <tr class="col-names">
+      <th class="col-name">ID</th>
+      <th class="col-name">Name</th>
+      <th class="col-name">Edit</th>
+      <th class="col-name">Delete</th>
+    </tr>
+    <tr *ngFor="let category of categories$ | async">
+      <td>{{ category.id }}</td>
+      <td>{{ category.type }}</td>
+
+      <td>
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="editCategory(category.id)"
+        >
+          Edit
+        </button>
+      </td>
+      <td>
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="deleteCategory(category.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

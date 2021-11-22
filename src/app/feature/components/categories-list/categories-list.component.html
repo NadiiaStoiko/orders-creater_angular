@@ -2,7 +2,7 @@
   <!-- <div *ngFor="isLoading$ | async">Loading...</div>
   <div *ngFor="error$ | async">Some error happened...</div> -->
   <mat-card
-    class="card"
+    class="category"
     *ngFor="let category of categories$ | async"
     (click)="selectCategory(category.id)"
   >

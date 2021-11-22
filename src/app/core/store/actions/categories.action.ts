@@ -11,3 +11,8 @@ export const getCategoriesSuccessAction = createAction(
 export const getCategoriesFailureAction = createAction(
   ActionType.GET_CATEGORIES_FAILURE
 );
+
+export const deleteCategoryAction = createAction(
+  ActionType.DELETE_CATEGORY,
+  props<{ id: number }>()
+);

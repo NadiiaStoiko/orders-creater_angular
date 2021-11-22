@@ -12,4 +12,6 @@ export const loginInitialState: LoginStateInteface = {
   userRole: '',
   AccessToken: '',
   isLogin: null,
+  name: '',
+  phone: null,
 };

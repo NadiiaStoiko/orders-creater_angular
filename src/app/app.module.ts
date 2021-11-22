@@ -7,7 +7,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { ShearedModule } from './shared/shared.module';
 import { MenuModule } from '../app/feature/menu.module';
 import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/customer-dashboard/user.module';
+import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';

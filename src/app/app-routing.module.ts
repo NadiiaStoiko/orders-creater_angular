@@ -7,7 +7,13 @@ import { RegisrtationComponent } from './auth/regisrtation/regisrtation.componen
 import { CustomerDashboardComponent } from './user/customer-dashboard/customer-dashboard';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminDashboardComponent } from './user/admin-dashboard/admin-dashboard.component';
-import { RoleGuard } from './shared/guards/role.guard';
+import { CategoriesDashboardComponent } from './user/admin-dashboard/categories-dashboard/categories-dashboard.component';
+import { DishesDashboardComponent } from './user/admin-dashboard/dishes-dashboard/dishes-dashboard.component';
+import { AddDishesComponent } from './user/admin-dashboard/add-dishes/add-dishes.component';
+import { AddCategoriesComponent } from './user/admin-dashboard/add-categories/add-categories.component';
+import { EditCategoriesComponent } from './user/admin-dashboard/edit-categories/edit-categories.component';
+import { EditDishesComponent } from './user/admin-dashboard/edit-dishes/edit-dishes.component';
+// import { RoleGuard } from './shared/guards/role.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'categories', pathMatch: 'full' },
@@ -23,7 +29,38 @@ const routes: Routes = [
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
-    canActivate: [RoleGuard],
+    // canActivate: [RoleGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: '/admin-dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: 'categories-dashboard',
+        component: CategoriesDashboardComponent,
+      },
+      {
+        path: 'dishes-dashboard',
+        component: DishesDashboardComponent,
+      },
+      {
+        path: 'add-dishes',
+        component: AddDishesComponent,
+      },
+      {
+        path: 'add-categories',
+        component: AddCategoriesComponent,
+      },
+      {
+        path: 'edit-categories',
+        component: EditCategoriesComponent,
+      },
+      {
+        path: 'edit-dishes',
+        component: EditDishesComponent,
+      },
+    ],
   },
 
   { path: '**', component: LoginPageComponent },
