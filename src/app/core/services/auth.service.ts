@@ -5,19 +5,20 @@ import {
   RegisterRequestInteface,
   RegisterResponseInteface,
 } from 'src/app/shared/interfaces/register-state.interface ';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private loginUrl = 'http://localhost:8000/login';
-  private registerUrl = 'http://localhost:8000/register';
+  private logUrl = environment.loginUrl;
+  private regUrl = environment.registerUrl;
   constructor(private http: HttpClient) {}
 
   public register(
     user: RegisterRequestInteface
   ): Observable<RegisterResponseInteface> {
-    return this.http.post<RegisterResponseInteface>(this.registerUrl, user);
+    return this.http.post<RegisterResponseInteface>(this.regUrl, user);
   }
 
   public login(user: RegisterRequestInteface): Observable<{
@@ -31,6 +32,6 @@ export class AuthService {
       userRole: string;
       name: string;
       phone: number | null;
-    }>(this.loginUrl, user);
+    }>(this.logUrl, user);
   }
 }

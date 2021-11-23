@@ -5,6 +5,10 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 import { Dish } from 'src/app/shared/classes/dish';
 import { DishesDataService } from '../../services/dishes-data.service';
 import {
+  deleteDishAction,
+  deleteDishFailureAction,
+  deleteDishSuccessAction,
+  getDishesAction,
   getDishesFailureAction,
   getDishesSuccessAction,
   LoadDishesByCategoryAction,
@@ -12,7 +16,7 @@ import {
 
 @Injectable()
 export class GetDishesEffects {
-  getDishes$ = createEffect(() =>
+  getDishesById$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LoadDishesByCategoryAction),
       switchMap(({ categoryId }) => {
@@ -21,6 +25,49 @@ export class GetDishesEffects {
             return getDishesSuccessAction({ dishes });
           }),
           catchError(() => of(getDishesFailureAction()))
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private dishesService: DishesDataService
+  ) {}
+}
+@Injectable()
+export class GetAllDishesEffects {
+  getAllDishesById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getDishesAction),
+      switchMap(() => {
+        return this.dishesService.getAllDishes().pipe(
+          map((dishes: Dish[]) => {
+            return getDishesSuccessAction({ dishes });
+          }),
+          catchError(() => of(getDishesFailureAction()))
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private dishesService: DishesDataService
+  ) {}
+}
+
+@Injectable()
+export class DeleteDishEffects {
+  deleteDish$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteDishAction),
+      switchMap(({ id }) => {
+        return this.dishesService.deleteDish(id).pipe(
+          map(() => {
+            return deleteDishSuccessAction();
+          }),
+          catchError(() => of(deleteDishFailureAction()))
         );
       })
     )

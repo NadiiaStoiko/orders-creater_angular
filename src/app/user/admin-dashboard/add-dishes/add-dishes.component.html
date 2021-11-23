@@ -1,1 +1,141 @@
-<p>add-dishes works!</p>
+<div class="wrapper">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="title">
+      <h2>Create new dish</h2>
+    </div>
+    <mat-form-field>
+      <mat-label>CategoryId</mat-label>
+      <input
+        matInput
+        id="categoryId"
+        type="categoryId"
+        formControlName="categoryId"
+        matInput
+        formControlName="categoryId"
+      />
+
+      <mat-error *ngIf="form.get('categoryId')?.errors?.required">
+        Enter categoryId, please
+      </mat-error>
+      <mat-error *ngIf="form.get('categoryId')?.errors?.minlength">
+        Enter valid categoryId, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Id</mat-label>
+      <input
+        matInput
+        id="id"
+        type="id"
+        formControlName="id"
+        matInput
+        formControlName="id"
+      />
+
+      <mat-error *ngIf="form.get('id')?.errors?.required">
+        Enter id, please
+      </mat-error>
+      <mat-error *ngIf="form.get('id')?.errors?.minlength">
+        Enter valid id, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        id="name"
+        type="name"
+        formControlName="name"
+        matInput
+        formControlName="name"
+      />
+
+      <mat-error *ngIf="form.get('name')?.errors?.required">
+        Enter dish name, please
+      </mat-error>
+      <mat-error *ngIf="form.get('name')?.errors?.email">
+        Enter valid dish name, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Weight</mat-label>
+      <input
+        matInput
+        id="weight"
+        type="weight"
+        formControlName="weight"
+        matInput
+        formControlName="weight"
+      />
+      <mat-error *ngIf="form.get('weight')?.errors?.required">
+        Enter password, please
+      </mat-error>
+      <mat-error *ngIf="form.get('weight')?.errors?.minlength">
+        The password must be at least
+        {{ form.get("weight")?.errors?.minlength.requiredLength }}
+        characters.Now it
+        {{ form.get("weight")?.errors?.minlength.actualLength }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        id=" description"
+        type=" description"
+        formControlName="description"
+        matInput
+        formControlName="description"
+      />
+
+      <mat-error *ngIf="form.get(' description')?.errors?.required">
+        Enter dish description, please
+      </mat-error>
+      <mat-error *ngIf="form.get(' description')?.errors?.email">
+        Enter valid dish description, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Price</mat-label>
+      <input
+        matInput
+        id="price"
+        type="price"
+        formControlName="price"
+        matInput
+        formControlName="price"
+      />
+      <mat-error *ngIf="form.get('price')?.errors?.required">
+        Enter phone number, please
+      </mat-error>
+      <mat-error *ngIf="form.get('price')?.errors?.minlength">
+        The phone number must be at least
+        {{ form.get("price")?.errors?.minlength.requiredLength }}
+        characters.Now it
+        {{ form.get("price")?.errors?.minlength.actualLength }}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Choose your role:</mat-label>
+      <mat-select formControlName="roles" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let role of roles" [value]="role">
+          {{ role.role }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('roles')?.errors?.required"
+        >Please choose your role</mat-error
+      >
+    </mat-form-field> -->
+
+    <button type="submit" mat-raised-button color="primary">
+      Create account
+    </button>
+  </form>
+</div>

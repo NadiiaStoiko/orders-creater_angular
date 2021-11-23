@@ -16,3 +16,12 @@ export const deleteCategoryAction = createAction(
   ActionType.DELETE_CATEGORY,
   props<{ id: number }>()
 );
+
+export const deleteCategorySuccessAction = createAction(
+  ActionType.DELETE_CATEGORY_SUCCESS,
+  props<{ id: number }>()
+);
+
+export const deleteCategoryFailureAction = createAction(
+  ActionType.DELETE_CATEGORY_FAILURE
+);

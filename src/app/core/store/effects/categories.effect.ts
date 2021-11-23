@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+// import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
@@ -9,6 +10,8 @@ import {
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
   deleteCategoryAction,
+  deleteCategorySuccessAction,
+  deleteCategoryFailureAction,
 } from '../actions/categories.action';
 
 @Injectable()
@@ -34,16 +37,17 @@ export class GetCategoriesEffects {
 }
 
 @Injectable()
-export class DelCategoryEffects {
-  delCategory$ = createEffect(() =>
+export class DeleteCategoryEffects {
+  deleteCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(deleteCategoryAction),
       switchMap(({ id }) => {
         return this.categoriesService.deleteCategory(id).pipe(
-          map((category: Category[]) => {
-            return getCategoriesSuccessAction({ category });
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          map(() => {
+            return deleteCategorySuccessAction({ id });
           }),
-          catchError(() => of(getCategoriesFailureAction()))
+          catchError(() => of(deleteCategoryFailureAction))
         );
       })
     )
@@ -54,3 +58,24 @@ export class DelCategoryEffects {
     private categoriesService: CategoriesListService
   ) {}
 }
+
+// @Injectable() //useless
+// export class RedirectAfterDeleteEffects {
+//   redirectAfterDeleteCategory$ = createEffect(
+//     () =>
+//       this.actions$.pipe(
+//         ofType(deleteCategorySuccessAction),
+//         tap(() => {
+//           // this.router.navigate(['/admin-dashboard', 'categories-dashboard']);
+//           window.location.reload();
+//         })
+//       ),
+//     { dispatch: false }
+//   );
+
+//   constructor(
+//     private actions$: Actions,
+//     private categoriesService: CategoriesListService,
+//     private router: Router
+//   ) {}
+// }

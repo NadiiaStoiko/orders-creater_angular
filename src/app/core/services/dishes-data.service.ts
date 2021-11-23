@@ -1,70 +1,37 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable, OnInit } from '@angular/core';
 import { Dish } from 'src/app/shared/classes/dish';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DishesDataService implements OnInit {
   public dishes: Dish[] = [];
-  public baseUrl = 'http://localhost:3000/dishes';
-  public endpoint1 = 'categoryId';
-  public endpoint2 = 'id';
+  public url = environment.urlDishes; //env
+  public endpoint = 'categoryId'; //useless
 
-  // private cardKeyProduct = 'dishesInCard';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // public cartProducts: any[] = [];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    // this.getDishes();
+    console.log();
   }
 
   public getDishes(categoryID: number): Observable<Dish[]> {
     return this.http.get<Dish[]>(
-      `${this.baseUrl}?${this.endpoint1}=${categoryID}`
+      `${this.url}?${this.endpoint}=${categoryID}` //query params
     );
   }
 
-  //   localStorage.setItem(
-  //     this.cardKeyProduct,
-  //     JSON.stringify(this.cartProducts)
-  //   );
-  // }
+  public getAllDishes(): Observable<Dish[]> {
+    return this.http.get<Dish[]>(this.url);
+  }
 
-  // public getDishesFromCart() {
-  //   this.cartProducts = JSON.parse(
-  //     localStorage.getItem(this.cardKeyProduct) || '[]'
-  //   );
-  //   return this.cartProducts;
-  // }
-
-  // public getCartDishesCount(): number {
-  //   this.cartProducts = JSON.parse(
-  //     localStorage.getItem(this.cardKeyProduct) || '[]'
-  //   );
-  //   return this.cartProducts
-  //     .map((product) => product.quantity)
-  //     .reduce((acc, value): number => {
-  //       return acc + value;
-  //     }, 0);
-  // }
-
-  // public getCartDishesId(): number[] {
-  //   const cartProductsId: number[] = [];
-  //   this.cartProducts = JSON.parse(
-  //     localStorage.getItem(this.cardKeyProduct) || '[]'
-  //   );
-  //   this.cartProducts.forEach((item: { dishId: number }) => {
-  //     cartProductsId.push(item.dishId);
-  //   });
-  //   console.log(cartProductsId);
-  //   return cartProductsId;
-  // }
-
-  // public removeDishesFromCart() {
-  //   localStorage.removeItem(this.cardKeyProduct);
-  // }
+  public deleteDish(id: number): Observable<{}> {
+    return this.http.delete<{}>(`${this.url}/${id}`);
+  }
 }

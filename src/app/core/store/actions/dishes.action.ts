@@ -15,3 +15,14 @@ export const LoadDishesByCategoryAction = createAction(
   ActionsType.LOAD_DISHES_BY_CATEGORY,
   props<{ categoryId: number }>()
 );
+
+export const deleteDishAction = createAction(
+  ActionsType.DELETE_DISHES,
+  props<{ id: number }>()
+);
+
+export const deleteDishSuccessAction = createAction(
+  ActionsType.DELETE_DISHES_SUCCESS
+);
+
+export const deleteDishFailureAction = createAction(ActionsType.DELETE_FAILURE);

@@ -1,7 +1,15 @@
 .container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  padding: 0 15px;
+  padding: 10px 20px;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  margin: 5px;
+  padding: 30px 15px;
+  align-items: center;
 }
 .card {
   display: flex;

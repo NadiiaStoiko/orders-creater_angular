@@ -57,19 +57,6 @@ export class DishesByCategoriesComponent implements OnInit, OnDestroy {
     this.store.dispatch(addToCartAction({ dish }));
   }
 
-  // public getDishes(): void {
-  //   this.dishesServ
-  //     .getDishes()
-  //     .pipe(takeUntil(this.destroy$))
-  //     .subscribe((data) => {
-  //       this.dishes = data;
-  //     });
-  // }
-
-  // public addDishToCart(dish: Dish): void {
-  //   this.dishesServ.addDishToCard(dish);
-  // }
-
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

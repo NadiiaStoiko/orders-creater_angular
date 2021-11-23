@@ -9,7 +9,15 @@ form {
   padding: 25px;
   border: 2px grey solid;
   border-radius: 6px;
+  background-color: #424242;
 }
+
+.title {
+  display: flex;
+  color: darkgray;
+  justify-content: center;
+}
+
 button {
   margin-top: 30px;
 }
