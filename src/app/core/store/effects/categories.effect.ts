@@ -58,24 +58,3 @@ export class DeleteCategoryEffects {
     private categoriesService: CategoriesListService
   ) {}
 }
-
-// @Injectable() //useless
-// export class RedirectAfterDeleteEffects {
-//   redirectAfterDeleteCategory$ = createEffect(
-//     () =>
-//       this.actions$.pipe(
-//         ofType(deleteCategorySuccessAction),
-//         tap(() => {
-//           // this.router.navigate(['/admin-dashboard', 'categories-dashboard']);
-//           window.location.reload();
-//         })
-//       ),
-//     { dispatch: false }
-//   );
-
-//   constructor(
-//     private actions$: Actions,
-//     private categoriesService: CategoriesListService,
-//     private router: Router
-//   ) {}
-// }

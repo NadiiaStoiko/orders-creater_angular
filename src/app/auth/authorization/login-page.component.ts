@@ -7,7 +7,9 @@ import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { loginAction } from 'src/app/core/store/actions/auth.action';
 import {
+  isLogginSelector,
   isSubmittingLoginSelector,
+  LogginErrorsSelector,
   userRoleSelector,
 } from 'src/app/core/store/selectors/auth.selectors ';
 import { User } from 'src/app/shared/classes/user';
@@ -22,6 +24,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   users: User[] = [];
   public destroy$: Subject<boolean> = new Subject<boolean>();
   isSubmitting$!: Observable<boolean>;
+  errors$!: Observable<string | null>;
+  public errorMessage!: string | null;
 
   constructor(
     private authServ: AuthService,
@@ -38,6 +42,10 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       ]),
     });
     this.isSubmitting$ = this.store.pipe(select(isSubmittingLoginSelector));
+    this.errors$ = this.store.pipe(select(LogginErrorsSelector));
+    this.errors$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
+      this.errorMessage = val;
+    });
   }
 
   public login(): void {
@@ -46,6 +54,16 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
     this.form.disable();
     this.store.dispatch(loginAction(this.form.value));
+
+    this.store
+      .pipe(select(isLogginSelector), takeUntil(this.destroy$))
+      .subscribe((isLogin) => {
+        console.log(isLogin);
+        // if(isLogin===false){
+        //   this.router.navigate(['/login']
+        // }
+      });
+
     this.store
       .pipe(select(userRoleSelector), takeUntil(this.destroy$))
       .subscribe(
@@ -63,6 +81,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         },
         (error) => {
           console.warn(error);
+
           this.form.enable();
         }
       );

@@ -58,13 +58,13 @@ export class LoginEffects {
       ofType(loginAction),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       switchMap((request: any) => {
-        // console.log(request);
+        console.log(request);
         return this.authService.login(request).pipe(
           map((response) => {
             this.persistServ.set('token', response.AccessToken);
             this.persistServ.set('userRole', response.userRole);
             this.persistServ.set('userName', response.name);
-            // console.log(response);
+            console.log(response);
             return loginSuccessAction({
               AccessToken: response.AccessToken,
               userRole: response.userRole,
@@ -72,7 +72,11 @@ export class LoginEffects {
               phone: response.phone,
             });
           }),
-          catchError(() => of(loginFailureAction()))
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          catchError((errorResponse) => {
+            console.log(errorResponse);
+            return of(loginFailureAction({ errors: errorResponse.message }));
+          })
         );
       })
     )

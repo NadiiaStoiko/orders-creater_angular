@@ -14,4 +14,5 @@ export const loginInitialState: LoginStateInteface = {
   isLogin: null,
   name: '',
   phone: null,
+  errors: null,
 };

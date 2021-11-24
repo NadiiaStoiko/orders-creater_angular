@@ -22,7 +22,8 @@ export const deleteDishAction = createAction(
 );
 
 export const deleteDishSuccessAction = createAction(
-  ActionsType.DELETE_DISHES_SUCCESS
+  ActionsType.DELETE_DISHES_SUCCESS,
+  props<{ id: number }>()
 );
 
 export const deleteDishFailureAction = createAction(ActionsType.DELETE_FAILURE);

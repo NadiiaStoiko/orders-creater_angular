@@ -6,6 +6,10 @@ import {
   RegisterResponseInteface,
 } from 'src/app/shared/interfaces/register-state.interface ';
 import { environment } from 'src/environments/environment';
+import {
+  LoginRequestInteface,
+  // LoginResponseInteface,
+} from 'src/app/shared/interfaces/login-state.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +25,7 @@ export class AuthService {
     return this.http.post<RegisterResponseInteface>(this.regUrl, user);
   }
 
-  public login(user: RegisterRequestInteface): Observable<{
+  public login(user: LoginRequestInteface): Observable<{
     AccessToken: string;
     userRole: string;
     name: string;

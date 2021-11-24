@@ -36,14 +36,14 @@ const categoriesReduser = createReducer(
   ),
   on(deleteCategorySuccessAction, (state, action): CategoriesStateInteface => {
     console.log(action.id);
-    const categor: Category[] = [...state.data];
-    console.log('categor', categor);
-    const catForDel = categor.findIndex((item) => item.id === action.id);
-    categor.splice(catForDel, 1);
+    const categories: Category[] = [...state.data];
+    console.log('categor', categories);
+    const catForDel = categories.findIndex((item) => item.id === action.id);
+    categories.splice(catForDel, 1);
     return {
       ...state,
       isLoading: true,
-      data: categor,
+      data: categories,
     };
   })
 );

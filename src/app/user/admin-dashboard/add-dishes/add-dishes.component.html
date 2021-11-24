@@ -121,21 +121,27 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Choose your role:</mat-label>
-      <mat-select formControlName="roles" required>
-        <mat-option>--</mat-option>
-        <mat-option *ngFor="let role of roles" [value]="role">
-          {{ role.role }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('roles')?.errors?.required"
-        >Please choose your role</mat-error
-      >
-    </mat-form-field> -->
+    <mat-form-field>
+      <mat-label>Picture url</mat-label>
+      <input
+        matInput
+        id="url"
+        type="url"
+        formControlName="url"
+        matInput
+        formControlName="url"
+      />
+
+      <mat-error *ngIf="form.get('url')?.errors?.required">
+        Enter url, please
+      </mat-error>
+      <mat-error *ngIf="form.get('name')?.errors?.email">
+        Enter valid url, please
+      </mat-error>
+    </mat-form-field>
 
     <button type="submit" mat-raised-button color="primary">
-      Create account
+      Create new dish
     </button>
   </form>
 </div>

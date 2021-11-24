@@ -65,7 +65,7 @@ export class DeleteDishEffects {
       switchMap(({ id }) => {
         return this.dishesService.deleteDish(id).pipe(
           map(() => {
-            return deleteDishSuccessAction();
+            return deleteDishSuccessAction({ id });
           }),
           catchError(() => of(deleteDishFailureAction()))
         );

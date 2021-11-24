@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { Dish } from 'src/app/shared/classes/dish';
+// import { Dish } from 'src/app/shared/classes/dish';
 
 @Component({
   selector: 'app-add-dishes',

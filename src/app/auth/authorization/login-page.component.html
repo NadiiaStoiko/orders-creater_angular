@@ -1,4 +1,5 @@
 <div class="wrapper">
+  <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div>
   <form [formGroup]="form" (ngSubmit)="login()">
     <h2 class="title">Please, Login:</h2>
     <mat-form-field>

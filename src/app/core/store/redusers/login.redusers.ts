@@ -30,9 +30,11 @@ const loginReduser = createReducer(
   ),
   on(
     loginFailureAction,
-    (state): LoginStateInteface => ({
+    (state, action): LoginStateInteface => ({
       ...state,
       isSubmitting: false,
+      isLogin: false,
+      errors: action.errors,
     })
   )
 );

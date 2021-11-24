@@ -28,3 +28,8 @@ export const isLogginSelector = createSelector(
   loginFeatureSelector,
   (loginState: LoginStateInteface) => loginState.isLogin
 );
+
+export const LogginErrorsSelector = createSelector(
+  loginFeatureSelector,
+  (loginState: LoginStateInteface) => loginState.errors
+);
