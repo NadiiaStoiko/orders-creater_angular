@@ -15,7 +15,7 @@ export interface LoginStateInteface {
   isSubmitting: boolean;
   userRole: string;
   AccessToken: string;
-  isLogin: boolean | null;
+  isLogin: boolean;
   name: string;
   phone: number | null;
   errors: string | null;

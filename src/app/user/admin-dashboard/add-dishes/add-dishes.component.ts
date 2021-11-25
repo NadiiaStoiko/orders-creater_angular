@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
+import { addDishAction } from 'src/app/core/store/actions/dishes.action';
 // import { Dish } from 'src/app/shared/classes/dish';
 
 @Component({
@@ -17,21 +18,28 @@ export class AddDishesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = new FormGroup({
+      categoryId: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      id: new FormControl(null, [Validators.required, Validators.minLength(1)]),
       name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      weight: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      description: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
       ]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [
+      price: new FormControl(null, [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(2),
       ]),
-      roles: new FormControl(null, Validators.required),
-      phone: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(13),
-        Validators.maxLength(13),
-      ]),
+      url: new FormControl(null, [Validators.required]),
     });
   }
 
@@ -39,10 +47,12 @@ export class AddDishesComponent implements OnInit, OnDestroy {
     if (this.form.invalid) {
       return;
     }
-    // this.store.dispatch(registerAction(this.form.value));
+    this.store.dispatch(addDishAction(this.form.value));
     // this.submitted = true;
-    console.log(this.form.value, 'register');
+    console.log(this.form.value, 'add dish');
+    this.form.reset();
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

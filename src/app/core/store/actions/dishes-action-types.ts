@@ -7,4 +7,12 @@ export enum ActionsType {
   DELETE_DISHES = '[Dishes] Delete dish',
   DELETE_DISHES_SUCCESS = '[Dishes] Delete dish success',
   DELETE_FAILURE = '[Dishes] Delete dish failure',
+
+  ADD_DISH = '[Dishes] Add dish',
+  ADD_DISHES_SUCCESS = '[Dishes] Add dish success',
+  ADD_FAILURE = '[Dishes] Add dish failure',
+
+  EDIT_DISH = '[Dishes] Edit dish',
+  EDIT_DISHES_SUCCESS = '[Dishes] Edit dish success',
+  EDIT_FAILURE = '[Dishes] Edit dish failure',
 }

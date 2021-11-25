@@ -2,6 +2,6 @@ import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-st
 
 export const initialState: CategoriesStateInteface = {
   isLoading: false,
-  error: null,
+  errors: null,
   data: [],
 };

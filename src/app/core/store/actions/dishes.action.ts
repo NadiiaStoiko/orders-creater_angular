@@ -27,3 +27,15 @@ export const deleteDishSuccessAction = createAction(
 );
 
 export const deleteDishFailureAction = createAction(ActionsType.DELETE_FAILURE);
+
+export const addDishAction = createAction(
+  ActionsType.ADD_DISH,
+  props<{ dish: Dish }>()
+);
+
+export const addDishSuccessAction = createAction(
+  ActionsType.ADD_DISHES_SUCCESS,
+  props<{ dish: Dish }>()
+);
+
+export const addDishFailureAction = createAction(ActionsType.ADD_FAILURE);

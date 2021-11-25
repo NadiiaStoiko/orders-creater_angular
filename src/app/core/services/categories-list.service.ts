@@ -9,20 +9,20 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CategoriesListService {
-  // public id = 0;
-  public url = environment.urlCategories; //environment
+  public url = environment.dbUrl; //environment
+  public endpoint = 'goods';
 
   constructor(private http: HttpClient) {}
 
   public getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.url);
+    return this.http.get<Category[]>(`${this.url}/${this.endpoint}`);
   }
 
-  // public getCategoryByID(id: number): void {
-  //   this.id = id;
-  // }
-
   public deleteCategory(id: number): Observable<{}> {
-    return this.http.delete<{}>(this.url + '/' + id); //``
+    return this.http.delete<{}>(`${this.url}/${this.endpoint}/${id}`); //``
+  }
+
+  public addCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(`${this.url}/${this.endpoint}`, category);
   }
 }

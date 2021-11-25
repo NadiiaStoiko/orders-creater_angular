@@ -25,3 +25,19 @@ export const deleteCategorySuccessAction = createAction(
 export const deleteCategoryFailureAction = createAction(
   ActionType.DELETE_CATEGORY_FAILURE
 );
+
+export const addCategoryAction = createAction(
+  ActionType.ADD_CATEGORY,
+  props<{ category: Category }>()
+);
+
+export const addCategorySuccessAction = createAction(
+  ActionType.ADD_CATEGORY_SUCCESS,
+  props<{ category: Category }>()
+);
+
+export const addCategoryFailureAction = createAction(
+  ActionType.ADD_CATEGORY_FAILURE,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props<{ errors: any }>()
+);

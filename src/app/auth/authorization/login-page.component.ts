@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { loginAction } from 'src/app/core/store/actions/auth.action';
 import {
   isLogginSelector,
@@ -26,12 +25,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   isSubmitting$!: Observable<boolean>;
   errors$!: Observable<string | null>;
   public errorMessage!: string | null;
+  // public isLogin!: Observable<boolean>;
 
-  constructor(
-    private authServ: AuthService,
-    private router: Router,
-    private store: Store
-  ) {}
+  constructor(private router: Router, private store: Store) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -52,39 +48,24 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     if (this.form.invalid) {
       return;
     }
+
     this.form.disable();
+
     this.store.dispatch(loginAction(this.form.value));
 
-    this.store
-      .pipe(select(isLogginSelector), takeUntil(this.destroy$))
-      .subscribe((isLogin) => {
-        console.log(isLogin);
-        // if(isLogin===false){
-        //   this.router.navigate(['/login']
-        // }
-      });
+    this.store.pipe(select(isLogginSelector)).subscribe((data) => {
+      if (!data) return;
 
-    this.store
-      .pipe(select(userRoleSelector), takeUntil(this.destroy$))
-      .subscribe(
+      this.store.pipe(select(userRoleSelector)).subscribe(
         (userRole) => {
-          console.log(userRole);
-          if (userRole === 'customer') {
-            this.router.navigate(['/customer-dashboard']);
-          } else {
-            this.router.navigate(['/admin-dashboard']);
-          }
-          // userRole == 'customer'
-          //   ? this.router.navigate(['/customer-dashboard'])
-          //   : this.router.navigate(['/admin-dashboard']);
-          // this.router.navigate([`/${userRole}-dashboard`]);
+          this.router.navigate([`/${userRole}-dashboard`]);
         },
         (error) => {
           console.warn(error);
-
           this.form.enable();
         }
       );
+    });
   }
 
   ngOnDestroy(): void {

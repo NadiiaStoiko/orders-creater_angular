@@ -24,8 +24,6 @@ interface isAdmin {
 export class RegisrtationComponent implements OnInit, OnDestroy {
   user: User | undefined;
   form!: FormGroup;
-  submitted = false;
-  startId = 0;
   public destroy$: Subject<boolean> = new Subject<boolean>();
   public roles: isAdmin[] = [{ role: 'admin' }, { role: 'customer' }];
   isSubmitting$!: Observable<boolean>;
@@ -67,8 +65,8 @@ export class RegisrtationComponent implements OnInit, OnDestroy {
     if (this.form.invalid) {
       return;
     }
+    this.form.disable();
     this.store.dispatch(registerAction(this.form.value));
-    // this.submitted = true;
     console.log(this.form.value, 'register');
   }
 }

@@ -1,12 +1,12 @@
 export class Category {
   id: number;
-  type: string;
+  types: string;
   url: string;
   description: string;
 
-  constructor(id: number, type: string, url: string, description: string) {
+  constructor(id: number, types: string, url: string, description: string) {
     this.id = id;
-    this.type = type;
+    this.types = types;
     this.url = url;
     this.description = description;
   }

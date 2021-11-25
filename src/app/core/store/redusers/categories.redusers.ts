@@ -2,6 +2,8 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { Category } from 'src/app/shared/classes/category';
 import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
 import {
+  addCategoryFailureAction,
+  addCategorySuccessAction,
   deleteCategorySuccessAction,
   // deleteCategortAction,
   getCategoriesAction,
@@ -45,7 +47,26 @@ const categoriesReduser = createReducer(
       isLoading: true,
       data: categories,
     };
-  })
+  }),
+  on(addCategorySuccessAction, (state, action): CategoriesStateInteface => {
+    console.log('action', action.category);
+    const categories: Category[] = [...state.data];
+    console.log('categories', categories);
+    categories.push(action.category);
+    console.log('2', categories);
+    return {
+      ...state,
+      isLoading: true,
+      data: categories,
+    };
+  }),
+  on(
+    addCategoryFailureAction,
+    (state, action): CategoriesStateInteface => ({
+      ...state,
+      errors: action.errors,
+    })
+  )
 );
 
 export function reducersForCategories(

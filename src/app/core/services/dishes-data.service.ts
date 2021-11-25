@@ -10,10 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class DishesDataService implements OnInit {
   public dishes: Dish[] = [];
-  public url = environment.urlDishes;
-  public endpoint = 'categoryId'; //!useless
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public url = environment.dbUrl;
+  public endpoint = 'dishes';
+  public par = 'categoryId';
 
   constructor(private http: HttpClient) {}
 
@@ -21,17 +20,22 @@ export class DishesDataService implements OnInit {
     console.log();
   }
 
-  public getDishes(categoryID: number): Observable<Dish[]> {
+  public getDishes(categoryId: number): Observable<Dish[]> {
     return this.http.get<Dish[]>(
-      `${this.url}?${this.endpoint}=${categoryID}` //!query or path params
+      `${this.url}/${this.endpoint}`,
+      { params: { categoryId } } //!check on init (no params)
     );
   }
 
   public getAllDishes(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(this.url);
+    return this.http.get<Dish[]>(`${this.url}/${this.endpoint}`);
   }
 
   public deleteDish(id: number): Observable<{}> {
-    return this.http.delete<{}>(`${this.url}/${id}`);
+    return this.http.delete<{}>(`${this.url}/${this.endpoint}/${id}`);
+  }
+
+  public addDish(dish: Dish): Observable<Dish> {
+    return this.http.post<Dish>(`${this.url}/${this.endpoint}`, dish);
   }
 }

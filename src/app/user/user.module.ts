@@ -11,9 +11,13 @@ import { AddCategoriesComponent } from './admin-dashboard/add-categories/add-cat
 import { AddDishesComponent } from './admin-dashboard/add-dishes/add-dishes.component';
 import { EditDishesComponent } from './admin-dashboard/edit-dishes/edit-dishes.component';
 import { EditCategoriesComponent } from './admin-dashboard/edit-categories/edit-categories.component';
-import { DeleteCategoryEffects } from '../core/store/effects/categories.effect';
+import {
+  AddCategoryEffects,
+  DeleteCategoryEffects,
+} from '../core/store/effects/categories.effect';
 import { EffectsModule } from '@ngrx/effects';
 import {
+  AddDishEffects,
   DeleteDishEffects,
   GetAllDishesEffects,
 } from '../core/store/effects/dishes.effect';
@@ -39,6 +43,8 @@ import {
       DeleteCategoryEffects,
       GetAllDishesEffects,
       DeleteDishEffects,
+      AddDishEffects,
+      AddCategoryEffects,
     ]),
   ],
 })

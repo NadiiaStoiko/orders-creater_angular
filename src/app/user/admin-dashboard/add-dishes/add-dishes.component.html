@@ -3,6 +3,7 @@
     <div class="title">
       <h2>Create new dish</h2>
     </div>
+    <!-- //! should be dropdown -->
     <mat-form-field>
       <mat-label>CategoryId</mat-label>
       <input
@@ -22,6 +23,7 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- //! should be set on backend -->
     <mat-form-field>
       <mat-label>Id</mat-label>
       <input
@@ -34,7 +36,7 @@
       />
 
       <mat-error *ngIf="form.get('id')?.errors?.required">
-        Enter id, please
+        Enter dish id, please
       </mat-error>
       <mat-error *ngIf="form.get('id')?.errors?.minlength">
         Enter valid id, please
@@ -71,7 +73,7 @@
         formControlName="weight"
       />
       <mat-error *ngIf="form.get('weight')?.errors?.required">
-        Enter password, please
+        Enter dish weight, please
       </mat-error>
       <mat-error *ngIf="form.get('weight')?.errors?.minlength">
         The password must be at least
@@ -85,8 +87,8 @@
       <mat-label>Description</mat-label>
       <input
         matInput
-        id=" description"
-        type=" description"
+        id="description"
+        type="description"
         formControlName="description"
         matInput
         formControlName="description"
@@ -111,13 +113,7 @@
         formControlName="price"
       />
       <mat-error *ngIf="form.get('price')?.errors?.required">
-        Enter phone number, please
-      </mat-error>
-      <mat-error *ngIf="form.get('price')?.errors?.minlength">
-        The phone number must be at least
-        {{ form.get("price")?.errors?.minlength.requiredLength }}
-        characters.Now it
-        {{ form.get("price")?.errors?.minlength.actualLength }}
+        Enter dish price, please
       </mat-error>
     </mat-form-field>
 
@@ -134,9 +130,6 @@
 
       <mat-error *ngIf="form.get('url')?.errors?.required">
         Enter url, please
-      </mat-error>
-      <mat-error *ngIf="form.get('name')?.errors?.email">
-        Enter valid url, please
       </mat-error>
     </mat-form-field>
 

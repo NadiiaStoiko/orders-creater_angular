@@ -26,6 +26,7 @@ const loginReduser = createReducer(
       AccessToken: action.AccessToken,
       name: action.name,
       phone: action.phone,
+      errors: null,
     })
   ),
   on(

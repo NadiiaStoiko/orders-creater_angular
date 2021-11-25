@@ -4,10 +4,8 @@
 
 export const environment = {
   production: false,
-  urlDishes: 'http://localhost:3000/dishes', //!reduce to domain
-  urlCategories: 'http://localhost:3000/goods',
-  loginUrl: 'http://localhost:8000/login',
-  registerUrl: 'http://localhost:8000/register',
+  authUrl: 'http://localhost:8000',
+  dbUrl: 'http://localhost:3000',
 };
 
 /*

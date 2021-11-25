@@ -2,6 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { Dish } from 'src/app/shared/classes/dish';
 import { DishesStateInteface } from 'src/app/shared/interfaces/dishes-state.interface';
 import {
+  addDishSuccessAction,
   deleteDishSuccessAction,
   getDishesAction,
   getDishesFailureAction,
@@ -39,6 +40,18 @@ const dishesReduser = createReducer(
     console.log('dishes', dishes);
     const dishForDel = dishes.findIndex((item) => item.id === action.id);
     dishes.splice(dishForDel, 1);
+    return {
+      ...state,
+      isLoading: true,
+      data: dishes,
+    };
+  }),
+  on(addDishSuccessAction, (state, action): DishesStateInteface => {
+    console.log('1', action.dish);
+    const dishes: Dish[] = [...state.data];
+    console.log('dishes', dishes);
+    dishes.push(action.dish);
+    console.log('2', dishes);
     return {
       ...state,
       isLoading: true,

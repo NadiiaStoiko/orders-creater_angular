@@ -11,7 +11,7 @@ export const loginInitialState: LoginStateInteface = {
   isSubmitting: false,
   userRole: '',
   AccessToken: '',
-  isLogin: null,
+  isLogin: false,
   name: '',
   phone: null,
   errors: null,

@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Category } from '../classes/category';
 
 export interface CategoriesStateInteface {
   isLoading: boolean;
-  error: string | null;
+  errors: any;
   data: Category[];
 }

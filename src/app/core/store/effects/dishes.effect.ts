@@ -5,6 +5,9 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 import { Dish } from 'src/app/shared/classes/dish';
 import { DishesDataService } from '../../services/dishes-data.service';
 import {
+  addDishAction,
+  addDishFailureAction,
+  addDishSuccessAction,
   deleteDishAction,
   deleteDishFailureAction,
   deleteDishSuccessAction,
@@ -68,6 +71,31 @@ export class DeleteDishEffects {
             return deleteDishSuccessAction({ id });
           }),
           catchError(() => of(deleteDishFailureAction()))
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private dishesService: DishesDataService
+  ) {}
+}
+
+@Injectable()
+export class AddDishEffects {
+  addDish$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addDishAction),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      switchMap((dish: any) => {
+        console.log('req', dish);
+        return this.dishesService.addDish(dish).pipe(
+          map((dish) => {
+            console.log('res', dish);
+            return addDishSuccessAction({ dish });
+          }),
+          catchError(() => of(addDishFailureAction()))
         );
       })
     )
