@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { DishesDataService } from 'src/app/core/services/dishes-data.service';
 import {
   deleteDishAction,
-  editDishAction,
+  // editDishAction,
   getDishesAction,
 } from 'src/app/core/store/actions/dishes.action';
 import { dishesSelector } from 'src/app/core/store/selectors/dishes.selectors';
@@ -41,6 +41,14 @@ export class DishesDashboardComponent implements OnInit {
   }
   public editDish(dish: Dish, id: number): void {
     // this.store.dispatch(editDishAction({ dish, id }));
+    // this.router.navigateByUrl([
+    //   'admin-dashboard/add-dishes',
+    //   { queryParams: { id: id } },
+    // ]);
+    this.router.navigate([
+      'admin-dashboard/add-dishes',
+      { queryParams: { id: id } },
+    ]);
     console.log(dish);
     console.log(id);
   }
