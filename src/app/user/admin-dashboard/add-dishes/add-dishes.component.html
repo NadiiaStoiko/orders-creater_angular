@@ -1,46 +1,25 @@
 <div class="wrapper">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div> -->
+  <form
+    [formGroup]="form"
+    #formDirective="ngForm"
+    (ngSubmit)="onSubmit(formDirective)"
+  >
     <div class="title">
       <h2>Create new dish</h2>
     </div>
-    <!-- //! should be dropdown -->
-    <mat-form-field>
-      <mat-label>CategoryId</mat-label>
-      <input
-        matInput
-        id="categoryId"
-        type="categoryId"
-        formControlName="categoryId"
-        matInput
-        formControlName="categoryId"
-      />
 
-      <mat-error *ngIf="form.get('categoryId')?.errors?.required">
-        Enter categoryId, please
-      </mat-error>
-      <mat-error *ngIf="form.get('categoryId')?.errors?.minlength">
-        Enter valid categoryId, please
-      </mat-error>
-    </mat-form-field>
-
-    <!-- //! should be set on backend -->
-    <mat-form-field>
-      <mat-label>Id</mat-label>
-      <input
-        matInput
-        id="id"
-        type="id"
-        formControlName="id"
-        matInput
-        formControlName="id"
-      />
-
-      <mat-error *ngIf="form.get('id')?.errors?.required">
-        Enter dish id, please
-      </mat-error>
-      <mat-error *ngIf="form.get('id')?.errors?.minlength">
-        Enter valid id, please
-      </mat-error>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose category:</mat-label>
+      <mat-select formControlName="categoryId" required>
+        <mat-option>Choose dish category</mat-option>
+        <mat-option *ngFor="let categoryId of categories" [value]="categoryId">
+          {{ categoryId }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('categoryId')?.errors?.required"
+        >Please choose dish category</mat-error
+      >
     </mat-form-field>
 
     <mat-form-field>
@@ -52,6 +31,7 @@
         formControlName="name"
         matInput
         formControlName="name"
+        autocomplete="name"
       />
 
       <mat-error *ngIf="form.get('name')?.errors?.required">

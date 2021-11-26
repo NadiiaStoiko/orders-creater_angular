@@ -38,4 +38,24 @@ export const addDishSuccessAction = createAction(
   props<{ dish: Dish }>()
 );
 
-export const addDishFailureAction = createAction(ActionsType.ADD_FAILURE);
+export const addDishFailureAction = createAction(
+  ActionsType.ADD_FAILURE,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props<{ errors: any }>()
+);
+
+export const editDishAction = createAction(
+  ActionsType.EDIT_DISH,
+  props<{ id: number; dish: Dish }>()
+);
+
+export const editDishSuccessAction = createAction(
+  ActionsType.EDIT_DISHES_SUCCESS,
+  props<{ dish: Dish }>()
+);
+
+export const editDishFailureAction = createAction(
+  ActionsType.EDIT_FAILURE,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props<{ errors: any }>()
+);

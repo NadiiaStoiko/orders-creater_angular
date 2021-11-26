@@ -7,7 +7,7 @@ export const dishFeatureSelector =
 
 export const errorSelector = createSelector(
   dishFeatureSelector,
-  (dishesState: DishesStateInteface) => dishesState.error
+  (dishesState: DishesStateInteface) => dishesState.errors
 );
 export const isLoadingSelector = createSelector(
   dishFeatureSelector,
@@ -16,4 +16,8 @@ export const isLoadingSelector = createSelector(
 export const dishesSelector = createSelector(
   dishFeatureSelector,
   (dishesState: DishesStateInteface) => dishesState.data
+);
+export const dishAddFailureSelector = createSelector(
+  dishFeatureSelector,
+  (dishesState: DishesStateInteface) => dishesState.errors
 );

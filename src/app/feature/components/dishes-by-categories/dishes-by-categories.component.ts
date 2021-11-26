@@ -11,7 +11,6 @@ import { addToCartAction } from 'src/app/core/store/actions/cart.action';
 import {
   dishesSelector,
   errorSelector,
-  isLoadingSelector,
 } from 'src/app/core/store/selectors/dishes.selectors';
 @Component({
   selector: 'app-dishes-by-categories',
@@ -34,17 +33,14 @@ export class DishesByCategoriesComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.fetchData();
-    this.initialiseValues();
+
+    this.dishes$ = this.store.pipe(select(dishesSelector));
     this.dishes$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
       this.dishes = val;
     });
+    this.error$ = this.store.pipe(select(errorSelector));
   }
 
-  public initialiseValues(): void {
-    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
-    this.error$ = this.store.pipe(select(errorSelector));
-    this.dishes$ = this.store.pipe(select(dishesSelector));
-  }
   public fetchData(): void {
     this.store.dispatch(getDishesAction());
   }

@@ -6,6 +6,11 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { addCategoryAction } from 'src/app/core/store/actions/categories.action';
 import { categoryAddFailureSelector } from 'src/app/core/store/selectors/categoties.selectors';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-categories',
@@ -18,11 +23,16 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
   errors$!: Observable<string | null>;
   public errorMessage!: string | null;
 
-  constructor(private router: Router, private store: Store) {}
+  constructor(
+    private router: Router,
+    private store: Store,
+    private _snackBar: MatSnackBar
+  ) {}
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      id: new FormControl(null, [Validators.required, Validators.minLength(1)]),
       types: new FormControl(null, [
         Validators.required,
         Validators.minLength(1),
@@ -37,16 +47,27 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
 
     this.errors$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
       this.errorMessage = val;
+      console.log(val);
+      if (this.errorMessage != null) this.openSnackBar('Some error happend...');
     });
   }
-  onSubmit(): void {
+
+  public onSubmit(): void {
+    const message = 'New dish added';
     if (this.form.invalid) {
       return;
     }
     this.store.dispatch(addCategoryAction(this.form.value));
-    // this.submitted = true;
+    this.openSnackBar(message);
     console.log(this.form.value, 'add category');
-    this.form.reset();
+    this.form.reset;
+  }
+
+  public openSnackBar(message: string) {
+    this._snackBar.open(message, 'Close', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 
   ngOnDestroy(): void {

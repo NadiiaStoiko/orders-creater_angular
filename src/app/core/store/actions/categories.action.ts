@@ -41,3 +41,19 @@ export const addCategoryFailureAction = createAction(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props<{ errors: any }>()
 );
+
+export const editCategoryAction = createAction(
+  ActionType.EDIT_CATEGORY,
+  props<{ id: number; category: Category }>()
+);
+
+export const editCategorySuccessAction = createAction(
+  ActionType.EDIT_CATEGORY_SUCCESS,
+  props<{ category: Category }>()
+);
+
+export const editCategoryFailureAction = createAction(
+  ActionType.EDIT_CATEGORY_SUCCESS,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props<{ errors: any }>()
+);

@@ -14,11 +14,13 @@ import { EditCategoriesComponent } from './admin-dashboard/edit-categories/edit-
 import {
   AddCategoryEffects,
   DeleteCategoryEffects,
+  EditCategoryEffects,
 } from '../core/store/effects/categories.effect';
 import { EffectsModule } from '@ngrx/effects';
 import {
   AddDishEffects,
   DeleteDishEffects,
+  EditDishEffects,
   GetAllDishesEffects,
 } from '../core/store/effects/dishes.effect';
 
@@ -45,6 +47,8 @@ import {
       DeleteDishEffects,
       AddDishEffects,
       AddCategoryEffects,
+      EditCategoryEffects,
+      EditDishEffects,
     ]),
   ],
 })

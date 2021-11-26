@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 const material = [
   MatButtonModule,
   MatButtonToggleModule,
@@ -24,6 +26,7 @@ const material = [
   MatInputModule,
   MatFormFieldModule,
   MatSelectModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DishesDataService } from 'src/app/core/services/dishes-data.service';
 import {
   deleteDishAction,
+  editDishAction,
   getDishesAction,
 } from 'src/app/core/store/actions/dishes.action';
 import { dishesSelector } from 'src/app/core/store/selectors/dishes.selectors';
@@ -20,7 +22,11 @@ export class DishesDashboardComponent implements OnInit {
   dishes$!: Observable<Dish[]>;
   public dishes: Dish[] = [];
 
-  constructor(public dishesServ: DishesDataService, private store: Store) {}
+  constructor(
+    public dishesServ: DishesDataService,
+    private store: Store,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.fetchData();
@@ -33,12 +39,13 @@ export class DishesDashboardComponent implements OnInit {
   public fetchData(): void {
     this.store.dispatch(getDishesAction());
   }
-  public editDish(id: number): void {
+  public editDish(dish: Dish, id: number): void {
+    // this.store.dispatch(editDishAction({ dish, id }));
+    console.log(dish);
     console.log(id);
   }
   public deleteDish(id: number): void {
     this.store.dispatch(deleteDishAction({ id }));
-    window.location.reload();
   }
 
   ngOnDestroy(): void {

@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CategoriesListService {
-  public url = environment.dbUrl; //environment
+  public url = environment.dbUrl;
   public endpoint = 'goods';
 
   constructor(private http: HttpClient) {}
@@ -19,10 +19,16 @@ export class CategoriesListService {
   }
 
   public deleteCategory(id: number): Observable<{}> {
-    return this.http.delete<{}>(`${this.url}/${this.endpoint}/${id}`); //``
+    return this.http.delete<{}>(`${this.url}/${this.endpoint}/${id}`);
   }
 
   public addCategory(category: Category): Observable<Category> {
     return this.http.post<Category>(`${this.url}/${this.endpoint}`, category);
+  }
+  public updateCategory(id: number, category: Category): Observable<Category> {
+    return this.http.put<Category>(
+      `${this.url}/${this.endpoint}/${id}`,
+      category
+    );
   }
 }

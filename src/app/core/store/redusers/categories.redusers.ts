@@ -5,6 +5,7 @@ import {
   addCategoryFailureAction,
   addCategorySuccessAction,
   deleteCategorySuccessAction,
+  editCategorySuccessAction,
   // deleteCategortAction,
   getCategoriesAction,
   getCategoriesFailureAction,
@@ -66,7 +67,19 @@ const categoriesReduser = createReducer(
       ...state,
       errors: action.errors,
     })
-  )
+  ),
+  on(editCategorySuccessAction, (state, action): CategoriesStateInteface => {
+    console.log('action', action.category);
+    const categories: Category[] = [...state.data];
+    // console.log('categories', categories);
+    categories.push(action.category);
+    // console.log('2', categories);
+    return {
+      ...state,
+      isLoading: true,
+      data: categories,
+    };
+  })
 );
 
 export function reducersForCategories(

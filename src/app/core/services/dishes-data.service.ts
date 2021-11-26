@@ -21,10 +21,9 @@ export class DishesDataService implements OnInit {
   }
 
   public getDishes(categoryId: number): Observable<Dish[]> {
-    return this.http.get<Dish[]>(
-      `${this.url}/${this.endpoint}`,
-      { params: { categoryId } } //!check on init (no params)
-    );
+    return this.http.get<Dish[]>(`${this.url}/${this.endpoint}`, {
+      params: { categoryId },
+    });
   }
 
   public getAllDishes(): Observable<Dish[]> {
@@ -37,5 +36,9 @@ export class DishesDataService implements OnInit {
 
   public addDish(dish: Dish): Observable<Dish> {
     return this.http.post<Dish>(`${this.url}/${this.endpoint}`, dish);
+  }
+
+  public updateDish(id: number, dish: Dish): Observable<Dish> {
+    return this.http.put<Dish>(`${this.url}/${this.endpoint}/${id}`, dish);
   }
 }

@@ -15,6 +15,9 @@ import {
   addCategoryAction,
   addCategorySuccessAction,
   addCategoryFailureAction,
+  editCategoryAction,
+  editCategorySuccessAction,
+  editCategoryFailureAction,
 } from '../actions/categories.action';
 
 @Injectable()
@@ -76,6 +79,34 @@ export class AddCategoryEffects {
           }),
           catchError((errorResponse) =>
             of(addCategoryFailureAction({ errors: errorResponse.statusText }))
+          )
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private categoriesService: CategoriesListService
+  ) {}
+}
+
+@Injectable()
+export class EditCategoryEffects {
+  editCategory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editCategoryAction),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      switchMap(({ category, id }) => {
+        console.log('req', id);
+        console.log('req', category);
+        return this.categoriesService.updateCategory(id, category).pipe(
+          map((category) => {
+            console.log('res', category);
+            return editCategorySuccessAction({ category });
+          }),
+          catchError((errorResponse) =>
+            of(editCategoryFailureAction({ errors: errorResponse.statusText }))
           )
         );
       })

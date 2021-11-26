@@ -1,28 +1,9 @@
 <div class="wrapper">
-  <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div>
+  <!-- <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div> -->
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="title">
       <h2>Create new category</h2>
     </div>
-    <!-- //! should be set on backend -->
-    <mat-form-field>
-      <mat-label>Id</mat-label>
-      <input
-        matInput
-        id="id"
-        type="id"
-        formControlName="id"
-        matInput
-        formControlName="id"
-      />
-
-      <mat-error *ngIf="form.get('id')?.errors?.required">
-        Enter category id, please
-      </mat-error>
-      <mat-error *ngIf="form.get('id')?.errors?.minlength">
-        Enter valid category id, please
-      </mat-error>
-    </mat-form-field>
 
     <mat-form-field>
       <mat-label>Category type</mat-label>

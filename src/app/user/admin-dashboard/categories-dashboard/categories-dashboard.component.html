@@ -16,7 +16,8 @@
           <button
             mat-stroked-button
             color="primary"
-            (click)="editCategory(category.id)"
+            routerLinkActive="active"
+            (click)="editCategory(category, category.id)"
           >
             Edit
           </button>

@@ -3,12 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-// import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
-import {
-  isSubmittingSelector,
-  // isRegistredSelector,
-} from 'src/app/core/store/selectors/auth.selectors ';
+import { isSubmittingSelector } from 'src/app/core/store/selectors/auth.selectors ';
 import { registerAction } from 'src/app/core/store/actions/auth.action';
 import { User } from 'src/app/shared/classes/user';
 

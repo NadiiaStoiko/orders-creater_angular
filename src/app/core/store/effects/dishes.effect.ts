@@ -11,6 +11,9 @@ import {
   deleteDishAction,
   deleteDishFailureAction,
   deleteDishSuccessAction,
+  editDishAction,
+  editDishFailureAction,
+  editDishSuccessAction,
   getDishesAction,
   getDishesFailureAction,
   getDishesSuccessAction,
@@ -95,7 +98,37 @@ export class AddDishEffects {
             console.log('res', dish);
             return addDishSuccessAction({ dish });
           }),
-          catchError(() => of(addDishFailureAction()))
+          catchError((errorResponse) =>
+            of(addDishFailureAction({ errors: errorResponse.statusText }))
+          )
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private dishesService: DishesDataService
+  ) {}
+}
+
+@Injectable()
+export class EditDishEffects {
+  editDish$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editDishAction),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      switchMap(({ dish, id }) => {
+        console.log('req', dish);
+        console.log('req', id);
+        return this.dishesService.updateDish(id, dish).pipe(
+          map((dish) => {
+            console.log('res', dish);
+            return editDishSuccessAction({ dish });
+          }),
+          catchError((errorResponse) =>
+            of(editDishFailureAction({ errors: errorResponse.statusText }))
+          )
         );
       })
     )

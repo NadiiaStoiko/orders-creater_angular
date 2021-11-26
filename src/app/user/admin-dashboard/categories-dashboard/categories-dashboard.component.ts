@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CategoriesListService } from 'src/app/core/services/categories-list.service';
 import {
   deleteCategoryAction,
+  editCategoryAction,
   getCategoriesAction,
 } from 'src/app/core/store/actions/categories.action';
 import { categoriesSelector } from 'src/app/core/store/selectors/categoties.selectors';
@@ -22,7 +24,8 @@ export class CategoriesDashboardComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private categoryServ: CategoriesListService
+    private categoryServ: CategoriesListService,
+    private router: Router
   ) {
     console.log;
   }
@@ -39,7 +42,9 @@ export class CategoriesDashboardComponent implements OnInit {
   public fetchData(): void {
     this.store.dispatch(getCategoriesAction());
   }
-  public editCategory(id: number) {
+  public editCategory(category: Category, id: number) {
+    this.store.dispatch(editCategoryAction({ category, id }));
+    console.log(category);
     console.log(id);
   }
   public deleteCategory(id: number) {
