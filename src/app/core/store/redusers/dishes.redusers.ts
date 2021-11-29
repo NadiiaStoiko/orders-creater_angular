@@ -1,6 +1,11 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { Dish } from 'src/app/shared/classes/dish';
 import { DishesStateInteface } from 'src/app/shared/interfaces/dishes-state.interface';
 import {
+  addDishFailureAction,
+  addDishSuccessAction,
+  deleteDishSuccessAction,
+  // editDishSuccessAction,
   getDishesAction,
   getDishesFailureAction,
   getDishesSuccessAction,
@@ -30,7 +35,47 @@ const dishesReduser = createReducer(
       ...state,
       isLoading: false,
     })
+  ),
+  on(deleteDishSuccessAction, (state, action): DishesStateInteface => {
+    console.log(action.id);
+    const dishes: Dish[] = [...state.data]; //filter
+    console.log('dishes', dishes);
+    const dishForDel = dishes.findIndex((item) => item.id === action.id);
+    dishes.splice(dishForDel, 1);
+    return {
+      ...state,
+      isLoading: true,
+      data: dishes,
+    };
+  }),
+  on(addDishSuccessAction, (state, action): DishesStateInteface => {
+    const dishes: Dish[] = [...state.data];
+    dishes.push(action.dish);
+    return {
+      ...state,
+      isLoading: false, //!why true?
+      data: dishes,
+    };
+  }),
+  on(
+    addDishFailureAction,
+    (state, action): DishesStateInteface => ({
+      ...state,
+      errors: action.errors,
+    })
   )
+  // on(editDishSuccessAction, (state, action): DishesStateInteface => {
+  //   console.log('1', action.dish);
+  //   const dishes: Dish[] = [...state.data];
+  //   console.log('dishes', dishes);
+  //   dishes.push(action.dish);
+  //   console.log('2', dishes);
+  //   return {
+  //     ...state,
+  //     isLoading: true, //!why true?
+  //     data: dishes,
+  //   };
+  // })
 );
 
 export function reducersForDishes(state: DishesStateInteface, action: Action) {

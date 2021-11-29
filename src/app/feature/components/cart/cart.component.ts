@@ -1,5 +1,4 @@
 import { Component, OnDestroy } from '@angular/core';
-import { PersistanceService } from 'src/app/core/services/persistance.service';
 import { Subject, Observable } from 'rxjs';
 import { CartItemInteface } from 'src/app/shared/interfaces/cart-state.interface ';
 import { addToCartSelector } from 'src/app/core/store/selectors/cart.selectors ';
@@ -19,7 +18,6 @@ import { CartStorageSyncService } from 'src/app/core/services/cart-storage-sync.
 })
 export class CartComponent implements OnDestroy {
   constructor(
-    private persistServ: PersistanceService,
     private storageSyncServ: CartStorageSyncService,
     private store: Store
   ) {}

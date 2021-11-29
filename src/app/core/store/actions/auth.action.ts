@@ -4,6 +4,11 @@ import {
   RegisterRequestInteface,
   RegisterResponseInteface,
 } from 'src/app/shared/interfaces/register-state.interface ';
+import {
+  // LoginErrorResponseInteface,
+  LoginRequestInteface,
+  // LoginResponseInteface,
+} from 'src/app/shared/interfaces/login-state.interface';
 
 export const registerAction = createAction(
   ActionsType.REGISTER,
@@ -19,12 +24,20 @@ export const registerFailureAction = createAction(ActionsType.REGISTER_FAILURE);
 
 export const loginAction = createAction(
   ActionsType.LOGIN,
-  props<{ request: RegisterRequestInteface }>()
+  props<{ request: LoginRequestInteface }>()
 );
 
 export const loginSuccessAction = createAction(
   ActionsType.LOGIN_SUCCESS,
-  props<{ AccessToken: string; userRole: string }>()
+  props<{
+    AccessToken: string;
+    userRole: string;
+    name: string;
+    phone: number | null;
+  }>()
 );
 
-export const loginFailureAction = createAction(ActionsType.LOGIN_FAILURE);
+export const loginFailureAction = createAction(
+  ActionsType.LOGIN_FAILURE,
+  props<{ errors: string }>()
+);

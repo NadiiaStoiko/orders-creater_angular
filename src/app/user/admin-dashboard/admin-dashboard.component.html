@@ -1,1 +1,48 @@
-<p>admin-dashboard works!</p>
+<div>
+  <mat-toolbar class="navbar">
+    <div class="nav-text">ADMIN PANEL</div>
+    <span class="spacer"></span>
+    <div class="auth-btns">
+      <button
+        mat-stroked-button
+        class="action-btn"
+        [routerLink]="['categories-dashboard']"
+        routerLinkActive="active"
+      >
+        Categories dashboard
+      </button>
+      <button
+        mat-stroked-button
+        class="action-btn"
+        [routerLink]="['dishes-dashboard']"
+        routerLinkActive="active"
+      >
+        Dishes dashboard
+      </button>
+
+      <button
+        mat-stroked-button
+        class="action-btn"
+        [routerLink]="['add-categories']"
+        routerLinkActive="active"
+      >
+        Add category
+      </button>
+
+      <button
+        mat-stroked-button
+        class="action-btn"
+        [routerLink]="['add-dishes']"
+        routerLinkActive="active"
+      >
+        Add dish
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="actions-container">
+    <h2 class="actions-title">Hello, {{ userName }} !</h2>
+    <p class="actions-content">Choose, please, your next action</p>
+    <router-outlet></router-outlet>
+  </div>
+</div>

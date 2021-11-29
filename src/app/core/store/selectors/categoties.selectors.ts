@@ -7,7 +7,7 @@ export const categoryFeatureSelector =
 
 export const errorSelector = createSelector(
   categoryFeatureSelector,
-  (categoriesState: CategoriesStateInteface) => categoriesState.error
+  (categoriesState: CategoriesStateInteface) => categoriesState.errors
 );
 export const isLoadingSelector = createSelector(
   categoryFeatureSelector,
@@ -16,4 +16,8 @@ export const isLoadingSelector = createSelector(
 export const categoriesSelector = createSelector(
   categoryFeatureSelector,
   (categoriesState: CategoriesStateInteface) => categoriesState.data
+);
+export const categoryAddFailureSelector = createSelector(
+  categoryFeatureSelector,
+  (categoriesState: CategoriesStateInteface) => categoriesState.errors
 );

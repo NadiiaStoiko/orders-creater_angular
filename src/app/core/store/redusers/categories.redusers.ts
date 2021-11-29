@@ -1,6 +1,12 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { Category } from 'src/app/shared/classes/category';
 import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
 import {
+  addCategoryFailureAction,
+  addCategorySuccessAction,
+  deleteCategorySuccessAction,
+  editCategorySuccessAction,
+  // deleteCategortAction,
   getCategoriesAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
@@ -30,7 +36,50 @@ const categoriesReduser = createReducer(
       ...state,
       isLoading: false,
     })
-  )
+  ),
+  on(deleteCategorySuccessAction, (state, action): CategoriesStateInteface => {
+    console.log(action.id);
+    const categories: Category[] = [...state.data];
+    console.log('categor', categories);
+    const catForDel = categories.findIndex((item) => item.id === action.id);
+    categories.splice(catForDel, 1);
+    return {
+      ...state,
+      isLoading: true,
+      data: categories,
+    };
+  }),
+  on(addCategorySuccessAction, (state, action): CategoriesStateInteface => {
+    console.log('action', action.category);
+    const categories: Category[] = [...state.data];
+    console.log('categories', categories);
+    categories.push(action.category);
+    console.log('2', categories);
+    return {
+      ...state,
+      isLoading: true,
+      data: categories,
+    };
+  }),
+  on(
+    addCategoryFailureAction,
+    (state, action): CategoriesStateInteface => ({
+      ...state,
+      errors: action.errors,
+    })
+  ),
+  on(editCategorySuccessAction, (state, action): CategoriesStateInteface => {
+    console.log('action', action.category);
+    const categories: Category[] = [...state.data];
+    // console.log('categories', categories);
+    categories.push(action.category);
+    // console.log('2', categories);
+    return {
+      ...state,
+      isLoading: true,
+      data: categories,
+    };
+  })
 );
 
 export function reducersForCategories(

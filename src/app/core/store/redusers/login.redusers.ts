@@ -24,13 +24,18 @@ const loginReduser = createReducer(
       isLogin: true,
       userRole: action.userRole,
       AccessToken: action.AccessToken,
+      name: action.name,
+      phone: action.phone,
+      errors: null,
     })
   ),
   on(
     loginFailureAction,
-    (state): LoginStateInteface => ({
+    (state, action): LoginStateInteface => ({
       ...state,
       isSubmitting: false,
+      isLogin: false,
+      errors: action.errors,
     })
   )
 );

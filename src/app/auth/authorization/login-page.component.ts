@@ -3,18 +3,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-// import { takeUntil } from 'rxjs/operators';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { takeUntil } from 'rxjs/operators';
 import { loginAction } from 'src/app/core/store/actions/auth.action';
 import {
+  isLogginSelector,
   isSubmittingLoginSelector,
+  LogginErrorsSelector,
   userRoleSelector,
 } from 'src/app/core/store/selectors/auth.selectors ';
 import { User } from 'src/app/shared/classes/user';
-
-// interface isAdmin {
-//   role: string;
-// }
 
 @Component({
   selector: 'app-authorization',
@@ -26,12 +23,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   users: User[] = [];
   public destroy$: Subject<boolean> = new Subject<boolean>();
   isSubmitting$!: Observable<boolean>;
+  errors$!: Observable<string | null>;
+  public errorMessage!: string | null;
+  // public isLogin!: Observable<boolean>;
 
-  constructor(
-    private authServ: AuthService,
-    private router: Router,
-    private store: Store
-  ) {}
+  constructor(private router: Router, private store: Store) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -42,45 +38,34 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       ]),
     });
     this.isSubmitting$ = this.store.pipe(select(isSubmittingLoginSelector));
+    this.errors$ = this.store.pipe(select(LogginErrorsSelector));
+    this.errors$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
+      this.errorMessage = val;
+    });
   }
 
   public login(): void {
     if (this.form.invalid) {
       return;
     }
-    this.form.disable();
-    this.store.dispatch(loginAction(this.form.value));
-    this.store.pipe(select(userRoleSelector)).subscribe(
-      (data) => {
-        console.log(data);
-        data == 'customer'
-          ? this.router.navigate(['/customer-dashboard'])
-          : this.router.navigate(['/admin-dashboard']);
-      },
-      (error) => {
-        console.warn(error);
-        this.form.enable();
-      }
-    );
-    // this.authServ
-    //   .login(this.form.value)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(
-    //     (data) => {
-    //       console.log(data);
-    //       // console.log(localStorage.getItem('userRole'));
-    //       localStorage.getItem('userRole') == 'customer'
-    //         ? this.router.navigate(['/customer-dashboard'])
-    //         : this.router.navigate(['/admin-dashboard']);
 
-    //       // this.router.navigate(['/admin-dashboard'])
-    //       // this.router.navigate(['/customer-dashboard']);
-    //     },
-    //     (error) => {
-    //       console.warn(error);
-    //       this.form.enable();
-    //     }
-    //   );
+    this.form.disable();
+
+    this.store.dispatch(loginAction(this.form.value));
+
+    this.store.pipe(select(isLogginSelector)).subscribe((data) => {
+      if (!data) return;
+
+      this.store.pipe(select(userRoleSelector)).subscribe(
+        (userRole) => {
+          this.router.navigate([`/${userRole}-dashboard`]);
+        },
+        (error) => {
+          console.warn(error);
+          this.form.enable();
+        }
+      );
+    });
   }
 
   ngOnDestroy(): void {

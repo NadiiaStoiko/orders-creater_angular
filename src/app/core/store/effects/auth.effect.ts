@@ -63,13 +63,20 @@ export class LoginEffects {
           map((response) => {
             this.persistServ.set('token', response.AccessToken);
             this.persistServ.set('userRole', response.userRole);
+            this.persistServ.set('userName', response.name);
             console.log(response);
             return loginSuccessAction({
               AccessToken: response.AccessToken,
               userRole: response.userRole,
+              name: response.name,
+              phone: response.phone,
             });
           }),
-          catchError(() => of(loginFailureAction()))
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          catchError((errorResponse) => {
+            console.log(errorResponse);
+            return of(loginFailureAction({ errors: errorResponse.message }));
+          })
         );
       })
     )

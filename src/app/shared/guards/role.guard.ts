@@ -27,13 +27,6 @@ export class RoleGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // const role = localStorage.getItem('userRole') || '';
-    // if (role === 'admin') {
-    //   return true;
-    // } else {
-    //   this.router.navigate(['/login']);
-    // }
-    // return of(false);
     return this.store.select(userRoleSelector).pipe(
       map((userRole: string) => {
         if (userRole === 'admin') {

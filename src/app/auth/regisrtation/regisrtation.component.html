@@ -4,6 +4,26 @@
       <h2>Create account</h2>
     </div>
     <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        id="name"
+        type="name"
+        formControlName="name"
+        matInput
+        formControlName="name"
+        placeholder="Jonh Jonhson"
+      />
+
+      <mat-error *ngIf="form.get('name')?.errors?.required">
+        Enter your name, please
+      </mat-error>
+      <mat-error *ngIf="form.get('name')?.errors?.minlength">
+        Enter valid name, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
       <mat-label>Login</mat-label>
       <input
         matInput
@@ -14,7 +34,7 @@
         formControlName="email"
         placeholder="example@example.com"
       />
-      <!-- <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid"> </div> -->
+
       <mat-error *ngIf="form.get('email')?.errors?.required">
         Enter email, please
       </mat-error>
@@ -22,6 +42,7 @@
         Enter valid email, please
       </mat-error>
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input
@@ -33,9 +54,6 @@
         formControlName="password"
         autocomplete="on"
       />
-      <!-- <div
-        *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
-      > </div> -->
       <mat-error *ngIf="form.get('password')?.errors?.required">
         Enter password, please
       </mat-error>
@@ -46,6 +64,30 @@
         {{ form.get("password")?.errors?.minlength.actualLength }}
       </mat-error>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Phone number</mat-label>
+      <input
+        matInput
+        id="phone"
+        type="phone"
+        formControlName="phone"
+        matInput
+        formControlName="phone"
+        autocomplete="on"
+        placeholder="+380671111111"
+      />
+      <mat-error *ngIf="form.get('phone')?.errors?.required">
+        Enter phone number, please
+      </mat-error>
+      <mat-error *ngIf="form.get('phone')?.errors?.minlength">
+        The phone number must be at least
+        {{ form.get("phone")?.errors?.minlength.requiredLength }}
+        characters.Now it
+        {{ form.get("phone")?.errors?.minlength.actualLength }}
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-label>Choose your role:</mat-label>
       <mat-select formControlName="roles" required>
@@ -58,6 +100,7 @@
         >Please choose your role</mat-error
       >
     </mat-form-field>
+
     <button
       type="submit"
       mat-raised-button

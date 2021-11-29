@@ -1,0 +1,20 @@
+form {
+  min-width: 300px;
+  margin: 12px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border: 2px grey solid;
+  border-radius: 6px;
+  background-color: #424242;
+  min-height: 20vh;
+}
+.title {
+  display: flex;
+  color: darkgray;
+  justify-content: center;
+}
+
+button {
+  margin-top: 30px;
+}

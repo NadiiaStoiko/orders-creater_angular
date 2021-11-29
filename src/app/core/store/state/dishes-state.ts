@@ -2,7 +2,7 @@ import { DishesStateInteface } from 'src/app/shared/interfaces/dishes-state.inte
 
 export const initialState: DishesStateInteface = {
   isLoading: false,
-  error: null,
+  errors: null,
   data: [],
   id: 0,
 };

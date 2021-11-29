@@ -1,0 +1,120 @@
+<div class="wrapper">
+  <!-- <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div> -->
+  <form
+    [formGroup]="form"
+    #formDirective="ngForm"
+    (ngSubmit)="onSubmit(formDirective)"
+  >
+    <div class="title">
+      <h2>Create new dish</h2>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Choose category:</mat-label>
+      <mat-select formControlName="categoryId" required>
+        <mat-option>Choose dish category</mat-option>
+        <mat-option *ngFor="let categoryId of categories" [value]="categoryId">
+          {{ categoryId }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('categoryId')?.errors?.required"
+        >Please choose dish category</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        id="name"
+        type="name"
+        formControlName="name"
+        matInput
+        formControlName="name"
+        autocomplete="name"
+      />
+
+      <mat-error *ngIf="form.get('name')?.errors?.required">
+        Enter dish name, please
+      </mat-error>
+      <mat-error *ngIf="form.get('name')?.errors?.email">
+        Enter valid dish name, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Weight</mat-label>
+      <input
+        matInput
+        id="weight"
+        type="weight"
+        formControlName="weight"
+        matInput
+        formControlName="weight"
+      />
+      <mat-error *ngIf="form.get('weight')?.errors?.required">
+        Enter dish weight, please
+      </mat-error>
+      <mat-error *ngIf="form.get('weight')?.errors?.minlength">
+        The password must be at least
+        {{ form.get("weight")?.errors?.minlength.requiredLength }}
+        characters.Now it
+        {{ form.get("weight")?.errors?.minlength.actualLength }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        id="description"
+        type="description"
+        formControlName="description"
+        matInput
+        formControlName="description"
+      />
+
+      <mat-error *ngIf="form.get(' description')?.errors?.required">
+        Enter dish description, please
+      </mat-error>
+      <mat-error *ngIf="form.get(' description')?.errors?.email">
+        Enter valid dish description, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Price</mat-label>
+      <input
+        matInput
+        id="price"
+        type="price"
+        formControlName="price"
+        matInput
+        formControlName="price"
+      />
+      <mat-error *ngIf="form.get('price')?.errors?.required">
+        Enter dish price, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Picture url</mat-label>
+      <input
+        matInput
+        id="url"
+        type="url"
+        formControlName="url"
+        matInput
+        formControlName="url"
+      />
+
+      <mat-error *ngIf="form.get('url')?.errors?.required">
+        Enter url, please
+      </mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary">
+      Create new dish
+    </button>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+.navbar {
+  padding: 10px 30px;
+  justify-content: space-between;
+  background-color: dimgray;
+  margin-bottom: 25px;
+}
+.nav-text {
+  font-size: 16px;
+}
+.action-btn {
+  margin-right: 10px;
+}
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.actions-title {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.actions-content {
+  font-size: 16px;
+  font-weight: 400;
+  color: blue;
+  margin-bottom: 15px;
+}
+.actions-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.actions-button {
+  margin-bottom: 15px;
+}

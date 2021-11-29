@@ -1,0 +1,66 @@
+<div class="wrapper">
+  <!-- <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div> -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="title">
+      <h2>Create new category</h2>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Category type</mat-label>
+      <input
+        matInput
+        id="types"
+        type="types"
+        formControlName="types"
+        matInput
+        formControlName="types"
+      />
+
+      <mat-error *ngIf="form.get('types')?.errors?.required">
+        Enter category type, please
+      </mat-error>
+      <mat-error *ngIf="form.get('types')?.errors?.email">
+        Enter valid category type, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Picture url</mat-label>
+      <input
+        matInput
+        id="url"
+        type="url"
+        formControlName="url"
+        matInput
+        formControlName="url"
+      />
+
+      <mat-error *ngIf="form.get('url')?.errors?.required">
+        Enter url, please
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        id="description"
+        type="description"
+        formControlName="description"
+        matInput
+        formControlName="description"
+      />
+
+      <mat-error *ngIf="form.get(' description')?.errors?.required">
+        Enter category description, please
+      </mat-error>
+      <mat-error *ngIf="form.get(' description')?.errors?.email">
+        Enter valid category description, please
+      </mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary">
+      Create new category
+    </button>
+  </form>
+</div>

@@ -1,6 +1,7 @@
 <div class="wrapper">
+  <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div>
   <form [formGroup]="form" (ngSubmit)="login()">
-    <h2>Please, Login:</h2>
+    <h2 class="title">Please, Login:</h2>
     <mat-form-field>
       <mat-label>Login</mat-label>
       <input
@@ -12,7 +13,6 @@
         formControlName="email"
         placeholder="example@example.com"
       />
-      <!-- <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid"></div> -->
       <mat-error *ngIf="form.get('email')?.errors?.required">
         Enter email, please
       </mat-error>

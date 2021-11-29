@@ -1,18 +1,22 @@
 export interface LoginRequestInteface {
-  id?: number;
   email: string;
   password: string;
 }
 export interface LoginResponseInteface {
   AccessToken: string;
-  RefreshToken: string;
-  message: string;
   userRole: string;
+  name: string;
+  phone: number | null;
 }
-
+export interface LoginErrorResponseInteface {
+  message: string;
+}
 export interface LoginStateInteface {
   isSubmitting: boolean;
   userRole: string;
   AccessToken: string;
-  isLogin: boolean | null;
+  isLogin: boolean;
+  name: string;
+  phone: number | null;
+  errors: string | null;
 }
