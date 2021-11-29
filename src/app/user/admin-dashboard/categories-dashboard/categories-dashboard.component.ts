@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { CategoriesListService } from 'src/app/core/services/categories-list.service';
 import {
   deleteCategoryAction,
-  editCategoryAction,
+  // editCategoryAction,
   getCategoriesAction,
 } from 'src/app/core/store/actions/categories.action';
 import { categoriesSelector } from 'src/app/core/store/selectors/categoties.selectors';
@@ -42,9 +42,11 @@ export class CategoriesDashboardComponent implements OnInit {
   public fetchData(): void {
     this.store.dispatch(getCategoriesAction());
   }
-  public editCategory(category: Category, id: number) {
-    this.store.dispatch(editCategoryAction({ category, id }));
-    console.log(category);
+  public editCategory(id: number) {
+    // this.store.dispatch(editCategoryAction({ category, id }));
+    this.router.navigate(['admin-dashboard/add-categories'], {
+      queryParams: { id: id },
+    });
     console.log(id);
   }
   public deleteCategory(id: number) {

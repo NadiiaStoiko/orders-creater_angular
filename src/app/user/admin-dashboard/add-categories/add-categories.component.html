@@ -1,6 +1,10 @@
 <div class="wrapper">
   <!-- <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div> -->
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form
+    [formGroup]="form"
+    #formDirective="ngForm"
+    (ngSubmit)="onSubmit(formDirective)"
+  >
     <div class="title">
       <h2>Create new category</h2>
     </div>

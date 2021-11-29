@@ -42,6 +42,20 @@ export const addCategoryFailureAction = createAction(
   props<{ errors: any }>()
 );
 
+export const getCategoryByIdAction = createAction(
+  ActionType.GET_CATEGOTY_BY_ID,
+  props<{ categoryId: number }>()
+);
+
+export const getCategoryByIdSuccessAction = createAction(
+  ActionType.GET_CATEGOTY_BY_ID_SUCCESS,
+  props<{ categoryId: number; category: Category }>()
+);
+
+export const getCategoryByIdFailureAction = createAction(
+  ActionType.GET_CATEGOTY_BY_ID_FAILURE
+);
+
 export const editCategoryAction = createAction(
   ActionType.EDIT_CATEGORY,
   props<{ id: number; category: Category }>()

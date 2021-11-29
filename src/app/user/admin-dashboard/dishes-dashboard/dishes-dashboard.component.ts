@@ -39,17 +39,11 @@ export class DishesDashboardComponent implements OnInit {
   public fetchData(): void {
     this.store.dispatch(getDishesAction());
   }
-  public editDish(dish: Dish, id: number): void {
+  public editDish(id: number): void {
     // this.store.dispatch(editDishAction({ dish, id }));
-    // this.router.navigateByUrl([
-    //   'admin-dashboard/add-dishes',
-    //   { queryParams: { id: id } },
-    // ]);
-    this.router.navigate([
-      'admin-dashboard/add-dishes',
-      { queryParams: { id: id } },
-    ]);
-    console.log(dish);
+    this.router.navigate(['admin-dashboard/add-dishes'], {
+      queryParams: { id: id },
+    });
     console.log(id);
   }
   public deleteDish(id: number): void {

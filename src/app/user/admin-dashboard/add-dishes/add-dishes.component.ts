@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { addDishAction } from 'src/app/core/store/actions/dishes.action';
 import { dishAddFailureSelector } from 'src/app/core/store/selectors/dishes.selectors';
 import {
@@ -29,16 +29,22 @@ export class AddDishesComponent implements OnInit, OnDestroy {
   public errorMessage!: string | null;
   public horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   public verticalPosition: MatSnackBarVerticalPosition = 'top';
-  // public categories = [1, 2, 3, 4, 5, 6, 7];
   public categories: number[] = [];
+  public id!: string;
 
   constructor(
     private router: Router,
     private store: Store,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.queryParams
+      .pipe(filter((params) => params.id))
+      .subscribe((params) => (this.id = params.id));
+    console.log(this.id);
+
     this.form = new FormGroup({
       categoryId: new FormControl(null, [Validators.required]),
       name: new FormControl(null, [

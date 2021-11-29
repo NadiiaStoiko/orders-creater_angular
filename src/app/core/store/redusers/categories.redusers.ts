@@ -10,6 +10,7 @@ import {
   getCategoriesAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
+  // getCategoryByIdSuccessAction,
 } from '../actions/categories.action';
 import { initialState } from '../state/catigories-state';
 
@@ -68,6 +69,23 @@ const categoriesReduser = createReducer(
       errors: action.errors,
     })
   ),
+  // on(getCategoryByIdSuccessAction, (state, action): CategoriesStateInteface => {
+  //   //! selector
+  //   const categories: Category[] = [...state.data];
+  //   let edit: Category | null;
+  //   console.log('categories', categories);
+  //   const isCategory = categories.find((item) => item.id === action.categoryId);
+  //   if (isCategory) {
+  //     edit = isCategory;
+  //   } else {
+  //     edit = null;
+  //   }
+  //   console.log('2', categories);
+  //   return {
+  //     ...state,
+  //     edit: edit,
+  //   };
+  // }),
   on(editCategorySuccessAction, (state, action): CategoriesStateInteface => {
     console.log('action', action.category);
     const categories: Category[] = [...state.data];

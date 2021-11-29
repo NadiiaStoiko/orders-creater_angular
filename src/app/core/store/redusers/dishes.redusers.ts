@@ -53,7 +53,7 @@ const dishesReduser = createReducer(
     dishes.push(action.dish);
     return {
       ...state,
-      isLoading: false, //!why true?
+      isLoading: false,
       data: dishes,
     };
   }),

@@ -4,4 +4,5 @@ export const initialState: CategoriesStateInteface = {
   isLoading: false,
   errors: null,
   data: [],
+  edit: null,
 };
