@@ -78,13 +78,13 @@ app.post("/login", async (req, res) => {
           phone: phone,
         });
       } else {
-        res.json({ message: "Invalid email or password" });
+        res.status(401).json({ message: "Invalid email or password" });
       }
     } else {
       let fakePass = `$2b$$10$ifgfgfgfgfgfgfggfgfgfggggfgfgfga`; //fake password is used just to slow down the time required to send a response to the user
       await bcrypt.compare(req.body.password, fakePass);
-
-      res.json({ message: "Invalid email or password" });
+      res.status(401).json({ message: "Invalid email or password -----" }); //!read about 4xx errors
+      // res.json({ message: "Invalid email or password -----" });
     }
   } catch {
     res.json({ message: "Internal server error" });
