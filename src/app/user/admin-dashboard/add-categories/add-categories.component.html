@@ -5,9 +5,14 @@
     #formDirective="ngForm"
     (ngSubmit)="onSubmit(formDirective)"
   >
-    <div class="title">
-      <h2>Create new category</h2>
+    <div *ngIf="isEdit; else addCategory" class="title">
+      <h2>Edit category</h2>
     </div>
+    <ng-template #addCategory>
+      <div class="title">
+        <h2>Create new category</h2>
+      </div>
+    </ng-template>
 
     <mat-form-field>
       <mat-label>Category type</mat-label>
@@ -63,8 +68,18 @@
       </mat-error>
     </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary">
-      Create new category
+    <button
+      *ngIf="isEdit; else addCategory"
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
+      Edit category
     </button>
+    <ng-template #addCategory>
+      <button type="submit" mat-raised-button color="primary">
+        Create new category
+      </button>
+    </ng-template>
   </form>
 </div>

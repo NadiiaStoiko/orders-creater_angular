@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import {
   addCategoryAction,
   getCategoryByIdAction,
@@ -29,10 +29,10 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
   public destroy$: Subject<boolean> = new Subject<boolean>();
   errors$!: Observable<string | null>;
-  editCategotry$!: Observable<any>;
+  editCategotry$!: Observable<Category>;
   public errorMessage!: string | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public id: any;
+
+  public id!: number;
   // eslint-disable-next-line @typescript-eslint/ban-types
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public editCategory: any;
@@ -53,16 +53,15 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
       .pipe(filter((params) => params.id))
       .subscribe(({ id }) => (this.id = id));
     console.log(this.id);
-    this.store.dispatch(getCategoryByIdAction(this.id));
+    this.store.dispatch(getCategoryByIdAction({ categoryId: this.id }));
     this.store
       .pipe(select(categoryByIdSelector, { id: this.id }))
       .subscribe((val) => {
-        //! filter tap
-        // this.editCategory = val;
+        this.editCategory = val;
         console.log(val);
-        // if (this.editCategory) {
-        //   this.isEdit = true;
-        // }
+        if (this.editCategory) {
+          this.isEdit = true;
+        }
       });
 
     this.form = new FormGroup({
@@ -76,7 +75,7 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
         [Validators.required, Validators.minLength(2)]
       ),
       url: new FormControl(
-        this.isEdit == false ? null : this.editCategory.url, //!
+        !this.isEdit ? null : this.editCategory.url, //!
         [Validators.required]
       ),
     });

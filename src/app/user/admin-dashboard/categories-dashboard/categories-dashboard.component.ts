@@ -6,7 +6,6 @@ import { takeUntil } from 'rxjs/operators';
 import { CategoriesListService } from 'src/app/core/services/categories-list.service';
 import {
   deleteCategoryAction,
-  // editCategoryAction,
   getCategoriesAction,
 } from 'src/app/core/store/actions/categories.action';
 import { categoriesSelector } from 'src/app/core/store/selectors/categoties.selectors';
