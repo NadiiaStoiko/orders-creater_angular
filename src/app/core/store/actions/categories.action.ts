@@ -79,7 +79,7 @@ export const getIdCategoryByAction = createAction(
 
 export const getIdCategorySuccessAction = createAction(
   ActionType.SELECT_CATEGORY_SUCCESS,
-  props<{ dishes: Dish[] }>()
+  props<{ dishes: Dish[]; id: number }>()
 );
 
 export const getIdCategoryFailureAction = createAction(

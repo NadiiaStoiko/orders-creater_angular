@@ -15,15 +15,15 @@
           <mat-panel-title> Categories of dishes </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <mat-expansion-panel *ngFor="let category of categories$ | async">
+        <mat-expansion-panel *ngFor="let category of categories.data">
           <mat-expansion-panel-header>
             <mat-panel-title>
               <div (click)="onSelect(category.id)">{{ category.types }}</div>
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <div *ngFor="let selectedDish of selectedDishes" class="dishes">
-            <div>{{ selectedDish.name }}</div>
+          <div *ngFor="let dish of category.dishes" class="dishes">
+            <div>{{ dish.name }}</div>
           </div>
         </mat-expansion-panel>
       </mat-expansion-panel>

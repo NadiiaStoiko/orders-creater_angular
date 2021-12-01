@@ -51,5 +51,10 @@ export const isUpdateCategorySelector = createSelector(
 
 export const dishesbyCategorySelector = createSelector(
   categoryFeatureSelector,
-  (categoriesState: CategoriesStateInteface) => categoriesState.dishes
+  (categoriesState: CategoriesStateInteface) => categoriesState.data
+);
+
+export const categoriesStateSelector = createSelector(
+  categoryFeatureSelector,
+  (categoriesState: CategoriesStateInteface) => categoriesState
 );

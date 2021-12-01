@@ -6,5 +6,4 @@ export const initialState: CategoriesStateInteface = {
   data: [],
   isAdded: false,
   isUpdated: false,
-  dishes: [],
 };

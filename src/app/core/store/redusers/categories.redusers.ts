@@ -78,11 +78,20 @@ const categoriesReduser = createReducer(
     };
   }),
   on(getIdCategorySuccessAction, (state, action): CategoriesStateInteface => {
+    const categoriesData: Category[] = [...state.data];
     const dishes: Dish[] = action.dishes;
-    console.log(dishes);
+    const id: number = action.id;
+    const categories = categoriesData.map((category) => {
+      if (category.id === id) {
+        category.dishes = dishes;
+      }
+      return category;
+    });
+    console.log('dishes', dishes);
+    console.log('categ', categories);
     return {
       ...state,
-      dishes: dishes,
+      data: categories,
     };
   })
 );

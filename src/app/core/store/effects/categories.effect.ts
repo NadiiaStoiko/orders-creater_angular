@@ -130,7 +130,7 @@ export class SelecedCategoryEffects {
           console.log('id', categoryId);
           return this.dishesService.getDishes(categoryId).pipe(
             map((dishes: Dish[]) => {
-              return getIdCategorySuccessAction({ dishes });
+              return getIdCategorySuccessAction({ dishes, id: categoryId });
             })
             // catchError(() => of(getIdCategorySuccessAction))
           );

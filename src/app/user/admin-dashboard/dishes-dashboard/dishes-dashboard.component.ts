@@ -8,16 +8,10 @@ import {
   getCategoriesAction,
   getIdCategoryByAction,
 } from 'src/app/core/store/actions/categories.action';
-import {
-  deleteDishAction,
-  // getDishesAction,
-} from 'src/app/core/store/actions/dishes.action';
-import {
-  categoriesSelector,
-  dishesbyCategorySelector,
-} from 'src/app/core/store/selectors/categoties.selectors';
-import { Category } from 'src/app/shared/classes/category';
+import { deleteDishAction } from 'src/app/core/store/actions/dishes.action';
+import { categoriesStateSelector } from 'src/app/core/store/selectors/categoties.selectors';
 import { Dish } from 'src/app/shared/classes/dish';
+import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
 
 export interface TableInfo {
   id: number;
@@ -35,8 +29,8 @@ export class DishesDashboardComponent implements OnInit {
   public destroy$: Subject<boolean> = new Subject<boolean>();
   public dishes$!: Observable<Dish[]>;
   public dataSource: Dish[] = [];
-  public categories$!: Observable<Category[]>;
-  public categories: Category[] = [];
+  public categories$!: Observable<CategoriesStateInteface>;
+  public categories: any = {};
   public panelOpenState = false;
   public selectedDishes: Dish[] = [];
   public displayedColumns: string[] = ['id', 'name', 'edit', 'delete'];
@@ -49,20 +43,13 @@ export class DishesDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-
-    // this.dishes$ = this.store.pipe(select(dishesSelector));
-    // this.dishes$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
-    //   this.dataSource = val;
-    // });
-
-    this.categories$ = this.store.pipe(select(categoriesSelector));
+    this.categories$ = this.store.pipe(select(categoriesStateSelector));
     this.categories$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
       this.categories = val;
     });
   }
 
   public fetchData(): void {
-    // this.store.dispatch(getDishesAction());
     this.store.dispatch(getCategoriesAction());
   }
   public editDish(id: number): void {
@@ -76,18 +63,6 @@ export class DishesDashboardComponent implements OnInit {
   }
   public onSelect(id: number) {
     this.store.dispatch(getIdCategoryByAction({ categoryId: id }));
-
-    this.store
-      .pipe(select(dishesbyCategorySelector), takeUntil(this.destroy$))
-      .subscribe((val) => {
-        this.selectedDishes = val;
-      });
-
-    // console.log(this.dataSource);
-
-    // this.selectedDishes = this.dataSource.filter(
-    //   (dishes) => dishes.categoryId === id
-    // );
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Category } from '../classes/category';
-import { Dish } from '../classes/dish';
 
 export interface CategoriesStateInteface {
   isLoading: boolean;
@@ -8,5 +7,4 @@ export interface CategoriesStateInteface {
   data: Category[];
   isAdded: boolean;
   isUpdated: boolean;
-  dishes: Dish[];
 }
