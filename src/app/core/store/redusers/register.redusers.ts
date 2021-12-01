@@ -27,9 +27,10 @@ const registerReduser = createReducer(
   ),
   on(
     registerFailureAction,
-    (state): RegisterStateInteface => ({
+    (state, action): RegisterStateInteface => ({
       ...state,
       isSubmitting: false,
+      errors: action.errors,
     })
   )
 );

@@ -4,7 +4,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { Category } from 'src/app/shared/classes/category';
+import { Dish } from 'src/app/shared/classes/dish';
 import { CategoriesListService } from '../../services/categories-list.service';
+import { DishesDataService } from '../../services/dishes-data.service';
 import {
   getCategoriesAction,
   getCategoriesFailureAction,
@@ -18,6 +20,8 @@ import {
   editCategoryAction,
   editCategorySuccessAction,
   editCategoryFailureAction,
+  getIdCategoryByAction,
+  getIdCategorySuccessAction,
 } from '../actions/categories.action';
 
 @Injectable()
@@ -49,7 +53,6 @@ export class DeleteCategoryEffects {
       ofType(deleteCategoryAction),
       switchMap(({ id }) => {
         return this.categoriesService.deleteCategory(id).pipe(
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           map(() => {
             return deleteCategorySuccessAction({ id });
           }),
@@ -69,7 +72,6 @@ export class AddCategoryEffects {
   addCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addCategoryAction),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       switchMap((category: any) => {
         console.log('req', category);
         return this.categoriesService.addCategory(category).pipe(
@@ -96,7 +98,6 @@ export class EditCategoryEffects {
   editCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(editCategoryAction),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       switchMap(({ category, id }) => {
         console.log('req', id);
         console.log('req', category);
@@ -116,5 +117,30 @@ export class EditCategoryEffects {
   constructor(
     private actions$: Actions,
     private categoriesService: CategoriesListService
+  ) {}
+}
+
+@Injectable()
+export class SelecedCategoryEffects {
+  selectedCategory$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getIdCategoryByAction),
+        switchMap(({ categoryId }) => {
+          console.log('id', categoryId);
+          return this.dishesService.getDishes(categoryId).pipe(
+            map((dishes: Dish[]) => {
+              return getIdCategorySuccessAction({ dishes });
+            })
+            // catchError(() => of(getIdCategorySuccessAction))
+          );
+        })
+      )
+    // { dispatch: false }
+  );
+
+  constructor(
+    private actions$: Actions,
+    private dishesService: DishesDataService
   ) {}
 }

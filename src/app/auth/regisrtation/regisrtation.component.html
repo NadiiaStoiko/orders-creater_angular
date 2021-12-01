@@ -1,5 +1,9 @@
 <div class="wrapper">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form
+    [formGroup]="form"
+    #formDirective="ngForm"
+    (ngSubmit)="onSubmit(formDirective)"
+  >
     <div class="title">
       <h2>Create account</h2>
     </div>

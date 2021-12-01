@@ -6,12 +6,15 @@ import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
   addCategoryAction,
+  editCategoryAction,
   getCategoryByIdAction,
 } from 'src/app/core/store/actions/categories.action';
 import {
   categoryAddFailureSelector,
   categoryByIdSelector,
-  // categoryByIdSelector,
+  categoryEditFailureSelector,
+  isAddCategorySelector,
+  isUpdateCategorySelector,
 } from 'src/app/core/store/selectors/categoties.selectors';
 import {
   MatSnackBar,
@@ -28,16 +31,16 @@ import { Category } from 'src/app/shared/classes/category';
 export class AddCategoriesComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
   public destroy$: Subject<boolean> = new Subject<boolean>();
-  errors$!: Observable<string | null>;
-  editCategotry$!: Observable<Category>;
-  public errorMessage!: string | null;
-
+  public errors$!: Observable<string>;
+  public errorMessage!: string;
   public id!: number;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public editCategory: any;
-  // public editCategory = Category as {} | null;
   public isEdit = false;
+  public isUpdated = false;
+  public isAdded = false;
+  public editCategotry$!: Observable<Category>;
+  public horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  public verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private router: Router,
@@ -45,8 +48,6 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) {}
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   ngOnInit() {
     this.route.queryParams
@@ -58,7 +59,7 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
       .pipe(select(categoryByIdSelector, { id: this.id }))
       .subscribe((val) => {
         this.editCategory = val;
-        console.log(val);
+        // console.log(val);
         if (this.editCategory) {
           this.isEdit = true;
         }
@@ -74,30 +75,84 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
         !this.isEdit ? null : this.editCategory.description,
         [Validators.required, Validators.minLength(2)]
       ),
-      url: new FormControl(
-        !this.isEdit ? null : this.editCategory.url, //!
-        [Validators.required]
-      ),
-    });
-
-    this.errors$ = this.store.pipe(select(categoryAddFailureSelector));
-
-    this.errors$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
-      //! filter map
-      this.errorMessage = val;
-      // console.log(val);
-      if (this.errorMessage) this.openSnackBar('Some error happend...');
+      url: new FormControl(!this.isEdit ? null : this.editCategory.url, [
+        Validators.required,
+      ]),
     });
   }
 
   public onSubmit(formDirective: any): void {
-    const message = 'New dish added';
+    let message = 'New category added';
+
     if (this.form.invalid) {
       return;
     }
-    this.store.dispatch(addCategoryAction(this.form.value));
-    this.openSnackBar(message); //! in subscribe
-    console.log(this.form.value, 'add category');
+
+    !this.isEdit
+      ? this.store.dispatch(addCategoryAction(this.form.value))
+      : this.store.dispatch(
+          editCategoryAction({ id: this.id, category: this.form.value })
+        );
+
+    if (this.isEdit) {
+      this.router.navigate(['admin-dashboard/categories-dashboard']);
+    }
+
+    this.store
+      .pipe(
+        select(isUpdateCategorySelector),
+        filter((val) => val === true),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((val) => {
+        this.isUpdated = val;
+        console.log('Up', val);
+      });
+
+    this.store
+      .pipe(
+        select(isAddCategorySelector),
+        filter((val) => val === true),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((val) => {
+        this.isAdded = val;
+        console.log('Add', val);
+      });
+
+    this.isEdit ? (message = 'Category updated') : message; //! if no edit
+
+    if (this.isAdded === true) {
+      this.openSnackBar(message); //! after effect dispatch success
+    }
+    if (this.isUpdated === true) {
+      this.openSnackBar(message); //! after effect dispatch success
+    }
+
+    this.store
+      .pipe(
+        select(categoryAddFailureSelector),
+        filter((val) => typeof val === 'string'),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((val) => {
+        this.errorMessage = val;
+        console.log(val);
+        this.openSnackBar('Some error happend...');
+      });
+
+    this.store
+      .pipe(
+        select(categoryEditFailureSelector),
+        filter((val) => typeof val === 'string'),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((val) => {
+        this.errorMessage = val;
+        console.log(val);
+        this.openSnackBar('Some error happend...');
+      });
+
     this.form.reset();
     formDirective.resetForm();
   }

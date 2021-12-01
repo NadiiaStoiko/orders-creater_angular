@@ -1,6 +1,9 @@
 <div class="wrapper">
-  <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div>
-  <form [formGroup]="form" (ngSubmit)="login()">
+  <form
+    [formGroup]="form"
+    #formDirective="ngForm"
+    (ngSubmit)="login(formDirective)"
+  >
     <h2 class="title">Please, Login:</h2>
     <mat-form-field>
       <mat-label>Login</mat-label>
@@ -41,13 +44,6 @@
         {{ form.get("password")?.errors?.minlength.actualLength }}
       </mat-error>
     </mat-form-field>
-    <button
-      type="submit"
-      mat-raised-button
-      color="primary"
-      [disabled]="form.invalid || form.disabled"
-    >
-      Login
-    </button>
+    <button type="submit" mat-raised-button color="primary">Login</button>
   </form>
 </div>

@@ -5,16 +5,22 @@
     #formDirective="ngForm"
     (ngSubmit)="onSubmit(formDirective)"
   >
-    <div class="title">
-      <h2>Create new dish</h2>
+    <div *ngIf="isEdit; else addDish" class="title">
+      <h2>Edit dish</h2>
     </div>
+
+    <ng-template #addDish>
+      <div class="title">
+        <h2>Add new dish</h2>
+      </div>
+    </ng-template>
 
     <mat-form-field appearance="fill">
       <mat-label>Choose category:</mat-label>
       <mat-select formControlName="categoryId" required>
         <mat-option>Choose dish category</mat-option>
-        <mat-option *ngFor="let categoryId of categories" [value]="categoryId">
-          {{ categoryId }}
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.types }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="form.get('categoryId')?.errors?.required"
@@ -113,8 +119,19 @@
       </mat-error>
     </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary">
-      Create new dish
+    <button
+      *ngIf="isEdit; else addDishButton"
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
+      Edit dish
     </button>
+
+    <ng-template #addDishButton>
+      <button type="submit" mat-raised-button color="primary">
+        Create new dish
+      </button>
+    </ng-template>
   </form>
 </div>

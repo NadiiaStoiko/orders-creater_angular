@@ -14,4 +14,5 @@ export interface RegisterStateInteface {
   isSubmitting: boolean;
   response: string;
   isRegistred: boolean | null;
+  errors: string | null;
 }

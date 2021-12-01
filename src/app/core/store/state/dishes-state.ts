@@ -5,4 +5,6 @@ export const initialState: DishesStateInteface = {
   errors: null,
   data: [],
   id: 0,
+  isUpdated: false,
+  isAdded: false,
 };

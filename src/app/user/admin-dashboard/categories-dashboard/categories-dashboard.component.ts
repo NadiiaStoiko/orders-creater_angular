@@ -42,7 +42,6 @@ export class CategoriesDashboardComponent implements OnInit {
     this.store.dispatch(getCategoriesAction());
   }
   public editCategory(id: number) {
-    // this.store.dispatch(editCategoryAction({ category, id }));
     this.router.navigate(['admin-dashboard/add-categories'], {
       queryParams: { id: id },
     });

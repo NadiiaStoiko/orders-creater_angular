@@ -27,10 +27,29 @@ export const categoryAddFailureSelector = createSelector(
   (categoriesState: CategoriesStateInteface) => categoriesState.errors
 );
 
+export const categoryEditFailureSelector = createSelector(
+  categoryFeatureSelector,
+  (categoriesState: CategoriesStateInteface) => categoriesState.errors
+);
+
 export const categoryByIdSelector = createSelector(
   categoriesSelector,
   (data: Category[], props: any) => {
-    console.log(data);
     return data.find((item) => item.id.toString() === props.id);
   }
+);
+
+export const isAddCategorySelector = createSelector(
+  categoryFeatureSelector,
+  (categoriesState: CategoriesStateInteface) => categoriesState.isAdded
+);
+
+export const isUpdateCategorySelector = createSelector(
+  categoryFeatureSelector,
+  (categoriesState: CategoriesStateInteface) => categoriesState.isUpdated
+);
+
+export const dishesbyCategorySelector = createSelector(
+  categoryFeatureSelector,
+  (categoriesState: CategoriesStateInteface) => categoriesState.dishes
 );

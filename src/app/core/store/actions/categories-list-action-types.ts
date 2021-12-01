@@ -18,4 +18,8 @@ export enum ActionType {
   EDIT_CATEGORY = '[Category] Edit category',
   EDIT_CATEGORY_SUCCESS = '[Category] Edit category success',
   EDIT_CATEGORY_FAILURE = '[Category] Edit category failure',
+
+  SELECT_CATEGORY = '[Category] Get dishes by selected category',
+  SELECT_CATEGORY_SUCCESS = '[Category] Get dishes by selected category success',
+  SELECT_CATEGORY_FAILURE = '[Category] Get dishes by selected failure',
 }

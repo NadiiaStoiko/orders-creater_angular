@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Category } from '../classes/category';
+import { Dish } from '../classes/dish';
 
 export interface CategoriesStateInteface {
-  [x: string]: any;
   isLoading: boolean;
   errors: any;
   data: Category[];
-  edit: Category | null;
+  isAdded: boolean;
+  isUpdated: boolean;
+  dishes: Dish[];
 }

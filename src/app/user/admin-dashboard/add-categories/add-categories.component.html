@@ -1,5 +1,4 @@
 <div class="wrapper">
-  <!-- <div class="error-messages" *ngIf="errors$ | async">{{ errorMessage }}</div> -->
   <form
     [formGroup]="form"
     #formDirective="ngForm"
@@ -10,7 +9,7 @@
     </div>
     <ng-template #addCategory>
       <div class="title">
-        <h2>Create new category</h2>
+        <h2>Add new category</h2>
       </div>
     </ng-template>
 
@@ -69,14 +68,15 @@
     </mat-form-field>
 
     <button
-      *ngIf="isEdit; else addCategory"
+      *ngIf="isEdit; else addCategoryButton"
       type="submit"
       mat-raised-button
       color="primary"
     >
       Edit category
     </button>
-    <ng-template #addCategory>
+
+    <ng-template #addCategoryButton>
       <button type="submit" mat-raised-button color="primary">
         Create new category
       </button>

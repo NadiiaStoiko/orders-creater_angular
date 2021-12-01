@@ -8,6 +8,27 @@
         <th class="col-name">Edit</th>
         <th class="col-name">Delete</th>
       </tr>
+
+      <!-- <mat-accordion> -->
+      <mat-expansion-panel hideToggle [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Categories of dishes </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-expansion-panel *ngFor="let category of categories$ | async">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div (click)="onSelect(category.id)">{{ category.types }}</div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let selectedDish of selectedDishes" class="dishes">
+            <div>{{ selectedDish.name }}</div>
+          </div>
+        </mat-expansion-panel>
+      </mat-expansion-panel>
+      <!-- </mat-accordion> -->
+
       <tr *ngFor="let dish of dishes$ | async">
         <td class="id">{{ dish.id }}</td>
         <td class="name">{{ dish.name }}</td>
@@ -30,3 +51,36 @@
     </tbody>
   </table>
 </div>
+
+<!-- <div class="container">
+  <h1 class="table-title">Dishes dashboard</h1>
+  <table>
+    <tbody>
+      <tr class="col-names">
+        <th class="col-name">ID</th>
+        <th class="col-name">Name</th>
+        <th class="col-name">Edit</th>
+        <th class="col-name">Delete</th>
+      </tr>
+      <tr *ngFor="let dish of dishes$ | async">
+        <td class="id">{{ dish.id }}</td>
+        <td class="name">{{ dish.name }}</td>
+
+        <td class="btn">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="editDish(dish.id)"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button mat-stroked-button color="warn" (click)="deleteDish(dish.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->

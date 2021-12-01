@@ -11,8 +11,6 @@ import { CategoriesDashboardComponent } from './user/admin-dashboard/categories-
 import { DishesDashboardComponent } from './user/admin-dashboard/dishes-dashboard/dishes-dashboard.component';
 import { AddDishesComponent } from './user/admin-dashboard/add-dishes/add-dishes.component';
 import { AddCategoriesComponent } from './user/admin-dashboard/add-categories/add-categories.component';
-import { EditCategoriesComponent } from './user/admin-dashboard/edit-categories/edit-categories.component';
-import { EditDishesComponent } from './user/admin-dashboard/edit-dishes/edit-dishes.component';
 // import { RoleGuard } from './shared/guards/role.guard';
 
 const routes: Routes = [
@@ -51,14 +49,6 @@ const routes: Routes = [
       {
         path: 'add-categories',
         component: AddCategoriesComponent,
-      },
-      {
-        path: 'edit-categories',
-        component: EditCategoriesComponent,
-      },
-      {
-        path: 'edit-dishes',
-        component: EditDishesComponent,
       },
     ],
   },

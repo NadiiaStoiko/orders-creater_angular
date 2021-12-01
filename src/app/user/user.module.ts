@@ -9,12 +9,12 @@ import { CategoriesDashboardComponent } from 'src/app/user/admin-dashboard/categ
 import { DishesDashboardComponent } from 'src/app/user/admin-dashboard/dishes-dashboard/dishes-dashboard.component';
 import { AddCategoriesComponent } from './admin-dashboard/add-categories/add-categories.component';
 import { AddDishesComponent } from './admin-dashboard/add-dishes/add-dishes.component';
-import { EditDishesComponent } from './admin-dashboard/edit-dishes/edit-dishes.component';
-import { EditCategoriesComponent } from './admin-dashboard/edit-categories/edit-categories.component';
+
 import {
   AddCategoryEffects,
   DeleteCategoryEffects,
   EditCategoryEffects,
+  SelecedCategoryEffects,
 } from '../core/store/effects/categories.effect';
 import { EffectsModule } from '@ngrx/effects';
 import {
@@ -32,8 +32,6 @@ import {
     CategoriesDashboardComponent,
     AddCategoriesComponent,
     AddDishesComponent,
-    EditDishesComponent,
-    EditCategoriesComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +47,7 @@ import {
       AddCategoryEffects,
       EditCategoryEffects,
       EditDishEffects,
+      SelecedCategoryEffects,
     ]),
   ],
 })

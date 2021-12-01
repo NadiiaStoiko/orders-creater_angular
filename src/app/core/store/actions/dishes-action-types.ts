@@ -4,6 +4,8 @@ export enum ActionsType {
   GET_FAILURE = '[Dishes] Get dishes failure',
   LOAD_DISHES_BY_CATEGORY = '[Dishes] Load dishes on select category',
 
+  GET_DISH_BY_ID = '[Dishes] Get dish by id',
+
   DELETE_DISHES = '[Dishes] Delete dish',
   DELETE_DISHES_SUCCESS = '[Dishes] Delete dish success',
   DELETE_FAILURE = '[Dishes] Delete dish failure',

@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Category } from 'src/app/shared/classes/category';
+import { Dish } from 'src/app/shared/classes/dish';
 import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
 import {
   addCategoryFailureAction,
@@ -10,6 +11,7 @@ import {
   getCategoriesAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
+  getIdCategorySuccessAction,
   // getCategoryByIdSuccessAction,
 } from '../actions/categories.action';
 import { initialState } from '../state/catigories-state';
@@ -51,15 +53,14 @@ const categoriesReduser = createReducer(
     };
   }),
   on(addCategorySuccessAction, (state, action): CategoriesStateInteface => {
-    console.log('action', action.category);
     const categories: Category[] = [...state.data];
-    console.log('categories', categories);
     categories.push(action.category);
     console.log('2', categories);
     return {
       ...state,
       isLoading: true,
       data: categories,
+      isAdded: true,
     };
   }),
   on(
@@ -69,33 +70,19 @@ const categoriesReduser = createReducer(
       errors: action.errors,
     })
   ),
-  // on(getCategoryByIdSuccessAction, (state, action): CategoriesStateInteface => {
-  //   //! selector
-  //   const categories: Category[] = [...state.data];
-  //   let edit: Category | null;
-  //   console.log('categories', categories);
-  //   const isCategory = categories.find((item) => item.id === action.categoryId);
-  //   if (isCategory) {
-  //     edit = isCategory;
-  //   } else {
-  //     edit = null;
-  //   }
-  //   console.log('2', categories);
-  //   return {
-  //     ...state,
-  //     edit: edit,
-  //   };
-  // }),
-  on(editCategorySuccessAction, (state, action): CategoriesStateInteface => {
-    console.log('action', action.category);
-    const categories: Category[] = [...state.data];
-    // console.log('categories', categories);
-    categories.push(action.category);
-    // console.log('2', categories);
+  on(editCategorySuccessAction, (state): CategoriesStateInteface => {
     return {
       ...state,
       isLoading: true,
-      data: categories,
+      isUpdated: true,
+    };
+  }),
+  on(getIdCategorySuccessAction, (state, action): CategoriesStateInteface => {
+    const dishes: Dish[] = action.dishes;
+    console.log(dishes);
+    return {
+      ...state,
+      dishes: dishes,
     };
   })
 );

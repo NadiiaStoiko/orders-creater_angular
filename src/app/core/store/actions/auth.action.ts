@@ -20,7 +20,10 @@ export const registerSuccessAction = createAction(
   props<{ response: RegisterResponseInteface }>()
 );
 
-export const registerFailureAction = createAction(ActionsType.REGISTER_FAILURE);
+export const registerFailureAction = createAction(
+  ActionsType.REGISTER_FAILURE,
+  props<{ errors: string }>()
+);
 
 export const loginAction = createAction(
   ActionsType.LOGIN,
@@ -41,3 +44,5 @@ export const loginFailureAction = createAction(
   ActionsType.LOGIN_FAILURE,
   props<{ errors: string }>()
 );
+
+export const logoutAction = createAction(ActionsType.LOGOUT);

@@ -11,6 +11,16 @@ export const isSubmittingSelector = createSelector(
   (registerState: RegisterStateInteface) => registerState.isSubmitting
 );
 
+export const isRegistredSelector = createSelector(
+  registerFeatureSelector,
+  (registerState: RegisterStateInteface) => registerState.isRegistred
+);
+
+export const isRegistredErrorSelector = createSelector(
+  registerFeatureSelector,
+  (registerState: RegisterStateInteface) => registerState.errors
+);
+
 export const loginFeatureSelector =
   createFeatureSelector<LoginStateInteface>('login');
 

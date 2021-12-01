@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const material = [
   MatButtonModule,
@@ -27,6 +28,7 @@ const material = [
   MatFormFieldModule,
   MatSelectModule,
   MatSnackBarModule,
+  MatExpansionModule,
 ];
 
 @NgModule({

@@ -59,3 +59,9 @@ export const editDishFailureAction = createAction(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props<{ errors: any }>()
 );
+
+export const getDishByIdAction = createAction(
+  ActionsType.GET_DISH_BY_ID,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props<{ dishId: number }>()
+);

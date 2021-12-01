@@ -1,6 +1,7 @@
 import { ActionType } from './categories-list-action-types';
 import { createAction, props } from '@ngrx/store';
 import { Category } from 'src/app/shared/classes/category';
+import { Dish } from 'src/app/shared/classes/dish';
 
 export const getCategoriesAction = createAction(ActionType.GET_CATEGORIES);
 
@@ -67,7 +68,20 @@ export const editCategorySuccessAction = createAction(
 );
 
 export const editCategoryFailureAction = createAction(
-  ActionType.EDIT_CATEGORY_SUCCESS,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ActionType.EDIT_CATEGORY_FAILURE,
   props<{ errors: any }>()
+);
+
+export const getIdCategoryByAction = createAction(
+  ActionType.SELECT_CATEGORY,
+  props<{ categoryId: number }>()
+);
+
+export const getIdCategorySuccessAction = createAction(
+  ActionType.SELECT_CATEGORY_SUCCESS,
+  props<{ dishes: Dish[] }>()
+);
+
+export const getIdCategoryFailureAction = createAction(
+  ActionType.SELECT_CATEGORY_FAILURE
 );

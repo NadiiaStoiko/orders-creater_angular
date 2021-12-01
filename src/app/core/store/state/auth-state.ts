@@ -5,6 +5,7 @@ export const registerInitialState: RegisterStateInteface = {
   isSubmitting: false,
   response: '',
   isRegistred: null,
+  errors: null,
 };
 
 export const loginInitialState: LoginStateInteface = {

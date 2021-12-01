@@ -4,6 +4,7 @@ import {
   loginAction,
   loginFailureAction,
   loginSuccessAction,
+  logoutAction,
 } from '../actions/auth.action';
 import { loginInitialState } from '../state/auth-state';
 
@@ -36,6 +37,13 @@ const loginReduser = createReducer(
       isSubmitting: false,
       isLogin: false,
       errors: action.errors,
+    })
+  ),
+  on(
+    logoutAction,
+    (state): LoginStateInteface => ({
+      ...state,
+      isLogin: false,
     })
   )
 );

@@ -5,6 +5,8 @@ import {
   addDishFailureAction,
   addDishSuccessAction,
   deleteDishSuccessAction,
+  editDishFailureAction,
+  editDishSuccessAction,
   // editDishSuccessAction,
   getDishesAction,
   getDishesFailureAction,
@@ -54,6 +56,7 @@ const dishesReduser = createReducer(
     return {
       ...state,
       isLoading: false,
+      isAdded: true,
       data: dishes,
     };
   }),
@@ -63,19 +66,20 @@ const dishesReduser = createReducer(
       ...state,
       errors: action.errors,
     })
+  ),
+  on(editDishSuccessAction, (state): DishesStateInteface => {
+    return {
+      ...state,
+      isUpdated: true,
+    };
+  }),
+  on(
+    editDishFailureAction,
+    (state, action): DishesStateInteface => ({
+      ...state,
+      errors: action.errors,
+    })
   )
-  // on(editDishSuccessAction, (state, action): DishesStateInteface => {
-  //   console.log('1', action.dish);
-  //   const dishes: Dish[] = [...state.data];
-  //   console.log('dishes', dishes);
-  //   dishes.push(action.dish);
-  //   console.log('2', dishes);
-  //   return {
-  //     ...state,
-  //     isLoading: true, //!why true?
-  //     data: dishes,
-  //   };
-  // })
 );
 
 export function reducersForDishes(state: DishesStateInteface, action: Action) {

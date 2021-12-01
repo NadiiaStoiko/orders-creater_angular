@@ -27,7 +27,10 @@ export class RegisterEffects {
             console.log(response);
             return registerSuccessAction({ response });
           }),
-          catchError(() => of(registerFailureAction()))
+          catchError((errorResponse) => {
+            console.log(errorResponse);
+            return of(registerFailureAction({ errors: errorResponse.message }));
+          })
         );
       })
     )
