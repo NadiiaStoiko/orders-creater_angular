@@ -22,6 +22,7 @@ import {
   DeleteDishEffects,
   EditDishEffects,
   GetAllDishesEffects,
+  GetDishByIdEffects,
 } from '../core/store/effects/dishes.effect';
 
 @NgModule({
@@ -48,6 +49,7 @@ import {
       EditCategoryEffects,
       EditDishEffects,
       SelecedCategoryEffects,
+      GetDishByIdEffects,
     ]),
   ],
 })

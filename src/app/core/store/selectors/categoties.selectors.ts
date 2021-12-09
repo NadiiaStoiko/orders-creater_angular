@@ -1,6 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { createFeatureSelector } from '@ngrx/store';
-// import { filter } from 'rxjs/operators';
 import { Category } from 'src/app/shared/classes/category';
 import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
 
@@ -58,3 +57,18 @@ export const categoriesStateSelector = createSelector(
   categoryFeatureSelector,
   (categoriesState: CategoriesStateInteface) => categoriesState
 );
+
+// export const dishByIdSelector = createSelector(
+//   dishesbyCategorySelector,
+//   (data: Category[], props: any) => {
+//     console.log('data', data);
+//     const dishesList = data.map((elem) => elem.dishes);
+//     console.log(dishesList);
+//     console.log('props.id', props.id);
+//     // return dishesList.find((item) => {
+//     //   console.log('item', item);
+//     //   console.log('props.id', props.id);
+//     //   // item.id.toString() === props.id;
+//     // });
+//   }
+// );

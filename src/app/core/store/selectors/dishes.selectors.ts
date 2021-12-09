@@ -1,6 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { createFeatureSelector } from '@ngrx/store';
-import { Dish } from 'src/app/shared/classes/dish';
 import { DishesStateInteface } from 'src/app/shared/interfaces/dishes-state.interface';
 
 export const dishFeatureSelector =
@@ -32,10 +31,8 @@ export const dishEditFailureSelector = createSelector(
 );
 
 export const dishesByIdSelector = createSelector(
-  dishesSelector,
-  (data: Dish[], props: any) => {
-    return data.find((item) => item.id.toString() === props.id);
-  }
+  dishFeatureSelector,
+  (dishesState: DishesStateInteface) => dishesState.editDish
 );
 
 export const isAddedDishSelector = createSelector(
@@ -47,3 +44,11 @@ export const isUpdateDishSelector = createSelector(
   dishFeatureSelector,
   (dishesState: DishesStateInteface) => dishesState.isUpdated
 );
+
+// export const dishesByIdSelector = createSelector(
+//   dishesSelector,
+//   (data: Dish[], props: any) => {
+//     console.log('data', data);
+//     return data.find((item) => item.id.toString() === props.id);
+//   }
+// );

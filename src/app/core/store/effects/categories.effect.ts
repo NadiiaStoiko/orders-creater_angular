@@ -122,21 +122,19 @@ export class EditCategoryEffects {
 
 @Injectable()
 export class SelecedCategoryEffects {
-  selectedCategory$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(getIdCategoryByAction),
-        switchMap(({ categoryId }) => {
-          console.log('id', categoryId);
-          return this.dishesService.getDishes(categoryId).pipe(
-            map((dishes: Dish[]) => {
-              return getIdCategorySuccessAction({ dishes, id: categoryId });
-            })
-            // catchError(() => of(getIdCategorySuccessAction))
-          );
-        })
-      )
-    // { dispatch: false }
+  selectedCategory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getIdCategoryByAction),
+      switchMap(({ categoryId }) => {
+        console.log('id', categoryId);
+        return this.dishesService.getDishes(categoryId).pipe(
+          map((dishes: Dish[]) => {
+            return getIdCategorySuccessAction({ dishes, id: categoryId });
+          })
+          // catchError(() => of(getIdCategorySuccessAction))
+        );
+      })
+    )
   );
 
   constructor(

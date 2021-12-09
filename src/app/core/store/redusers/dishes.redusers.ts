@@ -7,6 +7,7 @@ import {
   deleteDishSuccessAction,
   editDishFailureAction,
   editDishSuccessAction,
+  getDishByIdSuccessAction,
   // editDishSuccessAction,
   getDishesAction,
   getDishesFailureAction,
@@ -40,7 +41,7 @@ const dishesReduser = createReducer(
   ),
   on(deleteDishSuccessAction, (state, action): DishesStateInteface => {
     console.log(action.id);
-    const dishes: Dish[] = [...state.data]; //filter
+    const dishes: Dish[] = [...state.data];
     console.log('dishes', dishes);
     const dishForDel = dishes.findIndex((item) => item.id === action.id);
     dishes.splice(dishForDel, 1);
@@ -78,6 +79,14 @@ const dishesReduser = createReducer(
     (state, action): DishesStateInteface => ({
       ...state,
       errors: action.errors,
+    })
+  ),
+  on(
+    getDishByIdSuccessAction,
+    (state, action): DishesStateInteface => ({
+      ...state,
+      isLoading: true,
+      editDish: action.dish,
     })
   )
 );

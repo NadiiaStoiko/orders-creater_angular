@@ -26,6 +26,12 @@ export class DishesDataService implements OnInit {
     });
   }
 
+  public getDishByDishId(id: number): Observable<Dish> {
+    return this.http.get<Dish>(`${this.url}/${this.endpoint}`, {
+      params: { id },
+    });
+  }
+
   public getAllDishes(): Observable<Dish[]> {
     return this.http.get<Dish[]>(`${this.url}/${this.endpoint}`);
   }

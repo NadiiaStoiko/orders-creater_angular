@@ -62,6 +62,15 @@ export const editDishFailureAction = createAction(
 
 export const getDishByIdAction = createAction(
   ActionsType.GET_DISH_BY_ID,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props<{ dishId: number }>()
+);
+
+export const getDishByIdSuccessAction = createAction(
+  ActionsType.GET_DISH_BY_ID_SUCCESS,
+  props<{ dish: Dish }>()
+);
+
+export const getDishByIdFailureAction = createAction(
+  ActionsType.EDIT_FAILURE
+  // props<{ errors: any }>()
 );

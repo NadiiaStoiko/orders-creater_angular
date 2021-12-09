@@ -14,6 +14,9 @@ import {
   editDishAction,
   editDishFailureAction,
   editDishSuccessAction,
+  getDishByIdAction,
+  getDishByIdFailureAction,
+  getDishByIdSuccessAction,
   getDishesAction,
   getDishesFailureAction,
   getDishesSuccessAction,
@@ -129,6 +132,28 @@ export class EditDishEffects {
           catchError((errorResponse) =>
             of(editDishFailureAction({ errors: errorResponse.statusText }))
           )
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private dishesService: DishesDataService
+  ) {}
+}
+
+@Injectable()
+export class GetDishByIdEffects {
+  getDishById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getDishByIdAction),
+      switchMap(({ dishId }) => {
+        return this.dishesService.getDishByDishId(dishId).pipe(
+          map((dish) => {
+            return getDishByIdSuccessAction({ dish });
+          }),
+          catchError(() => of(getDishByIdFailureAction()))
         );
       })
     )

@@ -16,6 +16,7 @@ import {
   isAddedDishSelector,
   isUpdateDishSelector,
 } from 'src/app/core/store/selectors/dishes.selectors';
+// import { dishByIdSelector } from 'src/app/core/store/selectors/categoties.selectors';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -24,6 +25,7 @@ import {
 import { getCategoriesAction } from 'src/app/core/store/actions/categories.action';
 import { Category } from 'src/app/shared/classes/category';
 import { categoriesSelector } from 'src/app/core/store/selectors/categoties.selectors';
+import { Dish } from 'src/app/shared/classes/dish';
 
 @Component({
   selector: 'app-add-dishes',
@@ -31,12 +33,12 @@ import { categoriesSelector } from 'src/app/core/store/selectors/categoties.sele
   styleUrls: ['./add-dishes.component.css'],
 })
 export class AddDishesComponent implements OnInit, OnDestroy {
-  //!combine add and edit
   public form!: FormGroup;
   public destroy$: Subject<boolean> = new Subject<boolean>();
   public errors$!: Observable<any>;
   public errorMessage!: string | null;
   public categories$!: Observable<Category[]>;
+  public editDish$!: Observable<Dish | undefined>;
   public categories: Category[] = [];
   public id!: number;
   public editDish: any;
@@ -54,21 +56,37 @@ export class AddDishesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // this.editDish$ = this.store.pipe(select(dishesByIdSelector));
+
     this.route.queryParams
       .pipe(filter((params) => params.id))
       .subscribe((params) => (this.id = params.id));
-    console.log(this.id);
-
+    console.log('id', this.id);
     this.store.dispatch(getDishByIdAction({ dishId: this.id }));
-    this.store
-      .pipe(select(dishesByIdSelector, { id: this.id }))
-      .subscribe((val) => {
-        this.editDish = val;
-        console.log(val);
-        if (this.editDish) {
-          this.isEdit = true;
-        }
-      });
+
+    // this.editDish$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
+    //   const dishForEdit = val;
+    //   console.log('this.editDish', val);
+    //   this.editDish = dishForEdit;
+    //   console.log('this.editDish', val);
+    //   if (this.editDish) {
+    //     this.isEdit = true;
+    //     console.log('isEdit', this.isEdit);
+    //   }
+    // });
+
+    this.store.pipe(select(dishesByIdSelector)).subscribe((val) => {
+      this.editDish = val;
+      console.log('typeof val', typeof val);
+      this.editDish;
+      if (this.editDish) {
+        this.isEdit = true;
+        this.editDish = this.editDish[this.editDish.length - 1];
+        console.log('isEdit', this.isEdit);
+      }
+    });
+
+    console.log('this.editDish', this.editDish);
 
     this.form = new FormGroup({
       categoryId: new FormControl(
@@ -140,10 +158,10 @@ export class AddDishesComponent implements OnInit, OnDestroy {
     this.isEdit ? (message = 'Dish updated') : message;
 
     if (this.isAdded === true) {
-      this.openSnackBar(message); //! after effect dispatch success
+      this.openSnackBar(message);
     }
     if (this.isUpdated === true) {
-      this.openSnackBar(message); //! after effect dispatch success
+      this.openSnackBar(message);
     }
 
     this.store
