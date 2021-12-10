@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
   addDishAction,
+  closeEditFormAction,
   editDishAction,
   getDishByIdAction,
 } from 'src/app/core/store/actions/dishes.action';
@@ -38,7 +39,7 @@ export class AddDishesComponent implements OnInit, OnDestroy {
   public errors$!: Observable<any>;
   public errorMessage!: string | null;
   public categories$!: Observable<Category[]>;
-  public editDish$!: Observable<Dish | undefined>;
+  public editDish$!: Observable<Dish | null | undefined>;
   public categories: Category[] = [];
   public id!: number;
   public editDish: any;
@@ -56,38 +57,29 @@ export class AddDishesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // this.editDish$ = this.store.pipe(select(dishesByIdSelector));
-
     this.route.queryParams
       .pipe(filter((params) => params.id))
       .subscribe((params) => (this.id = params.id));
     console.log('id', this.id);
     this.store.dispatch(getDishByIdAction({ dishId: this.id }));
 
-    // this.editDish$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
-    //   const dishForEdit = val;
-    //   console.log('this.editDish', val);
-    //   this.editDish = dishForEdit;
-    //   console.log('this.editDish', val);
-    //   if (this.editDish) {
-    //     this.isEdit = true;
-    //     console.log('isEdit', this.isEdit);
-    //   }
-    // });
-
-    this.store.pipe(select(dishesByIdSelector)).subscribe((val) => {
+    this.editDish$ = this.store.pipe(select(dishesByIdSelector));
+    this.editDish$.pipe(takeUntil(this.destroy$)).subscribe((val) => {
       this.editDish = val;
-      console.log('typeof val', typeof val);
-      this.editDish;
+      console.log('this.editDish', val);
       if (this.editDish) {
+        this.editDish = this.editDish[0];
+        console.log('this.editDish', this.editDish);
         this.isEdit = true;
-        this.editDish = this.editDish[this.editDish.length - 1];
         console.log('isEdit', this.isEdit);
       }
+      this.initForm();
     });
 
-    console.log('this.editDish', this.editDish);
+    this.getCategoriesData();
+  }
 
+  private initForm(): void {
     this.form = new FormGroup({
       categoryId: new FormControl(
         !this.isEdit ? null : this.editDish.categoryId,
@@ -113,8 +105,6 @@ export class AddDishesComponent implements OnInit, OnDestroy {
         Validators.required,
       ]),
     });
-
-    this.getCategoriesData();
   }
 
   public onSubmit(formDirective: any): void {
@@ -205,6 +195,12 @@ export class AddDishesComponent implements OnInit, OnDestroy {
     this.categories$.pipe(takeUntil(this.destroy$)).subscribe((categories) => {
       this.categories = categories;
     });
+  }
+
+  public closeEditForm() {
+    this.isEdit = false;
+    this.router.navigate(['admin-dashboard/dishes-dashboard']);
+    this.store.dispatch(closeEditFormAction());
   }
 
   ngOnDestroy(): void {

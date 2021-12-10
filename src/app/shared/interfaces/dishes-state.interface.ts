@@ -8,5 +8,5 @@ export interface DishesStateInteface {
   id: number;
   isUpdated: boolean;
   isAdded: boolean;
-  editDish?: Dish;
+  editDish?: Dish | null;
 }

@@ -12,6 +12,7 @@ import { deleteDishAction } from 'src/app/core/store/actions/dishes.action';
 import { categoriesStateSelector } from 'src/app/core/store/selectors/categoties.selectors';
 import { Dish } from 'src/app/shared/classes/dish';
 import { CategoriesStateInteface } from 'src/app/shared/interfaces/categories-state.interface';
+import { ViewEncapsulation } from '@angular/core';
 
 export interface TableInfo {
   id: number;
@@ -24,6 +25,7 @@ export interface TableInfo {
   selector: 'app-dishes-dashboard',
   templateUrl: './dishes-dashboard.component.html',
   styleUrls: ['./dishes-dashboard.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DishesDashboardComponent implements OnInit {
   public destroy$: Subject<boolean> = new Subject<boolean>();
@@ -58,8 +60,10 @@ export class DishesDashboardComponent implements OnInit {
     });
     console.log(id);
   }
-  public deleteDish(id: number): void {
+  public deleteDish(id: number, categoryId: number): void {
     this.store.dispatch(deleteDishAction({ id }));
+    console.log(categoryId);
+    this.store.dispatch(getIdCategoryByAction({ categoryId }));
   }
   public onSelect(id: number) {
     this.store.dispatch(getIdCategoryByAction({ categoryId: id }));

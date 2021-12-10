@@ -70,7 +70,6 @@ export const getDishByIdSuccessAction = createAction(
   props<{ dish: Dish }>()
 );
 
-export const getDishByIdFailureAction = createAction(
-  ActionsType.EDIT_FAILURE
-  // props<{ errors: any }>()
-);
+export const getDishByIdFailureAction = createAction(ActionsType.EDIT_FAILURE);
+
+export const closeEditFormAction = createAction(ActionsType.EDIT_CLOSE_FORM);

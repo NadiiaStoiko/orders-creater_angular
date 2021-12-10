@@ -1,6 +1,47 @@
 <div class="container">
   <h1 class="table-title">Categories dashboard</h1>
-  <table>
+  <table mat-table [dataSource]="categories" class="mat-elevation-z8">
+    <ng-container matColumnDef="id" class="col">
+      <th mat-header-cell *matHeaderCellDef class="id">id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name" class="col">
+      <th mat-header-cell *matHeaderCellDef class="name">Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.types }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit" class="col">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="editCategory(element.id)"
+        >
+          Edit
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete" class="col">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-stroked-button
+          color="warn"
+          (click)="deleteCategory(element.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <!-- <table>
     <tbody>
       <tr class="col-names">
         <th class="col-name">ID</th>
@@ -33,5 +74,5 @@
         </td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
 </div>

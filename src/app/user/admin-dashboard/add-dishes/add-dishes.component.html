@@ -32,10 +32,9 @@
       <input
         matInput
         id="name"
-        type="name"
+        type="text"
         formControlName="name"
         matInput
-        formControlName="name"
         autocomplete="name"
       />
 
@@ -125,6 +124,15 @@
       color="primary"
     >
       Edit dish
+    </button>
+
+    <button
+      *ngIf="isEdit"
+      mat-raised-button
+      color="primary"
+      (click)="closeEditForm()"
+    >
+      Cancel
     </button>
 
     <ng-template #addDishButton>

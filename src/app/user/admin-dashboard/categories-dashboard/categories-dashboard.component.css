@@ -3,19 +3,41 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  width: 600px;
+  padding: 0 20px;
+  margin-bottom: 50px;
 }
+
+.container ::ng-deep .mat-column-id {
+  /* background: green; */
+  width: 100px;
+  padding-left: 20px;
+}
+.container ::ng-deep .mat-column-name {
+  /* background: red; */
+  width: 300px;
+  padding-left: 40px;
+}
+
+.container ::ng-deep .mat-column-edit,
+.mat-column-delete {
+  /* background: blue; */
+  width: 150px;
+  padding-left: 20px;
+}
+
+.container ::ng-deep .cdk-header-row {
+  /* background: rebeccapurple; */
+  padding: 0;
+}
+
 .table-title {
   margin-bottom: 15px;
 }
-th.col-name {
-  padding-bottom: 15px;
-}
-.name {
-  display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
-  padding: 0 10px;
+table {
+  width: 85%;
+  padding: 10px 60px 35px 60px;
+  border-radius: 6px;
 }
 .btn {
   padding: 0 15px;

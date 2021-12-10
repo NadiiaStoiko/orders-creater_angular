@@ -151,6 +151,7 @@ export class GetDishByIdEffects {
       switchMap(({ dishId }) => {
         return this.dishesService.getDishByDishId(dishId).pipe(
           map((dish) => {
+            console.log('res', dish);
             return getDishByIdSuccessAction({ dish });
           }),
           catchError(() => of(getDishByIdFailureAction()))

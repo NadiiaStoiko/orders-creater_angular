@@ -25,15 +25,27 @@
 table {
   width: 90%;
 }
-/* th.col-name {
-  padding-bottom: 15px;
+
+.mat-elevation-z8 {
+  border: white 1px solid;
+  width: 85%;
+  padding-left: 60px;
 }
-td.name {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-} */
+
+::ng-deep.mat-elevation-z8.col {
+  width: 200px;
+}
+
 .btn {
   padding: 0 15px;
+}
+
+mat-expansion-panel {
+  padding: 0 30px;
+}
+
+.mat-elevation-z8 ::ng-deep .mat-column-name {
+  background: red;
+  width: 300px;
+  padding-left: 40px;
 }

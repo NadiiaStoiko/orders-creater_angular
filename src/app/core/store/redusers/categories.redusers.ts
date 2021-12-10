@@ -7,12 +7,10 @@ import {
   addCategorySuccessAction,
   deleteCategorySuccessAction,
   editCategorySuccessAction,
-  // deleteCategortAction,
   getCategoriesAction,
   getCategoriesFailureAction,
   getCategoriesSuccessAction,
   getIdCategorySuccessAction,
-  // getCategoryByIdSuccessAction,
 } from '../actions/categories.action';
 import { initialState } from '../state/catigories-state';
 

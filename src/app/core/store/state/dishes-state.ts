@@ -7,4 +7,5 @@ export const initialState: DishesStateInteface = {
   id: 0,
   isUpdated: false,
   isAdded: false,
+  editDish: null,
 };

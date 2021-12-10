@@ -10,7 +10,12 @@ import {
 } from 'src/app/core/store/actions/categories.action';
 import { categoriesSelector } from 'src/app/core/store/selectors/categoties.selectors';
 import { Category } from 'src/app/shared/classes/category';
-
+export interface TableInfo {
+  id: number;
+  name: string;
+  edit: string;
+  delete: string;
+}
 @Component({
   selector: 'app-categories-dashboard',
   templateUrl: './categories-dashboard.component.html',
@@ -20,6 +25,7 @@ export class CategoriesDashboardComponent implements OnInit {
   categories$!: Observable<Category[]>;
   destroy$: Subject<boolean> = new Subject<boolean>();
   public categories: Category[] = [];
+  public displayedColumns: string[] = ['id', 'name', 'edit', 'delete'];
 
   constructor(
     private store: Store,

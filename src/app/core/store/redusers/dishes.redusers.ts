@@ -4,11 +4,11 @@ import { DishesStateInteface } from 'src/app/shared/interfaces/dishes-state.inte
 import {
   addDishFailureAction,
   addDishSuccessAction,
+  closeEditFormAction,
   deleteDishSuccessAction,
   editDishFailureAction,
   editDishSuccessAction,
   getDishByIdSuccessAction,
-  // editDishSuccessAction,
   getDishesAction,
   getDishesFailureAction,
   getDishesSuccessAction,
@@ -72,6 +72,7 @@ const dishesReduser = createReducer(
     return {
       ...state,
       isUpdated: true,
+      editDish: null,
     };
   }),
   on(
@@ -87,6 +88,13 @@ const dishesReduser = createReducer(
       ...state,
       isLoading: true,
       editDish: action.dish,
+    })
+  ),
+  on(
+    closeEditFormAction,
+    (state): DishesStateInteface => ({
+      ...state,
+      editDish: null,
     })
   )
 );

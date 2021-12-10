@@ -19,4 +19,6 @@ export enum ActionsType {
   EDIT_DISH = '[Dishes] Edit dish',
   EDIT_DISHES_SUCCESS = '[Dishes] Edit dish success',
   EDIT_FAILURE = '[Dishes] Edit dish failure',
+
+  EDIT_CLOSE_FORM = '[Dishes] Close Edit form',
 }
