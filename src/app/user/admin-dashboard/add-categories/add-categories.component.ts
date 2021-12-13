@@ -59,7 +59,6 @@ export class AddCategoriesComponent implements OnInit, OnDestroy {
       .pipe(select(categoryByIdSelector, { id: this.id }))
       .subscribe((val) => {
         this.editCategory = val;
-        // console.log(val);
         if (this.editCategory) {
           this.isEdit = true;
         }

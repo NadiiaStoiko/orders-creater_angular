@@ -37,6 +37,8 @@ export const loginSuccessAction = createAction(
     userRole: string;
     name: string;
     phone: number | null;
+    email: string;
+    userId: number | null;
   }>()
 );
 

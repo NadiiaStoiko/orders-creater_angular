@@ -29,12 +29,16 @@ export class AuthService {
     userRole: string;
     name: string;
     phone: number | null;
+    email: string;
+    userId: number | null;
   }> {
     return this.http.post<{
       AccessToken: string;
       userRole: string;
       name: string;
       phone: number | null;
+      email: string;
+      userId: number | null;
     }>(`${this.url}/login`, user);
   }
 }

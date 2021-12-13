@@ -54,6 +54,159 @@
     <div>Total:</div>
     <div>{{ totalCost }} грн.</div>
   </div>
+
+  <div class="container">
+    <button
+      *ngIf="isLogin === false"
+      class="create-order-btn"
+      mat-flat-button
+      color="primary"
+      (click)="createOrder()"
+    >
+      Create order
+    </button>
+
+    <button
+      *ngIf="isLogin === true"
+      mat-stroked-button
+      color="primary"
+      (click)="createOrderAuth()"
+    >
+      Create new order
+    </button>
+  </div>
+
+  <div class="auth-btns" *ngIf="isOrder === true && isLogin === false">
+    <button mat-stroked-button color="primary" [routerLink]="['/login']">
+      If you have registered, please, Log In
+    </button>
+    <button mat-stroked-button color="primary" (click)="createOrderNoAuth()">
+      Сontinue without authorization
+    </button>
+  </div>
+  <div
+    class="order-form-container"
+    *ngIf="noAuth === true || isForLogin === true"
+  >
+    <form
+      [formGroup]="form"
+      #formDirective="ngForm"
+      (ngSubmit)="onSubmit(formDirective)"
+    >
+      <div class="title">
+        <h2>Create order</h2>
+      </div>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          id="name"
+          type="name"
+          formControlName="name"
+          matInput
+          placeholder="Jonh Jonhson"
+        />
+
+        <mat-error *ngIf="form.get('name')?.errors?.required">
+          Enter your name, please
+        </mat-error>
+        <mat-error *ngIf="form.get('name')?.errors?.minlength">
+          Enter valid name, please
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          id="email"
+          type="email"
+          formControlName="email"
+          matInput
+          placeholder="example@example.com"
+        />
+
+        <mat-error *ngIf="form.get('email')?.errors?.required">
+          Enter email, please
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.errors?.email">
+          Enter valid email, please
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Phone number</mat-label>
+        <input
+          matInput
+          id="phone"
+          type="phone"
+          matInput
+          formControlName="phone"
+          autocomplete="on"
+          placeholder="+380671111111"
+        />
+        <mat-error *ngIf="form.get('phone')?.errors?.required">
+          Enter phone number, please
+        </mat-error>
+        <mat-error *ngIf="form.get('phone')?.errors?.minlength">
+          The phone number must be at least
+          {{ form.get("phone")?.errors?.minlength.requiredLength }}
+          characters.Now it
+          {{ form.get("phone")?.errors?.minlength.actualLength }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Delivery address</mat-label>
+        <input
+          matInput
+          id="address"
+          type="address"
+          matInput
+          formControlName="address"
+          autocomplete="on"
+        />
+        <mat-error *ngIf="form.get('address')?.errors?.required">
+          Enter delivery address, please
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose, please, delivery way:</mat-label>
+        <mat-select formControlName="delivery" required>
+          <mat-option>Choose, please, delivery way</mat-option>
+          <mat-option *ngFor="let way of delivery" [value]="way">
+            {{ way }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('delivery')?.errors?.required"
+          >Please choose delivery way</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose, please, payment type:</mat-label>
+        <mat-select formControlName="payment" required>
+          <mat-option>Choose, please, payment type</mat-option>
+          <mat-option *ngFor="let type of payment" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('roles')?.errors?.required"
+          >Choose, please, payment type</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        class="ready-order-btn"
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Order is ready
+      </button>
+    </form>
+  </div>
 </div>
 <ng-template #emptyCart>
   <div class="empty-cart-container">

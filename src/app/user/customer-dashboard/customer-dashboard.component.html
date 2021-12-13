@@ -1,1 +1,24 @@
-<p>customer-dashboard works!</p>
+<div>
+  <div class="actions-container">
+    <div class="private-info">
+      <p class="private-info-title">Your persional information</p>
+      <div class="info">
+        <div class="person">Name:{{ userName }}</div>
+        <div class="person">Email:{{ userEmail }}</div>
+        <div class="person">Phone:{{ userPhone }}</div>
+      </div>
+    </div>
+
+    <h2 class="actions-title">Hello, {{ userName }} !</h2>
+    <p class="actions-content">If you want create new order</p>
+
+    <button
+      class="create-order-btn"
+      mat-flat-button
+      color="primary"
+      [routerLink]="['/cart']"
+    >
+      Create order
+    </button>
+  </div>
+</div>

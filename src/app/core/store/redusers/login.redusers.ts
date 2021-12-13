@@ -24,9 +24,11 @@ const loginReduser = createReducer(
       isSubmitting: false,
       isLogin: true,
       userRole: action.userRole,
+      userId: action.userId,
       AccessToken: action.AccessToken,
       name: action.name,
       phone: action.phone,
+      email: action.email,
       errors: null,
     })
   ),

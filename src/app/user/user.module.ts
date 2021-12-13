@@ -24,6 +24,7 @@ import {
   GetAllDishesEffects,
   GetDishByIdEffects,
 } from '../core/store/effects/dishes.effect';
+import { AddOrderEffects } from '../core/store/effects/cart.effect';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {
       EditDishEffects,
       SelecedCategoryEffects,
       GetDishByIdEffects,
+      AddOrderEffects,
     ]),
   ],
 })

@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducersForCategories } from '../core/store/redusers/categories.redusers';
 import { reducersForDishes } from '../core/store/redusers/dishes.redusers';
 import { reducersForCart } from '../core/store/redusers/cart.redusers ';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { reducersForCart } from '../core/store/redusers/cart.redusers ';
     CommonModule,
     MaterialModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     EffectsModule.forFeature([GetCategoriesEffects, GetDishesEffects]),
     StoreModule.forFeature('categories', reducersForCategories),
     StoreModule.forFeature('dishes', reducersForDishes),

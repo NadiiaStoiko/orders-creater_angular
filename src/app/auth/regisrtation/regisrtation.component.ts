@@ -67,7 +67,7 @@ export class RegisrtationComponent implements OnInit, OnDestroy {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
   }
 
-  onSubmit(formDirective: any): void {
+  public onSubmit(formDirective: any): void {
     const message = 'You registred successful';
 
     if (this.form.invalid) {

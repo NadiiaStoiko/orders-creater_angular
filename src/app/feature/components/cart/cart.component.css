@@ -32,7 +32,7 @@ td {
   flex-direction: row;
   font-size: large;
   font-weight: bold;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 .empty-cart-container {
   display: flex;
@@ -50,4 +50,31 @@ td {
 .empty-cart-content {
   font-size: 16px;
   padding-bottom: 15px;
+}
+
+.create-order-btn {
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+.auth-btns {
+  display: flex;
+  justify-content: space-around;
+}
+.order-form-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  height: 700px;
+}
+.mat-label {
+  margin-bottom: 15px;
+}
+.ready-order-btn {
+  margin-top: 30px;
 }

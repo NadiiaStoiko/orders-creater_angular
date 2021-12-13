@@ -43,3 +43,22 @@ export const LogginErrorsSelector = createSelector(
   loginFeatureSelector,
   (loginState: LoginStateInteface) => loginState.errors
 );
+
+export const userPhoneSelector = createSelector(
+  loginFeatureSelector,
+  (loginState: LoginStateInteface) => loginState.phone
+);
+export const userEmailSelector = createSelector(
+  loginFeatureSelector,
+  (loginState: LoginStateInteface) => loginState.email
+);
+
+export const userIdSelector = createSelector(
+  loginFeatureSelector,
+  (loginState: LoginStateInteface) => loginState.userId
+);
+
+export const userNameSelector = createSelector(
+  loginFeatureSelector,
+  (loginState: LoginStateInteface) => loginState.name
+);

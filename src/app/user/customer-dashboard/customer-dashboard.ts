@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersistanceService } from 'src/app/core/services/persistance.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,8 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customer-dashboard.component.css'],
 })
 export class CustomerDashboardComponent implements OnInit {
-  // constructor() { }
+  public userName = '';
+  public userEmail = '';
+  public userPhone = '';
+
+  constructor(private persistServ: PersistanceService) {
+    console.log();
+  }
+
   ngOnInit(): void {
-    console.log('dashboard');
+    this.greating();
+  }
+
+  public greating() {
+    this.userName = this.persistServ.get('userName');
+    this.userEmail = this.persistServ.get('email');
+    this.userPhone = this.persistServ.get('phone');
   }
 }
