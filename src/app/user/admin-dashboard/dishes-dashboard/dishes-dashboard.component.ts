@@ -56,7 +56,7 @@ export class DishesDashboardComponent implements OnInit {
   }
   public editDish(id: number): void {
     this.router.navigate(['admin-dashboard/add-dishes'], {
-      queryParams: { id: id },
+      queryParams: { id },
     });
     console.log(id);
   }

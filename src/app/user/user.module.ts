@@ -24,7 +24,13 @@ import {
   GetAllDishesEffects,
   GetDishByIdEffects,
 } from '../core/store/effects/dishes.effect';
-import { AddOrderEffects } from '../core/store/effects/cart.effect';
+import {
+  AddOrderEffects,
+  GetOrdersEffects,
+} from '../core/store/effects/cart.effect';
+import { OrderDashboardComponent } from './admin-dashboard/order-dashboard/order-dashboard.component';
+import { StoreModule } from '@ngrx/store';
+import { reducersForOrders } from '../core/store/redusers/orders.redusers ';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,7 @@ import { AddOrderEffects } from '../core/store/effects/cart.effect';
     CategoriesDashboardComponent,
     AddCategoriesComponent,
     AddDishesComponent,
+    OrderDashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -52,7 +59,9 @@ import { AddOrderEffects } from '../core/store/effects/cart.effect';
       SelecedCategoryEffects,
       GetDishByIdEffects,
       AddOrderEffects,
+      GetOrdersEffects,
     ]),
+    StoreModule.forFeature('orders', reducersForOrders),
   ],
 })
 export class UserModule {}

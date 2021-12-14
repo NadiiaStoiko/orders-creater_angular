@@ -8,4 +8,8 @@ export enum ActionType {
   ADD_ORDER = '[Cart] Add order',
   ADD_ORDER_SUCCESS = '[Cart] Add order success',
   ADD_ORDER_FAILURE = '[Cart] Add order failure',
+
+  GET_ORDER = '[Cart] Gets order',
+  GET_ORDER_SUCCESS = '[Cart] Get orders success',
+  GET_ORDER_FAILURE = '[Cart] Get orders failure',
 }

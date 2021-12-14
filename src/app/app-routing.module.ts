@@ -12,6 +12,7 @@ import { DishesDashboardComponent } from './user/admin-dashboard/dishes-dashboar
 import { AddDishesComponent } from './user/admin-dashboard/add-dishes/add-dishes.component';
 import { AddCategoriesComponent } from './user/admin-dashboard/add-categories/add-categories.component';
 // import { RoleGuard } from './shared/guards/role.guard';
+import { OrderDashboardComponent } from './user/admin-dashboard/order-dashboard/order-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'categories', pathMatch: 'full' },
@@ -49,6 +50,10 @@ const routes: Routes = [
       {
         path: 'add-categories',
         component: AddCategoriesComponent,
+      },
+      {
+        path: 'orders-dashboard',
+        component: OrderDashboardComponent,
       },
     ],
   },

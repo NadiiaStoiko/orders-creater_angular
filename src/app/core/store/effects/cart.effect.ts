@@ -11,6 +11,9 @@ import {
   addOrderFailureAction,
   addOrderSuccessAction,
   addToCartAction,
+  getOrderAction,
+  getOrderFailureAction,
+  getOrderSuccessAction,
 } from '../actions/cart.action';
 // import { OrderInterface } from 'src/app/shared/interfaces/order.interface ';
 
@@ -48,6 +51,29 @@ export class AddOrderEffects {
             return addOrderSuccessAction({ order });
           }),
           catchError(() => of(addOrderFailureAction()))
+        );
+      })
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private ordersService: OrdersDataService
+  ) {}
+}
+
+@Injectable()
+export class GetOrdersEffects {
+  getOrder$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getOrderAction),
+      switchMap(() => {
+        return this.ordersService.getAllOrders().pipe(
+          map((orders) => {
+            console.log('res', orders);
+            return getOrderSuccessAction({ orders });
+          }),
+          catchError(() => of(getOrderFailureAction()))
         );
       })
     )

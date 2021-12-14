@@ -1,0 +1,50 @@
+<div class="container">
+  <h1 class="table-title">Categories dashboard</h1>
+  <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+    <ng-container matColumnDef="Order Id" class="col">
+      <th mat-header-cell *matHeaderCellDef class="order-id">Order Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Client name" class="col">
+      <th mat-header-cell *matHeaderCellDef class="client-name">Client name</th>
+      <td mat-cell *matCellDef="let element">{{ element.order.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Client Id" class="col">
+      <th mat-header-cell *matHeaderCellDef class="client-id">Client Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.order.userID }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Ordered dishes" class="col">
+      <th mat-header-cell *matHeaderCellDef class="ordered-dishes',">
+        Ordered dishes
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.order.dishes | json }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Amount of order" class="col">
+      <th mat-header-cell *matHeaderCellDef class="order-amount',">
+        Amount of order
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.order.dishes }}</td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="edit" class="col">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button color="primary">Edit</button>
+      </td>
+    </ng-container> -->
+
+    <ng-container matColumnDef="Delete" class="col">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element">Delete</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

@@ -24,9 +24,9 @@ export class OrdersDataService implements OnInit {
   //   });
   // }
 
-  // public getAllOrders(): Observable<Dish[]> {
-  //   return this.http.get<Dish[]>(`${this.url}/${this.endpoint}`);
-  // }
+  public getAllOrders(): Observable<OrderInterface[]> {
+    return this.http.get<OrderInterface[]>(`${this.url}/${this.endpoint}`);
+  }
 
   public addOrder(order: OrderInterface): Observable<OrderInterface> {
     return this.http.post<OrderInterface>(

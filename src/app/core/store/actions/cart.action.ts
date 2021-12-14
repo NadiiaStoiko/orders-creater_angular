@@ -39,3 +39,12 @@ export const addOrderSuccessAction = createAction(
   props<{ order: OrderInterface }>()
 );
 export const addOrderFailureAction = createAction(ActionType.ADD_ORDER_FAILURE);
+
+export const getOrderAction = createAction(ActionType.GET_ORDER);
+
+export const getOrderSuccessAction = createAction(
+  ActionType.GET_ORDER_SUCCESS,
+  props<{ orders: OrderInterface[] }>()
+);
+
+export const getOrderFailureAction = createAction(ActionType.GET_ORDER_FAILURE);

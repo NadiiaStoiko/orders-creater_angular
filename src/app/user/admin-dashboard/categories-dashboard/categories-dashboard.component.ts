@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CategoriesListService } from 'src/app/core/services/categories-list.service';
+
 import {
   deleteCategoryAction,
   getCategoriesAction,
@@ -27,11 +27,7 @@ export class CategoriesDashboardComponent implements OnInit {
   public categories: Category[] = [];
   public displayedColumns: string[] = ['id', 'name', 'edit', 'delete'];
 
-  constructor(
-    private store: Store,
-    private categoryServ: CategoriesListService,
-    private router: Router
-  ) {
+  constructor(private store: Store, private router: Router) {
     console.log;
   }
 

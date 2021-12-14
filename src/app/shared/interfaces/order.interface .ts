@@ -1,5 +1,3 @@
-// import { CartStateInteface } from './cart-state.interface ';
-
 export interface OrderInterface {
   name: string;
   phone: string;
@@ -9,4 +7,11 @@ export interface OrderInterface {
   address: string;
   delivery: string;
   dishes: any;
+  isLoading?: boolean;
+}
+
+export interface OrdersStateInterface {
+  orders: OrderInterface[];
+  isLoading: boolean;
+  errors: string | null;
 }
